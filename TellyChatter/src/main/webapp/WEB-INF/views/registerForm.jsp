@@ -134,7 +134,7 @@
 						</div>
 						<div class="top-row">
 						<div class="field-wrap">
-							<span class="yearyear">생년월일 6자리</span><span class="req">*</span> 
+							<label> 생년월일 6자리(ex.961121)<span class="req">*</span>
 							<input type="text" name="birth" required autocomplete="off" />
 						</div>
 						<div class="field-wrap">
@@ -164,16 +164,16 @@
 				<div id="login">
 					<h1>Welcome Back!</h1>
 
-					<form action="/" method="post">
+					<form action="goLogin" method="post">
 
 						<div class="field-wrap">
-							<label> Email Address<span class="req">*</span>
-							</label> <input type="email" required autocomplete="off" />
+							<label> ID<span class="req">*</span>
+							</label> <input type="text" name="id" required autocomplete="off" />
 						</div>
 
 						<div class="field-wrap">
 							<label> Password<span class="req">*</span>
-							</label> <input type="password" required autocomplete="off" />
+							</label> <input type="password" name="password" required autocomplete="off" />
 						</div>
 
 						<p class="forgot">

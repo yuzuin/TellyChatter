@@ -1,5 +1,8 @@
 package com.project.telly;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,9 +18,17 @@ public class PageController {
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 	
 	/* 홈 페이지 (index) */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
+	@RequestMapping(value = {"/","index"})
+	public String index(Model m, HttpServletRequest request) {
 		
+		//	로그인 검사
+		HttpSession session = request.getSession();
+		String nowUser = (String)session.getAttribute("userid");
+		String userImg = (String)session.getAttribute("userImg");
+		
+		//	뿌려주기
+		m.addAttribute("nowUser",nowUser);
+		m.addAttribute("userImg",userImg);
 		return "index";
 	}
 	

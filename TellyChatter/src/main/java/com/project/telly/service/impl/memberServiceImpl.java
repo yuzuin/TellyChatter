@@ -17,8 +17,16 @@ public class memberServiceImpl implements memberService{
 	
 	@Override
 	@Transactional
+	/* 회원가입 */
 	public int insertMember(memberVO vo) {
 		return memberMapper.insertMember(vo);
+	}
+
+	@Override
+	@Transactional
+	/* 로그인 */
+	public memberVO login(memberVO vo) {
+		return memberMapper.login(vo);
 	}
 
 }
