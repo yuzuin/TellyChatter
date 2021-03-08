@@ -15,7 +15,23 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	<context:component-scan base-package="com.project.telly" />
-	<context:component-scan base-package="com.project.telly.service.dao" />
+
+	<!-- html폼에서 첨부파일 업로드 설정 10메가 제한 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	<!-- 업로드한 파일이 저장되는 위치: 운영서버용 /tmp -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="/profile">
+		</beans:constructor-arg>
+	</beans:bean>
+	
+	
+	
+	<context:component-scan
+		base-package="com.project.telly" />
+	<context:component-scan
+		base-package="com.project.telly.service.dao" />
 </beans:beans>
 

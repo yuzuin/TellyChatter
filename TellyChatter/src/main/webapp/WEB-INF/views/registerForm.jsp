@@ -16,6 +16,18 @@
 	href="${pageContext.request.contextPath}/resources/assets/css/register.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
 </head>
 <body class="single is-preload">
 
@@ -92,41 +104,53 @@
 		<div class="form">
 
 			<ul class="tab-group">
-				<li class="tab active"><a href="#signup">Sign Up</a></li>
-				<li class="tab"><a href="#login">Log In</a></li>
+				<li class="tab active"><a href="#signup">회원가입</a></li>
+				<li class="tab"><a href="#login">로그인</a></li>
 			</ul>
 
 			<div class="tab-content">
 				<div id="signup">
-					<h1>Sign Up for Free</h1>
+					<h1>무료로 회원가입 하세요!</h1>
 
 					<form action="/" method="post">
 
 						<div class="top-row">
 							<div class="field-wrap">
-								<label> First Name<span class="req">*</span>
+								<label> ID<span class="req">*</span>
 								</label> <input type="text" required autocomplete="off" />
 							</div>
 
 							<div class="field-wrap">
-								<label> Last Name<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" />
+								<label> 비밀번호<span class="req">*</span>
+								</label> <input type="password" required autocomplete="off" />
 							</div>
 						</div>
 
 						<div class="field-wrap">
-							<label> Email Address<span class="req">*</span>
+							<label> E-mail<span class="req">*</span>
 							</label> <input type="email" required autocomplete="off" />
 						</div>
 
 						<div class="field-wrap">
-							<label> Set A Password<span class="req">*</span>
-							</label> <input type="password" required autocomplete="off" />
+							<span class="yearyear">생년월일</span><span class="req">*</span> <select
+								name="year" id="year" title="년도" class="custom-select"></select>
+							<select name="month" id="month" title="월" class="custom-select"></select>
+							<select name="day" id="day" title="일" class="custom-select"></select>
 						</div>
 
-						<button type="submit" class="button button-block" >
-						Get Started
-						</button>
+						<div class="field-wrap">
+							<span>성별</span> <select name="gender">
+								<option value="M">남자</option>
+								<option value="F" selected="selected">여자</option>
+							</select>
+						</div>
+						
+						<div class="field-wrap">
+							<span>프로필 사진</span>
+						<input type="file" id="file" name="ProfileImg" value="파일선택" class="multi">
+						</div>
+			
+						<button type="submit" class="button button-block">START!</button>
 
 					</form>
 
@@ -151,9 +175,7 @@
 							<a href="#">Forgot Password?</a>
 						</p>
 
-						<button class="button button-block">
-						Log In
-						</button>
+						<button class="button button-block">Log In</button>
 
 					</form>
 
@@ -197,8 +219,46 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-		<script
+	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/register.js"></script>
+	<script>
+		$(document).ready(function() {
+			setDateBox();
+		});
+
+		// select box 연도 , 월 표시
+		function setDateBox() {
+			var dt = new Date();
+			var year = "";
+			var com_year = dt.getFullYear();
+
+			// 발행 뿌려주기
+			$("#year").append("<option value=''>년도</option>");
+
+			// 올해 기준으로 -50년부터 +1년을 보여준다.
+			for (var y = (com_year - 50); y <= (com_year + 1); y++) {
+				$("#year").append(
+						"<option value='" + y + "'>" + y + " 년" + "</option>");
+			}
+
+			// 월 뿌려주기(1월부터 12월)
+			var month;
+			$("#month").append("<option value=''>월</option>");
+			for (var i = 1; i <= 12; i++) {
+				$("#month").append(
+						"<option value='" + i + "'>" + i + " 월" + "</option>");
+			}
+
+			// 일 뿌려주기(1일부터 31일)
+			var day;
+			$("#day").append("<option value=''>일</option>");
+			for (var i = 1; i <= 31; i++) {
+				$("#day").append(
+						"<option value='" + i + "'>" + i + " 일" + "</option>");
+			}
+
+		}
+	</script>
 
 </body>
 </html>
