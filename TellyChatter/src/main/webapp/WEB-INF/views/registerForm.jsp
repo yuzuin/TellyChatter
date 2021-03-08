@@ -106,11 +106,38 @@
 		<div class="form">
 
 			<ul class="tab-group">
-				<li class="tab active"><a href="#signup">회원가입</a></li>
-				<li class="tab"><a href="#login">로그인</a></li>
+				<li class="tab"><a href="#signup">회원가입</a></li>
+				<li class="tab active"><a href="#login">로그인</a></li>
 			</ul>
 
 			<div class="tab-content">
+				
+
+				<div id="login">
+					<h1>Welcome Back!</h1>
+
+					<form action="goLogin" method="post">
+
+						<div class="field-wrap">
+							<label> ID<span class="req">*</span>
+							</label> <input type="text" name="id" required autocomplete="off" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Password<span class="req">*</span>
+							</label> <input type="password" name="password" required autocomplete="off" />
+						</div>
+
+						<p class="forgot">
+							<a href="#">Forgot Password?</a>
+						</p>
+
+						<button class="button button-block">Log In</button>
+
+					</form>
+
+				</div>
+				
 				<div id="signup">
 					<h1>무료로 회원가입 하세요!</h1>
 
@@ -134,7 +161,7 @@
 						</div>
 						<div class="top-row">
 						<div class="field-wrap">
-							<label> 생년월일 6자리(ex.961121)<span class="req">*</span>
+							<label> 생년월일 6자리(ex.961121)<span class="req">*</span></label>
 							<input type="text" name="birth" required autocomplete="off" />
 						</div>
 						<div class="field-wrap">
@@ -144,7 +171,7 @@
 						</div>
 
 						<div class="field-wrap">
-							<span>성별</span> <select name="gender">
+							<select name="gender">
 								<option value="M">남자</option>
 								<option value="F" selected="selected">여자</option>
 							</select>
@@ -156,31 +183,6 @@
 						</div>
 			
 						<button type="submit" class="button button-block">START!</button>
-
-					</form>
-
-				</div>
-
-				<div id="login">
-					<h1>Welcome Back!</h1>
-
-					<form action="goLogin" method="post">
-
-						<div class="field-wrap">
-							<label> ID<span class="req">*</span>
-							</label> <input type="text" name="id" required autocomplete="off" />
-						</div>
-
-						<div class="field-wrap">
-							<label> Password<span class="req">*</span>
-							</label> <input type="password" name="password" required autocomplete="off" />
-						</div>
-
-						<p class="forgot">
-							<a href="#">Forgot Password?</a>
-						</p>
-
-						<button class="button button-block">Log In</button>
 
 					</form>
 

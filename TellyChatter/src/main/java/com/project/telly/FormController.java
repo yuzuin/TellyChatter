@@ -37,7 +37,7 @@ public class FormController {
 		if(memberService.insertMember(mem)>0) {
 			System.out.println("ok리턴");
 		}
-		return "redirect:index";	//	리다이렉트로 
+		return "registerForm";	//	리다이렉트로 
 	}
 	
 	/* 로그인 제출 */
