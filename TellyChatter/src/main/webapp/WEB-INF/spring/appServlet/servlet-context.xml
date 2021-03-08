@@ -21,7 +21,8 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
-	<!-- 업로드한 파일이 저장되는 위치: 운영서버용 /tmp -->
+	
+	<!-- 업로드한 파일이 저장되는 위치: 운영서버용 /profile -->
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="/profile">
 		</beans:constructor-arg>
@@ -33,5 +34,6 @@
 		base-package="com.project.telly" />
 	<context:component-scan
 		base-package="com.project.telly.service.dao" />
+		<context:component-scan base-package="com.project.telly.util"/>
 </beans:beans>
 

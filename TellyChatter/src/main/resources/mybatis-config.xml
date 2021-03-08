@@ -6,6 +6,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias alias="boardVO" type="com.project.telly.vo.BoardVO" />
+		<typeAlias alias="memberVO" type="com.project.telly.vo.memberVO" />
 	</typeAliases>
 </configuration>
 

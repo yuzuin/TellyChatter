@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -112,30 +114,33 @@
 				<div id="signup">
 					<h1>무료로 회원가입 하세요!</h1>
 
-					<form action="/" method="post">
+					<form action="goRegister" method="post" enctype="multipart/form-data">
 
 						<div class="top-row">
 							<div class="field-wrap">
 								<label> ID<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" />
+								</label> <input type="text" name="id" required autocomplete="off" />
 							</div>
 
 							<div class="field-wrap">
 								<label> 비밀번호<span class="req">*</span>
-								</label> <input type="password" required autocomplete="off" />
+								</label> <input type="password" name="password" required autocomplete="off" />
 							</div>
 						</div>
-
+		
 						<div class="field-wrap">
 							<label> E-mail<span class="req">*</span>
-							</label> <input type="email" required autocomplete="off" />
+							</label> <input type="email" name="email" required autocomplete="off" />
 						</div>
-
+						<div class="top-row">
 						<div class="field-wrap">
-							<span class="yearyear">생년월일</span><span class="req">*</span> <select
-								name="year" id="year" title="년도" class="custom-select"></select>
-							<select name="month" id="month" title="월" class="custom-select"></select>
-							<select name="day" id="day" title="일" class="custom-select"></select>
+							<span class="yearyear">생년월일 6자리</span><span class="req">*</span> 
+							<input type="text" name="birth" required autocomplete="off" />
+						</div>
+						<div class="field-wrap">
+								<label> 닉네임<span class="req">*</span>
+								</label> <input type="text" name="nickname" required autocomplete="off" />
+							</div>
 						</div>
 
 						<div class="field-wrap">
@@ -147,7 +152,7 @@
 						
 						<div class="field-wrap">
 							<span>프로필 사진</span>
-						<input type="file" id="file" name="ProfileImg" value="파일선택" class="multi">
+						<input type="file" id="file" name="file" value="프로필 사진 선택" >
 						</div>
 			
 						<button type="submit" class="button button-block">START!</button>
