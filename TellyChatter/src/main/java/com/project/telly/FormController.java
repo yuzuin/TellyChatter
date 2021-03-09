@@ -58,4 +58,11 @@ public class FormController {
 		}
 	}
 	
+	/* 로그아웃 */
+	@RequestMapping(value = "logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();	//	현재 쿠키값으로 설정되어있는 모든 세션 비움
+		return "redirect:index";
+	}
 }
