@@ -29,4 +29,10 @@ public class memberServiceImpl implements memberService{
 		return memberMapper.login(vo);
 	}
 
+	@Override
+	@Transactional
+	public Integer selectPoint(String id) {
+		return memberMapper.selectPoint(id);
+	}
+
 }

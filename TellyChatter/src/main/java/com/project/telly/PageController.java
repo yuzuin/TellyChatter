@@ -25,10 +25,18 @@ public class PageController {
 		HttpSession session = request.getSession();
 		String nowUser = (String)session.getAttribute("userid");
 		String userImg = (String)session.getAttribute("userImg");
+		Integer userPoint = -1; 
+		if(nowUser!=null) {
+			userPoint = ((Integer)session.getAttribute("userPoint")).intValue();
+		}
 		
 		//	뿌려주기
 		m.addAttribute("nowUser",nowUser);
 		m.addAttribute("userImg",userImg);
+		if(nowUser!=null) {
+			m.addAttribute("userPoint",userPoint);
+			System.out.println("페이지컨트로러 포인트 : "+userPoint);
+		}
 		return "index";
 	}
 	

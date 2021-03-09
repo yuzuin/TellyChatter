@@ -43,12 +43,12 @@
 		<!-- Menu -->
 		<section id="menu">
 
-			<!-- Search -->
+			<!-- Search 
 			<section>
 				<form class="search" method="get" action="#">
 					<input type="text" name="query" placeholder="Search" />
 				</form>
-			</section>
+			</section> -->
 
 			<!-- Links -->
 			<section>
@@ -57,20 +57,42 @@
 					<c:when test="${nowUser ne null }">
 						<ul class="links">
 							<li><a href="#">
-									<h3>Lorem ipsum</h3>
-									<p>Feugiat tempus veroeros dolor</p>
+									<div style="width:100px; 
+									height:100px; 
+									margin: 0 auto;
+									overflow:hidden;  
+									border: 3px solid gold;
+									border-radius : 12px;
+									-moz-border-radius: 12px;
+									-khtml-border-radius: 12px;
+									-webkit-border-radius: 12px;" >
+									<img style="
+										width:100px;
+										height:auto;
+										border-radius: 12px;
+										-moz-border-radius: 12px;
+										-khtml-border-radius: 12px;
+										-webkit-border-radius: 12px;" 
+										object-fit: cover;
+										overlow : hidden;
+										src="${pageContext.request.contextPath}/download?filename=${userImg }" />
+									</div>
+									<div style="text-align:center; margin:5px;">
+										<h3>${nowUser } 님</h3>
+										<p>${userPoint } P</p>
+									</div>
 							</a></li>
 							<li><a href="#">
-									<h3>Dolor sit amet</h3>
-									<p>Sed vitae justo condimentum</p>
+									<h3>나의 문화 달력</h3>
+									<p>My Calander</p>
 							</a></li>
 							<li><a href="#">
-									<h3>Feugiat veroeros</h3>
-									<p>Phasellus sed ultricies mi congue</p>
+									<h3>나의 감상장</h3>
+									<p>My telly-log</p>
 							</a></li>
 							<li><a href="#">
-									<h3>Etiam sed consequat</h3>
-									<p>Porta lectus amet ultricies</p>
+									<h3>내 정보</h3>
+									<p>My info</p>
 							</a></li>
 						</ul>
 					</c:when>
@@ -106,16 +128,17 @@
 			<!-- Post -->
 			<article class="post">
 				<header>
+				<h1>TOP3 REVIEWS</h1>
 					<div class="title">
 						<h2>
-							<a href="single.html">Magna sed adipiscing</a>
+							<a href="single.html">제목~</a>
 						</h2>
-						<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
+						<p>부제목~</p>
 					</div>
 					<div class="meta">
 						<time class="published" datetime="2015-11-01">November 1,
 							2015</time>
-						<a href="#" class="author"><span class="name">Jane Doe</span><img
+						<a href="#" class="author"><span class="name">글쓴이~</span><img
 							src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
 							alt="" /></a>
 					</div>
@@ -123,12 +146,7 @@
 				<a href="single.html" class="image featured"><img
 					src="${pageContext.request.contextPath}/resources/assets/images/pic01.jpg"
 					alt="" /></a>
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-					nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor
-					magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies
-					mi non congue ullam corper. Praesent tincidunt sed tellus ut
-					rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies
-					congue gravida diam non fringilla.</p>
+				<p>내용 ~~~</p>
 				<footer>
 					<ul class="actions">
 						<li><a href="single.html" class="button large">Continue
@@ -142,84 +160,7 @@
 				</footer>
 			</article>
 
-			<!-- Post -->
-			<article class="post">
-				<header>
-					<div class="title">
-						<h2>
-							<a href="single.html">Ultricies sed magna euismod enim vitae
-								gravida</a>
-						</h2>
-						<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-					</div>
-					<div class="meta">
-						<time class="published" datetime="2015-10-25">October 25,
-							2015</time>
-						<a href="#" class="author"><span class="name">Jane Doe</span><img
-							src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-							alt="" /></a>
-					</div>
-				</header>
-				<a href="single.html" class="image featured"><img
-					src="${pageContext.request.contextPath}/resources/assets/images/pic02.jpg"
-					alt="" /></a>
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-					nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor
-					magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies
-					mi non congue ullam corper.</p>
-				<footer>
-					<ul class="actions">
-						<li><a href="single.html" class="button large">Continue
-								Reading</a></li>
-					</ul>
-					<ul class="stats">
-						<li><a href="#">General</a></li>
-						<li><a href="#" class="icon solid fa-heart">28</a></li>
-						<li><a href="#" class="icon solid fa-comment">128</a></li>
-					</ul>
-				</footer>
-			</article>
 
-			<!-- Post -->
-			<article class="post">
-				<header>
-					<div class="title">
-						<h2>
-							<a href="single.html">Euismod et accumsan</a>
-						</h2>
-						<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-					</div>
-					<div class="meta">
-						<time class="published" datetime="2015-10-22">October 22,
-							2015</time>
-						<a href="#" class="author"><span class="name">Jane Doe</span><img
-							src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-							alt="" /></a>
-					</div>
-				</header>
-				<a href="single.html" class="image featured"><img
-					src="${pageContext.request.contextPath}/resources/assets/images/pic03.jpg"
-					alt="" /></a>
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-					nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor
-					magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies
-					mi non congue ullam corper. Praesent tincidunt sed tellus ut
-					rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies
-					congue gravida diam non fringilla. Cras vehicula tellus eu ligula
-					viverra, ac fringilla turpis suscipit. Quisque vestibulum rhoncus
-					ligula.</p>
-				<footer>
-					<ul class="actions">
-						<li><a href="single.html" class="button large">Continue
-								Reading</a></li>
-					</ul>
-					<ul class="stats">
-						<li><a href="#">General</a></li>
-						<li><a href="#" class="icon solid fa-heart">28</a></li>
-						<li><a href="#" class="icon solid fa-comment">128</a></li>
-					</ul>
-				</footer>
-			</article>
 
 
 			<!-- Pagination -->
@@ -237,18 +178,7 @@
 			<!-- Intro -->
 			<section id="intro">
 				<a href="#" class="logo"> <!--<c:set var="nowUser" value="${nowUser }"/>-->
-					<c:choose>
-						<c:when test="${nowUser ne null}">
-							<img
-								src="${pageContext.request.contextPath}/download?filename=${userImg }" />
-						</c:when>
-						<c:otherwise>
-							<img
-								src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg"
-								alt="" />
-						</c:otherwise>
-					</c:choose>
-
+					<img src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" />
 				</a>
 				<header>
 					<h2>
@@ -264,7 +194,7 @@
 				</header>
 			</section>
 
-			<!-- Mini Posts -->
+			<!-- 영화순위 -->
 			<section>
 				<div class="mini-posts">
 
@@ -272,7 +202,7 @@
 					<article class="mini-post">
 						<header>
 							<h3>
-								<a href="single.html">Vitae sed condimentum</a>
+								<a href="single.html">복수는 나의 것</a>
 							</h3>
 							<time class="published" datetime="2015-10-20">October 20,
 								2015</time>
@@ -285,56 +215,6 @@
 							alt="" /></a>
 					</article>
 
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Rutrum neque accumsan</a>
-							</h3>
-							<time class="published" datetime="2015-10-19">October 19,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/assets/images/pic05.jpg"
-							alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Odio congue mattis</a>
-							</h3>
-							<time class="published" datetime="2015-10-18">October 18,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/assets/images/pic06.jpg"
-							alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">Enim nisl veroeros</a>
-							</h3>
-							<time class="published" datetime="2015-10-17">October 17,
-								2015</time>
-							<a href="#" class="author"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/assets/images/pic07.jpg"
-							alt="" /></a>
-					</article>
 
 				</div>
 			</section>

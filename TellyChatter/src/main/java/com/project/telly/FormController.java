@@ -50,6 +50,10 @@ public class FormController {
 			System.out.println(user.getId());
 			session.setAttribute("userid", user.getId()); //	세션에 "userid"로 id 넘겨줌
 			session.setAttribute("userImg", user.getProfileImg());	//	세션에 프로필 이미지 넘김
+			session.setAttribute("userPoint", new Integer(user.getPoint()));
+			System.out.println("데이지포인"+memberService.selectPoint("daisy"));
+			System.out.println("생년월일 "+user.getBirth());
+			System.out.println("포인트 : "+user.getPoint());
 			System.out.println(user.getNickname()+"님 로그인 완료");
 			return "redirect:index";
 		}else {

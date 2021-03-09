@@ -4,10 +4,10 @@ public class memberVO {
 	private String id;
 	private String password;
 	private String nickname;
-	private int birth;
+	private Integer birth;
 	private String email;
 	private char gender;
-	private int point=0;
+	private Integer point;
 	private String profileImg;
 	public String getId() {
 		return id;
@@ -27,10 +27,10 @@ public class memberVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public int getBirth() {
+	public Integer getBirth() {
 		return birth;
 	}
-	public void setBirth(int birth) {
+	public void setBirth(Integer birth) {
 		this.birth = birth;
 	}
 	public String getEmail() {
@@ -45,10 +45,10 @@ public class memberVO {
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
-	public int getPoint() {
+	public Integer getPoint() {
 		return point;
 	}
-	public void setPoint(int point) {
+	public void setPoint(Integer point) {
 		this.point = point;
 	}
 	public String getProfileImg() {
