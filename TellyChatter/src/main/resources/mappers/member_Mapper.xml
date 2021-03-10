@@ -14,4 +14,7 @@
 	<select id="selectPoint" resultType="Integer">
 		select point from member where id=#{id}
 	</select>
+	<update id="updatePointReview">
+		update member set point=point+100 where id=#{id}
+	</update>
 </mapper>

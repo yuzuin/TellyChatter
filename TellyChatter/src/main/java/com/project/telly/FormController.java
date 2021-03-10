@@ -19,6 +19,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +37,7 @@ import com.project.telly.vo.reviewVO;
 /** 폼 제출 관리 컨트롤러 */
 @Controller
 public class FormController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(FormController.class);
 
 	@Inject // 인젝션 대신..
@@ -157,67 +160,71 @@ public class FormController {
 		return;
 	}
 
-	@RequestMapping(value="showImg")
-	    public void ckSubmit(@RequestParam(value="uid") String uid
-	                            , @RequestParam(value="fileName") String fileName
-	                            , HttpServletRequest request, HttpServletResponse response)
-	 throws ServletException, IOException{
-	        
-	        //서버에 저장된 이미지 경로
-	        String path = "C:/tmp/"  + "ckImage/";
-	    
-	        String sDirPath = path + uid + "_" + fileName;
-	    
-	        File imgFile = new File(sDirPath);
-	        
-	        //사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
-	        if(imgFile.isFile()){
-	            byte[] buf = new byte[1024];
-	            int readByte = 0;
-	            int length = 0;
-	            byte[] imgBuf = null;
-	            
-	            FileInputStream fileInputStream = null;
-	            ByteArrayOutputStream outputStream = null;
-	            ServletOutputStream out = null;
-	            
-	            try{
-	                fileInputStream = new FileInputStream(imgFile);
-	                outputStream = new ByteArrayOutputStream();
-	                out = response.getOutputStream();
-	                
-	                while((readByte = fileInputStream.read(buf)) != -1){
-	                    outputStream.write(buf, 0, readByte);
-	                }
-	                
-	                imgBuf = outputStream.toByteArray();
-	                length = imgBuf.length;
-	                out.write(imgBuf, 0, length);
-	                out.flush();
-	                
-	            }catch(IOException e){
-	                logger.info(String.valueOf(e));
-	            }finally {
-	            	outputStream.close();
-	                fileInputStream.close();
-	                out.close();
-	            }
-	        }
-	    }
+	@RequestMapping(value = "showImg")
+	public void ckSubmit(@RequestParam(value = "uid") String uid, @RequestParam(value = "fileName") String fileName,
+			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// 서버에 저장된 이미지 경로
+		String path = "C:/tmp/" + "ckImage/";
+
+		String sDirPath = path + uid + "_" + fileName;
+
+		File imgFile = new File(sDirPath);
+
+		// 사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
+		if (imgFile.isFile()) {
+			byte[] buf = new byte[1024];
+			int readByte = 0;
+			int length = 0;
+			byte[] imgBuf = null;
+
+			FileInputStream fileInputStream = null;
+			ByteArrayOutputStream outputStream = null;
+			ServletOutputStream out = null;
+
+			try {
+				fileInputStream = new FileInputStream(imgFile);
+				outputStream = new ByteArrayOutputStream();
+				out = response.getOutputStream();
+
+				while ((readByte = fileInputStream.read(buf)) != -1) {
+					outputStream.write(buf, 0, readByte);
+				}
+
+				imgBuf = outputStream.toByteArray();
+				length = imgBuf.length;
+				out.write(imgBuf, 0, length);
+				out.flush();
+
+			} catch (IOException e) {
+				logger.info(String.valueOf(e));
+			} finally {
+				outputStream.close();
+				fileInputStream.close();
+				out.close();
+			}
+		}
+	}
 
 	/* 리뷰 글 쓰기 */
 	@RequestMapping(value = "insertReview", method = RequestMethod.POST)
 	public String insertReview(reviewVO rv, HttpServletRequest request) {
 		System.out.println("인서트리뷰");
 		HttpSession session = request.getSession();
-		memberVO nowUser = (memberVO)session.getAttribute("user");
+		memberVO nowUser = (memberVO) session.getAttribute("user");
 		String writer = nowUser.getId();
-		System.out.println(writer);
-		rv.setWriter(writer);	//	현재 세션의 id를 writer에 셋
-		
-		if(reviewService.insertReview(rv)>0) {
-			System.out.println("리뷰 올리기 완료 ");
+		rv.setWriter(writer); // 현재 세션의 id를 writer에 셋
+		// 실행
+
+		if (reviewService.insertReview(rv) > 0) {
+			System.out.println("리뷰 올림");
 		}
+		// 포인트 추가
+		if (memberService.updatePointReview(writer) > 0) {
+			System.out.println("포인트 추가 완료 ");
+		}
+
+
 		return "index"; // 리다이렉트로
 	}
 }

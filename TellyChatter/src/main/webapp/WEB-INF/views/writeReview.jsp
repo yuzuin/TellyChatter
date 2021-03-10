@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -29,11 +30,10 @@
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="#">Lorem</a></li>
-					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Feugiat</a></li>
-					<li><a href="#">Tempus</a></li>
-					<li><a href="#">Adipiscing</a></li>
+					<li><a href="#">추천 받기</a></li>
+					<li><a href="#">REVIEW</a></li>
+					<li><a href="#">COMMUNITY</a></li>
+					<li><a href="#">POINT SHOP</a></li>
 				</ul>
 			</nav>
 			<nav class="main">
@@ -71,7 +71,7 @@
 											object-fit: cover;
 										overlow :
 											hidden;
-										src="${pageContext.request.contextPath}/download?filename=${userImg }" />
+										src="${pageContext.request.contextPath}/download?filename=${user.profileImg }" />
 									</div>
 									<div style="text-align: center; margin: 5px;">
 										<h3>${user.nickname }님</h3>

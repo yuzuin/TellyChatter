@@ -34,5 +34,12 @@ public class memberServiceImpl implements memberService{
 	public Integer selectPoint(String id) {
 		return memberMapper.selectPoint(id);
 	}
+	
+	/* 포인트 추가 */
+	@Override
+	@Transactional
+	public int updatePointReview(String id) {
+		return memberMapper.updatePointReview(id);
+	}
 
 }
