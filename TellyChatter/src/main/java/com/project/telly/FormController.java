@@ -26,8 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.telly.service.memberService;
+import com.project.telly.service.reviewService;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
+import com.project.telly.vo.reviewVO;
 
 /** 폼 제출 관리 컨트롤러 */
 @Controller
@@ -39,6 +41,8 @@ public class FormController {
 	private memberService memberService;
 	@Inject
 	private FileDataUtil filedataUtil;
+	@Inject
+	private reviewService reviewService;
 
 	/* 회원가입 제출 */
 	@RequestMapping(value = "goRegister", method = RequestMethod.POST)
@@ -200,4 +204,20 @@ public class FormController {
 	            }
 	        }
 	    }
+
+	/* 리뷰 글 쓰기 */
+	@RequestMapping(value = "insertReview", method = RequestMethod.POST)
+	public String insertReview(reviewVO rv, HttpServletRequest request) {
+		System.out.println("인서트리뷰");
+		HttpSession session = request.getSession();
+		memberVO nowUser = (memberVO)session.getAttribute("user");
+		String writer = nowUser.getId();
+		System.out.println(writer);
+		rv.setWriter(writer);	//	현재 세션의 id를 writer에 셋
+		
+		if(reviewService.insertReview(rv)>0) {
+			System.out.println("리뷰 올리기 완료 ");
+		}
+		return "index"; // 리다이렉트로
+	}
 }

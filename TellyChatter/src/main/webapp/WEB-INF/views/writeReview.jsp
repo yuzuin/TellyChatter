@@ -134,14 +134,20 @@
 					<div class="meta">
 						<h3>분류를 선택하세요</h3>
 						<div class="col-6 col-12-small">
-							<input type="checkbox" value="true" id="netflix" name="netflix">
+							<input type="checkbox" value="1" id="netflix" name="netflix">
 							<label for="netflix" style="font-size: small;">넷플릭스</label>
-							<input type="checkbox" value="true" id="watcha" name="watcha">
+							<input type="checkbox" value="1" id="watcha" name="watcha">
 							<label for="watcha"  style="font-size: small;">왓챠</label>
-							<input type="checkbox" value="true" id="wavve" name="wavve">
+							<input type="checkbox" value="1" id="wavve" name="wavve">
 							<label for="watcha" style="font-size: small;">웨이브</label>
-							<input type="checkbox" value="true" id="laftel" name="laftel">
+							<input type="checkbox" value="1" id="laftel" name="laftel">
 							<label for="laftel" style="font-size: small;">라프텔</label>
+							<input type="checkbox" value="1" id="kakao" name="kakao">
+							<label for="kakao" style="font-size: small;">카카오TV</label>
+							<input type="checkbox" value="1" id="coupang" name="coupang">
+							<label for="coupang" style="font-size: small;">쿠팡플레이</label>
+							<input type="checkbox" value="1" id="naver" name="naver">
+							<label for="naver" style="font-size: small;">네이버 시리즈온</label>
 						</div>
 					</div>
 				</header>
@@ -149,7 +155,7 @@
 
 
 				<!-- 글쓰기 공간 -->
-				<textarea class="form-control" id="description"></textarea>
+				<textarea class="form-control" name="description" id="description"></textarea>
 				<script>
 					//id가 description인 태그에 ckeditor를 적용시킴
 					//이미지 업로드 안됨
