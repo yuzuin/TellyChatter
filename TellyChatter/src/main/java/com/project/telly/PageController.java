@@ -10,34 +10,38 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.telly.vo.memberVO;
+
 
 /** 페이지 관리 컨트롤러 */
 @Controller
 public class PageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
-	
 	/* 홈 페이지 (index) */
 	@RequestMapping(value = {"/","index"})
 	public String index(Model m, HttpServletRequest request) {
 		
 		//	로그인 검사
 		HttpSession session = request.getSession();
-		String nowUser = (String)session.getAttribute("userid");
-		String userImg = (String)session.getAttribute("userImg");
-		Integer userPoint = -1; 
-		if(nowUser!=null) {
-			userPoint = ((Integer)session.getAttribute("userPoint")).intValue();
-		}
+		memberVO user = (memberVO) session.getAttribute("user");
 		
 		//	뿌려주기
-		m.addAttribute("nowUser",nowUser);
-		m.addAttribute("userImg",userImg);
-		if(nowUser!=null) {
-			m.addAttribute("userPoint",userPoint);
-			System.out.println("페이지컨트로러 포인트 : "+userPoint);
-		}
+		m.addAttribute("user",user);
 		return "index";
+	}
+	
+	/* 블로그 홈 */
+	@RequestMapping(value = "tellylogHome")
+	public String tellylogHome(Model m, HttpServletRequest request) {
+			//		로그인 검사
+			HttpSession session = request.getSession();
+			memberVO user = (memberVO) session.getAttribute("user");
+			
+			//	뿌려주기
+			m.addAttribute("user",user);
+			
+		return "blogHome";
 	}
 	
 	/* view Post 글 하나 보기 */
@@ -66,6 +70,13 @@ public class PageController {
 	public String registerForm() {
 		
 		return "registerForm";
+	}
+	
+	/* 리뷰 글 쓰기 화면 */
+	@RequestMapping(value = "writeReview")
+	public String writeReview() {
+		
+		return "writeReview";
 	}
 	
 }

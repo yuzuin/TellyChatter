@@ -54,7 +54,7 @@
 			<section>
 				<!-- 로그인 했을 때 오른쪽 메뉴 -->
 				<c:choose>
-					<c:when test="${nowUser ne null }">
+					<c:when test="${user ne null }">
 						<ul class="links">
 							<li><a href="#">
 									<div style="width:100px; 
@@ -78,8 +78,8 @@
 										src="${pageContext.request.contextPath}/download?filename=${userImg }" />
 									</div>
 									<div style="text-align:center; margin:5px;">
-										<h3>${nowUser } 님</h3>
-										<p>${userPoint } P</p>
+										<h3>${user.nickname } 님</h3>
+										<p>${user.point } P</p>
 									</div>
 							</a></li>
 							<li><a href="#">
@@ -106,7 +106,7 @@
 			<!-- Actions 로그인시 로그아웃이 뜨고, 미로그인시 로그인이 뜸 -->
 			<section>
 				<c:choose>
-					<c:when test="${nowUser ne null }">
+					<c:when test="${user ne null }">
 						<ul class="actions stacked">
 							<li><a href="logout" class="button large fit">Log Out</a></li>
 						</ul>
@@ -188,8 +188,8 @@
 						영화나 드라마 시리즈에 관해 이야기를 나우어 보아요~</a>
 					</p>
 					<!-- jstl if문으로 nowUser 체크 -->
-					<c:if test="${nowUser != null }">
-						<p>${nowUser }님안녕하세요~</p>
+					<c:if test="${user != null }">
+						<p>${user.nickname }님안녕하세요~</p>
 					</c:if>
 				</header>
 			</section>

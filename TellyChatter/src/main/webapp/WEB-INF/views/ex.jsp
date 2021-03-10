@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -22,13 +23,13 @@
 		<!-- Header -->
 		<header id="header">
 			<h1>
-				<a href="/">Future Imperfect</a>
+				<a href="/">테스트 페이지</a>
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="#">Lorem</a></li>
-					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Feugiat</a></li>
+					<li><a href="#">${user.id }</a></li>
+					<li><a href="#">${user.nickname }</a></li>
+					<li><a href="#">${user.point }</a></li>
 					<li><a href="#">Tempus</a></li>
 					<li><a href="#">Adipiscing</a></li>
 				</ul>
