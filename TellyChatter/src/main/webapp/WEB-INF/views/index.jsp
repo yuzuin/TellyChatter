@@ -75,7 +75,7 @@
 										-webkit-border-radius: 12px;" 
 										object-fit: cover;
 										overlow : hidden;
-										src="${pageContext.request.contextPath}/download?filename=${userImg }" />
+										src="${pageContext.request.contextPath}/download?filename=${user.profileImg }" />
 									</div>
 									<div style="text-align:center; margin:5px;">
 										<h3>${user.nickname } 님</h3>

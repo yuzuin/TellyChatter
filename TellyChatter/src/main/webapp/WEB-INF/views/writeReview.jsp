@@ -14,7 +14,7 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body class="single is-preload">
@@ -123,31 +123,44 @@
 		<div id="main">
 
 			<!-- Post -->
-			<article class="post">
+			<h2>REVIEW 쓰기</h2>
+			<form action = "insertReview" method="post" class="post">
 				<header>
 					<div class="title">
-						<h2>
-							<a href="#">시발</a>
-						</h2>
-						<p>개시발개시발개시발개시발개시발개시발개시발개시발개시발개시발개시발개시발개시발개시발</p>
+						<input type="text" name="title" id="demo-name" value=""
+							placeholder="리뷰 제목을 입력하세요" /> <br /> <input type="text"
+							name="subtitle" id="demo-name" value="" placeholder="부제목을 입력하세요" />
 					</div>
 					<div class="meta">
-						<time class="published" datetime="2015-11-01">November 1,
-							2015</time>
-						<a href="#" class="author"><span class="name">Jane Doe</span><img
-							src="images/avatar.jpg" alt="" /></a>
+						<h3>분류를 선택하세요</h3>
+						<div class="col-6 col-12-small">
+							<input type="checkbox" value="true" id="netflix" name="netflix">
+							<label for="netflix" style="font-size: small;">넷플릭스</label>
+							<input type="checkbox" value="true" id="watcha" name="watcha">
+							<label for="watcha"  style="font-size: small;">왓챠</label>
+							<input type="checkbox" value="true" id="wavve" name="wavve">
+							<label for="watcha" style="font-size: small;">웨이브</label>
+							<input type="checkbox" value="true" id="laftel" name="laftel">
+							<label for="laftel" style="font-size: small;">라프텔</label>
+						</div>
 					</div>
 				</header>
+
+
+
 				<!-- 글쓰기 공간 -->
 				<textarea class="form-control" id="description"></textarea>
 				<script>
 					//id가 description인 태그에 ckeditor를 적용시킴
 					//이미지 업로드 안됨
 					CKEDITOR.replace("description", {
-						filebrowserUploadUrl : "imageUpload.do"
+						filebrowserUploadUrl : "imageUpload.do",
+						height:'400px'
 					}); //이미지 업로드 기능을 추가하기위한 코드
 				</script>
-			</article>
+				
+				<input type="submit" value="INSERT REVIEW" class="button fit">
+			</form>
 
 		</div>
 

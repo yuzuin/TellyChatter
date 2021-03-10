@@ -31,11 +31,33 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- 인터셉터 객체 생성 -->
+   <beans:bean id="authenticationInterceptor"
+      class="com.project.telly.interceptor.AuthenticationInterceptor">
+   </beans:bean>
+   <!-- Interceptor 설정 -->
+   <interceptors>
+      <interceptor>
+         <!--  파일의 디렉토리가 아닌 컨트롤러를 의미한다. -->
+         <mapping path="/**" />
+         <exclude-mapping path="/registerForm*" />
+         <exclude-mapping path="/index*" />
+         <exclude-mapping path="/" />
+         <exclude-mapping path="/goLogin*" />
+         <exclude-mapping path="/go*" />
+         <exclude-mapping path="/logout*" />
+         <!-- <mapping path="/bbs/**"/> <mapping path="/login/**"/> <mapping path="/board/modify"/> 
+            <mapping path="/board/delete"/> -->
+         <beans:ref bean="authenticationInterceptor" />
+      </interceptor>
+   </interceptors>
+	
 	
 	<context:component-scan
 		base-package="com.project.telly" />
 	<context:component-scan
 		base-package="com.project.telly.service.dao" />
+		<context:component-scan base-package="com.project.telly.util"/>
 		<context:component-scan base-package="com.project.telly.util"/>
 </beans:beans>
 
