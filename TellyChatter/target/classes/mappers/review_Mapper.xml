@@ -3,7 +3,8 @@
 
 <!-- 맵핑될 인터페이스 -->
 <mapper namespace="com.project.telly.service.dao.reviewDAO">
-
+	
+	<!-- 리뷰 포스트 -->
 	<insert id="insertReview">
 		insert into review(num, writer, title, subtitle, description, netflix, watcha, wavve, laftel, kakao, coupang, naver)
 		values(review_seq.NEXTVAL,#{writer},#{title},#{subtitle},#{description},#{netflix},
@@ -22,6 +23,17 @@
 		select * from review where num=#{num}
 	</select>
 	
+	<delete id="deleteReview">
+		delete from review where num=#{num}
+	</delete>
+	
+	<update id="updateReview">
+		update review set title=#{title}, writetime=sysdate, subtitle=#{subtitle},
+			description=#{description}, netflix=#{netflix}, watcha=#{watcha},
+			laftel=#{laftel}, kakao=#{kakao}, coupang=#{coupang}, naver=#{naver} 
+			where num=#{num}
+	</update>
+	
 	<!-- 댓글 -->
 	<insert id="insertReviewComment">
 		insert into reviewComment(num,writer,content,reviewNum) values(reviewComment_seq.NEXTVAL,#{writer},
@@ -36,4 +48,7 @@
 	<update id="updateReviewComment">
 	update reviewComment set content=#{content},writetime=sysdate where num=#{num}
 	</update>
+	<select id="countReviewComment" resultType="int">
+		select count(*) from reviewComment where reviewNum=#{reviewNum}
+	</select>
 </mapper>

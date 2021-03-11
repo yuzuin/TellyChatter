@@ -60,7 +60,7 @@ public class PageController {
 	
 	/* view Post 글 하나 보기 */
 	@RequestMapping(value = "viewPost", method = RequestMethod.GET)
-	public String viewPost() {
+	public String viewPost(Model m) {
 		
 		return "viewPost";
 	}
@@ -118,8 +118,18 @@ public class PageController {
 		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
 		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
 		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
+		String comments = String.valueOf(reviewService.countReviewComment(vnum));
+		
+		model.addAttribute("cSize",comments);
 		model.addAttribute("otts",otts);
 		return "viewReview";
+	}
+	
+	/* 리뷰 수정 화면 */
+	@RequestMapping(value = "updateReview")
+	public String updateReview(@RequestParam("modNum") int mnum, Model model) {
+		model.addAttribute("review",reviewService.viewReview(mnum));
+		return "updateReview";
 	}
 	
 }

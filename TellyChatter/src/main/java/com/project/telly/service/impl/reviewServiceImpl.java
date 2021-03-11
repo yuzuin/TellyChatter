@@ -74,6 +74,26 @@ public class reviewServiceImpl implements reviewService{
 	public int updateReviewComment(reviewCommentVO vo) {
 		return reviewMapper.updateReviewComment(vo);
 	}
+
+	@Override
+	@Transactional
+	public int countReviewComment(int num) {
+		return reviewMapper.countReviewComment(num);
+	}
+
+	/* 리뷰삭 */
+	@Override
+	@Transactional
+	public void deleteReview(int num) {
+		reviewMapper.deleteReview(num);
+	}
+
+	/* 리뷰수정 */
+	@Override
+	@Transactional
+	public int updateReview(reviewVO vo) {
+		return reviewMapper.updateReview(vo);
+	}
 	
 	
 }

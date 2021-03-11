@@ -230,6 +230,43 @@ public class FormController {
 		return "index"; // 리다이렉트로
 	}
 	
+	/** 리뷰 삭제 */
+	@RequestMapping(value = "deleteReview", method = RequestMethod.GET)
+	public String deleteReview(@RequestParam("delNum") int dnum, HttpServletRequest request) {
+			
+		reviewService.deleteReview(dnum);
+		System.out.println("리뷰 삭제 완료 ");
+
+		return "redirect:listReview"; // 리다이렉트로
+	}
+	
+	/** 리뷰 수정 */
+	@RequestMapping(value = "UpdateReviewSubmit", method = RequestMethod.POST)
+	public String UpdateReviewSubmit(reviewVO vo, Model m) {
+		System.out.println("업데이트 리뷰");
+		if(reviewService.updateReview(vo)>0) {
+			System.out.println("업뎃완료");
+		}else {
+			System.out.println("업뎃실패");
+		}
+		
+		m.addAttribute("review",reviewService.viewReview(vo.getNum()));
+		
+		String otts = "";
+		if(vo.getNetflix()!='0') otts=otts + "넷플릭스\t";
+		if(vo.getWatcha()!='0') otts=otts+"왓챠\t";
+		if(vo.getWavve()!='0') otts=otts+"웨이브\t";
+		if(vo.getLaftel()!='0') otts=otts+"라프텔\t";
+		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
+		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
+		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
+		String comments = String.valueOf(reviewService.countReviewComment(vo.getNum()));
+		
+		m.addAttribute("cSize",comments);
+		m.addAttribute("otts",otts);
+		return "viewReview";
+	}
+	
 	/** 리뷰 댓글 쓰기 */
 	@RequestMapping(value = "insertReviewComment", method = RequestMethod.POST)
 	@ResponseBody
@@ -261,12 +298,14 @@ public class FormController {
 		System.out.println("셀렉트리뷰코멘트");
 		System.out.println("bno "+bno);
 		List<reviewCommentVO> vo = reviewService.selectReviewComment(bno);
+		/*
+		String cSize = String.valueOf(vo.size());
+		model.addAttribute("cSize",cSize);	//	코멘트 개수
+		System.out.println(cSize);
 		if(vo!=null) {
 			System.out.println("쿼리문실행");
-		}else {
-			System.out.println("시발");
 		}
-
+		*/
 		return vo;
 	}
 	
@@ -286,6 +325,7 @@ public class FormController {
 		reviewCommentVO rcv = new reviewCommentVO();
 		rcv.setNum(num);
 		rcv.setContent(content);
+		
 		return reviewService.updateReviewComment(rcv);
 	}
 }

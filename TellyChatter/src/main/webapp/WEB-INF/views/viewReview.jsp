@@ -151,14 +151,25 @@
 					<ul class="stats">
 						<li><a href="#">General</a></li>
 						<li><a href="#" class="icon solid fa-heart">${review.likes }</a></li>
-						<li><a href="#" class="icon solid fa-comment">128</a></li>
+						<li><a href="#" class="icon solid fa-comment">${cSize }</a></li>
 					</ul>
 				</footer>
 			</article>
 
 		</div>
+		
+		<!-- 수정 삭제 -->
+		<c:if test="${user.id == review.writer }">
+		<a href="updateReview?modNum=${review.num }" class="button">수정하기</a>
+		</c:if>
+		
+		<c:if test="${user.id == review.writer or user.id=='admin'}">
+		<a href="deleteReview?delNum=${review.num }" class="button">삭제하기</a>
+		</c:if>
+		<br/><br/><br/>
 
 		<!-- 코멘트 영역  -->
+		<article class="post">
 		<div class="container">
 			<label for="content">comment</label>
 			<form name="commentInsertForm">
@@ -178,6 +189,7 @@
 			<div class="commentList"></div>
 		</div>
 	</div>
+	</article>
 
 	<!--                     추가                         -->
 	<%@ include file="commentS.jsp"%>
