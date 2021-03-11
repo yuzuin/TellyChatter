@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.telly.service.reviewService;
 import com.project.telly.service.dao.reviewDAO;
+import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
 
 @Service("reviewService")
@@ -44,6 +45,22 @@ public class reviewServiceImpl implements reviewService{
 	@Transactional
 	public reviewVO viewReview(int viewNum) {
 		return reviewMapper.viewReview(viewNum);
+	}
+	
+	
+	/**
+	 * 리뷰 댓글 쓰기
+	 */
+	@Override
+	@Transactional
+	public int insertReviewComment(reviewCommentVO vo) {
+		return reviewMapper.insertReviewComment(vo);
+	}
+
+	@Override
+	@Transactional
+	public List<reviewCommentVO> selectReviewComment(int rnum) {
+		return reviewMapper.selectReviewComment(rnum);
 	}
 	
 	

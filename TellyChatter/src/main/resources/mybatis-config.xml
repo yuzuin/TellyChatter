@@ -8,6 +8,7 @@
 		<typeAlias alias="boardVO" type="com.project.telly.vo.BoardVO" />
 		<typeAlias alias="memberVO" type="com.project.telly.vo.memberVO" />
 		<typeAlias alias="reviewVO" type="com.project.telly.vo.reviewVO" />
+		<typeAlias alias="reviewCommentVO" type="com.project.telly.vo.reviewCommentVO" />
 	</typeAliases>
 </configuration>
 

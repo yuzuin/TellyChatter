@@ -172,9 +172,6 @@
 								src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
 								alt="" /></a>
 						</header>
-						<a href="single.html" class="image"><img
-							src="${pageContext.request.contextPath}/resources/assets/images/pic04.jpg"
-							alt="" /></a>
 					</article>
 					</c:forEach>
 				</div>

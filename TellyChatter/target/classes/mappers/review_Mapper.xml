@@ -21,4 +21,13 @@
 	<select id="viewReview" resultType="reviewVO">
 		select * from review where num=#{num}
 	</select>
+	
+	<!-- 댓글 -->
+	<insert id="insertReviewComment">
+		insert into reviewComment(num,writer,content,reviewNum) values(reviewComment_seq.NEXTVAL,#{writer},
+		#{content},#{reviewNum})
+	</insert>
+	<select id="selectReviewComment" resultType="reviewCommentVO">
+		select * from reviewComment where reviewNum=#{reviewNum} order by num desc
+	</select>
 </mapper>

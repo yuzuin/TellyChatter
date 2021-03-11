@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -19,12 +20,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -32,6 +32,7 @@ import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
+import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
 
 /** 폼 제출 관리 컨트롤러 */
@@ -228,4 +229,43 @@ public class FormController {
 		return "index"; // 리다이렉트로
 	}
 	
+	/** 리뷰 댓글 쓰기 */
+	@RequestMapping(value = "insertReviewComment", method = RequestMethod.POST)
+	@ResponseBody
+	public String insertReviewComment(reviewCommentVO rcv, HttpServletRequest request) {
+		System.out.println("인서트리뷰코멘트");
+		HttpSession session = request.getSession();
+		memberVO nowUser = (memberVO) session.getAttribute("user");
+		String writer = nowUser.getId();
+		rcv.setWriter(writer); // 현재 세션의 id를 writer에 셋
+		// 실행
+
+		if (reviewService.insertReviewComment(rcv) > 0) {
+			System.out.println("리뷰 코멘트 올림");
+		}
+		
+		// 포인트 추가
+		/** if (memberService.updatePointReview(writer) > 0) {
+		*	System.out.println("포인트 추가 완료 ");
+		*} */
+
+
+		return "index"; // 리다이렉트로
+	}
+	
+	/** 리뷰 댓글 리스트 */
+	@RequestMapping(value = "selectReviewComment")
+	@ResponseBody
+	public List<reviewCommentVO> selectReviewComment(int bno,HttpServletRequest request, Model model) {
+		System.out.println("셀렉트리뷰코멘트");
+		System.out.println("bno "+bno);
+		List<reviewCommentVO> vo = reviewService.selectReviewComment(bno);
+		if(vo!=null) {
+			System.out.println("쿼리문실행");
+		}else {
+			System.out.println("시발");
+		}
+
+		return vo;
+	}
 }
