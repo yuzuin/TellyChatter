@@ -245,14 +245,21 @@
 														+ value.num
 														+ ' / 작성자 : '
 														+ value.writer;
-												a += '<a onclick="commentUpdate('
+													
+												
+												if('${user.id}'==value.writer){
+												a += 
+													'<a onclick="commentUpdate('
 														+ value.num
 														+ ',\''
 														+ value.content
-														+ '\');"> 수정 </a>';
+														+ '\');"> 수정' +'</a>'; }
+												
+												if('${user.id}'==value.writer || '${user.id}'=='admin'){
 												a += '<a onclick="commentDelete('
 														+ value.num
-														+ ');"> 삭제 </a> </div>';
+														+ ');"> 삭제 </a>';}
+												a+=' </div>';
 												a += '<div class="commentContent'+value.num+'"> <p> 내용 : '
 														+ value.content
 														+ '</p>';
