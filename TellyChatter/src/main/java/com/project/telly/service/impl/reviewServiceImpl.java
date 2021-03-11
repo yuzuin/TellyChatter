@@ -38,4 +38,13 @@ public class reviewServiceImpl implements reviewService{
 	public List<reviewVO> latestReviews() {
 		return reviewMapper.latestReviews();
 	}
+
+	/* 글 하나 보기 */
+	@Override
+	@Transactional
+	public reviewVO viewReview(int viewNum) {
+		return reviewMapper.viewReview(viewNum);
+	}
+	
+	
 }

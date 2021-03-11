@@ -14,6 +14,7 @@ public class reviewVO {
 	 private char kakao = '0';
 	 private char coupang = '0';
 	 private char naver = '0';
+	 private int likes=0;
 	public int getNum() {
 		return num;
 	}
@@ -44,10 +45,10 @@ public class reviewVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getwritetime() {
+	public String getWritetime() {
 		return writetime;
 	}
-	public void setwritetime(String writetime) {
+	public void setWritetime(String writetime) {
 		this.writetime = writetime;
 	}
 	public char getNetflix() {
@@ -91,6 +92,12 @@ public class reviewVO {
 	}
 	public void setNaver(char naver) {
 		this.naver = naver;
+	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 	 
 	 

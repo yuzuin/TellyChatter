@@ -17,4 +17,8 @@
 	<select id="latestReviews"  resultType="reviewVO">
 		select * from review order by writetime desc
 	</select>
+	
+	<select id="viewReview" resultType="reviewVO">
+		select * from review where num=#{num}
+	</select>
 </mapper>

@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
+import com.project.telly.vo.reviewVO;
 
 
 /** 페이지 관리 컨트롤러 */
@@ -101,6 +103,23 @@ public class PageController {
 		model.addAttribute("latestReviews",reviewService.latestReviews());
 		
 		return "listReview";
+	}
+	
+	/* 리뷰 view */
+	@RequestMapping(value = "viewReview")
+	public String viewReview(@RequestParam("viewNum") int vnum, Model model) {
+		reviewVO vo = reviewService.viewReview(vnum);
+		model.addAttribute("review",vo);
+		String otts = "";
+		if(vo.getNetflix()!='0') otts=otts + "넷플릭스\t";
+		if(vo.getWatcha()!='0') otts=otts+"왓챠\t";
+		if(vo.getWavve()!='0') otts=otts+"웨이브\t";
+		if(vo.getLaftel()!='0') otts=otts+"라프텔\t";
+		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
+		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
+		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
+		model.addAttribute("otts",otts);
+		return "viewReview";
 	}
 	
 }

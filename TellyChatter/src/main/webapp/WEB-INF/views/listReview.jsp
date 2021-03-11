@@ -121,7 +121,7 @@
 		<!-- Main -->
 		<div id="main">
 
-			<!-- 리뷰 리스트 -->
+			<!-- 탑리뷰 리스트 -->
 			<h2>TOP REVIES</h2>
 			<!-- One -->
 			<div class="inner">
@@ -139,7 +139,7 @@
 								</header>
 								<time class="published">${temp.subtitle }</time>
 								<footer class="align-center">
-									<a href="#" class="button alt">Learn More</a>
+									<a href="viewReview?viewNum=${temp.num }" class="button alt">Learn More</a>
 								</footer>
 							</div>
 						</div>

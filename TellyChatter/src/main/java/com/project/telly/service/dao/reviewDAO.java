@@ -8,4 +8,5 @@ public interface reviewDAO {
 	public int insertReview(reviewVO vo);
 	public List<reviewVO> topReviews();
 	public List<reviewVO> latestReviews();
+	public reviewVO viewReview(int viewNum);
 }
