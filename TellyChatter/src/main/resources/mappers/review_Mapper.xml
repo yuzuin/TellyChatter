@@ -30,4 +30,10 @@
 	<select id="selectReviewComment" resultType="reviewCommentVO">
 		select * from reviewComment where reviewNum=#{reviewNum} order by num desc
 	</select>
+	<delete id="deleteReviewComment">
+		delete from reviewComment where num=#{num}
+	</delete>
+	<update id="updateReviewComment">
+	update reviewComment set content=#{content},writetime=sysdate where num=#{num}
+	</update>
 </mapper>

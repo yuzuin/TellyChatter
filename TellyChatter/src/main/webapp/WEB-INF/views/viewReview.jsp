@@ -283,41 +283,41 @@
 		}
 
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-		function commentUpdate(cno, content) {
+		function commentUpdate(num, content) {
 			var a = '';
 
 			a += '<div class="input-group">';
-			a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+			a += '<input type="text" class="form-control" name="content_'+num+'" value="'+content+'"/>';
 			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
-					+ cno + ');">수정</button> </span>';
+					+ num + ');">수정</button> </span>';
 			a += '</div>';
 
-			$('.commentContent' + cno).html(a);
+			$('.commentContent' + num).html(a);
 
 		}
 
 		//댓글 수정
-		function commentUpdateProc(cno) {
-			var updateContent = $('[name=content_' + cno + ']').val();
+		function commentUpdateProc(num) {
+			var updateContent = $('[name=content_' + num + ']').val();
 
 			$.ajax({
-				url : '/comment/update',
+				url : "updateReviewComment",
 				type : 'post',
 				data : {
 					'content' : updateContent,
-					'cno' : cno
+					'num' : num
 				},
 				success : function(data) {
-					if (data == 1)
 						commentList(bno); //댓글 수정후 목록 출력 
+					//if (data == 1)
 				}
 			});
 		}
 
 		//댓글 삭제 
-		function commentDelete(cno) {
+		function commentDelete(num) {
 			$.ajax({
-				url : '/comment/delete/' + cno,
+				url : "deleteReviewComment/" + num,
 				type : 'post',
 				success : function(data) {
 					if (data == 1)

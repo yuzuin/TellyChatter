@@ -12,4 +12,6 @@ public interface reviewService {
 	public reviewVO viewReview(int viewNum);
 	public int insertReviewComment(reviewCommentVO vo);
 	public List<reviewCommentVO> selectReviewComment(int rnum);
+	public int deleteReviewComment(int num);
+	public int updateReviewComment(reviewCommentVO vo);
 }

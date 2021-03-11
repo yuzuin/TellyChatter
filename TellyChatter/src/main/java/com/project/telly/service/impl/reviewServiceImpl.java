@@ -62,6 +62,18 @@ public class reviewServiceImpl implements reviewService{
 	public List<reviewCommentVO> selectReviewComment(int rnum) {
 		return reviewMapper.selectReviewComment(rnum);
 	}
+
+	@Override
+	@Transactional
+	public int deleteReviewComment(int num) {
+		return reviewMapper.deleteReviewComment(num);
+	}
+
+	@Override
+	@Transactional
+	public int updateReviewComment(reviewCommentVO vo) {
+		return reviewMapper.updateReviewComment(vo);
+	}
 	
 	
 }

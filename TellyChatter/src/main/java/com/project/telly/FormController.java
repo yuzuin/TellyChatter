@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -267,5 +268,24 @@ public class FormController {
 		}
 
 		return vo;
+	}
+	
+	/** 리뷰 댓글 삭제 */
+	@RequestMapping(value = "deleteReviewComment/{num}")
+	@ResponseBody
+	public int deleteReviewComment(@PathVariable int num,HttpServletRequest request, Model model) {
+		System.out.println("딜리트 리뷰 코멘트");
+		return reviewService.deleteReviewComment(num);
+	}
+	
+	/** 리뷰 댓글 업데이트(수정) */
+	@RequestMapping(value = "updateReviewComment")
+	@ResponseBody
+	public int updateReviewComment(@RequestParam int num, @RequestParam String content) {
+		System.out.println("업데이트 리뷰 코멘트");
+		reviewCommentVO rcv = new reviewCommentVO();
+		rcv.setNum(num);
+		rcv.setContent(content);
+		return reviewService.updateReviewComment(rcv);
 	}
 }
