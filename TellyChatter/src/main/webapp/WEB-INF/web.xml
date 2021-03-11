@@ -32,6 +32,7 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
+		
 	</servlet-mapping>
 
 	<!-- post 방식 한글 깨짐 방지 -->

@@ -9,4 +9,12 @@
 		values(review_seq.NEXTVAL,#{writer},#{title},#{subtitle},#{description},#{netflix},
 		#{watcha},#{wavve},#{laftel},#{kakao},#{coupang},#{naver})
 	</insert>
+	
+	<select id="topReviews"  resultType="reviewVO">
+		select * from review order by likes desc
+	</select>
+	
+	<select id="latestReviews"  resultType="reviewVO">
+		select * from review order by writetime desc
+	</select>
 </mapper>

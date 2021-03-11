@@ -6,7 +6,7 @@ public class reviewVO {
 	 private String title;
 	 private String subtitle=null;
 	 private String description;
-	 private String writedate;
+	 private String writetime;
 	 private char netflix = '0';
 	 private char watcha = '0';
 	 private char wavve = '0';
@@ -44,11 +44,11 @@ public class reviewVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getWritedate() {
-		return writedate;
+	public String getwritetime() {
+		return writetime;
 	}
-	public void setWritedate(String writedate) {
-		this.writedate = writedate;
+	public void setwritetime(String writetime) {
+		this.writetime = writetime;
 	}
 	public char getNetflix() {
 		return netflix;

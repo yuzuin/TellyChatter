@@ -1,5 +1,6 @@
 package com.project.telly;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.telly.service.memberService;
+import com.project.telly.service.reviewService;
+import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
 
 
@@ -18,6 +22,14 @@ import com.project.telly.vo.memberVO;
 public class PageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
+	
+	@Inject 
+	private memberService memberService;
+	@Inject
+	private FileDataUtil filedataUtil;
+	@Inject
+	private reviewService reviewService;
+	
 	/* 홈 페이지 (index) */
 	@RequestMapping(value = {"/","index"})
 	public String index(Model m, HttpServletRequest request) {
@@ -77,6 +89,18 @@ public class PageController {
 	public String writeReview() {
 		
 		return "writeReview";
+	}
+	
+	/** 리뷰 홈 화면 
+	 * 리뷰 likes로 내림차순 정렬 
+	 * 리뷰 writetime으로 내림차순 정렬 */
+	@RequestMapping(value = "listReview")
+	public String listReview(Model model) {
+		
+		model.addAttribute("topReviews",reviewService.topReviews());
+		model.addAttribute("latestReviews",reviewService.latestReviews());
+		
+		return "listReview";
 	}
 	
 }

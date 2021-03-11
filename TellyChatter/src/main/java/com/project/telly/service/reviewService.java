@@ -1,7 +1,11 @@
 package com.project.telly.service;
 
+import java.util.List;
+
 import com.project.telly.vo.reviewVO;
 
 public interface reviewService {
 	public int insertReview(reviewVO vo);
+	public List<reviewVO> topReviews();
+	public List<reviewVO> latestReviews();
 }
