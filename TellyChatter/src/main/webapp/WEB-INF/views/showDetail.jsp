@@ -122,32 +122,27 @@
 		</section>
 
 
-		<!-- 영화목록 -->
-		<div id="main">
-			<c:forEach var="temp" items="${show }">
-				<article class="mini-post"
-					style="width: 30%; float: left; margin: 0 19px 19px !important;">
-					<header>
-						<h2 style="text-align: center;">
-							<a href="showDetail?snum=${temp.showNum }">　 ${temp.title }</a>
+		<!-- 영화 -->
+		<div id="main" style="">
+					<a href="single.html" class="image"
+						style="height: 450px !important;  left:35%; margin:0 0 60px;"><img
+						src="${pageContext.request.contextPath}/download?filename=${show.poster }" height="500px" /></a>
+				<article class="mini-post" style="width: 30%; position:relative !important; left:34%;">
+					<div>
+						<h2 style="text-align: center; ">
+							<a href="single.html">　 ${show.title }</a>
 						</h2>
 
-						<a href="showDetail?snum=${temp.showNum }" class="author" style="font-size: large !important;">
-							<time class="published" datetime="2015-10-20">${temp.year }</time>
+						<a href="#" class="author" style="font-size: large !important;">
+							<time class="published" datetime="2015-10-20">${show.year }</time>
 						</a>
-						<h3>${temp.genre }</h3>
-						<h4 style="text-align: center;">　 ${temp.platform }</h4>
-					</header>
-					<a href="showDetail?snum=${temp.showNum }" class="image"
-						style="height: 450px !important;"><img
-						src="${pageContext.request.contextPath}/download?filename=${temp.poster }" /></a>
+					</div>
 
 				</article>
-			</c:forEach>
 		</div>
 
 		<!-- Footer -->
-		<section id="footer" style="clear: left !important;">
+		<section id="footer" style="clear: flex !important;">
 			<ul class="icons">
 				<li><a href="#" class="icon brands fa-twitter"><span
 						class="label">Twitter</span></a></li>

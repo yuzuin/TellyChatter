@@ -13,7 +13,11 @@
 </insert>
 
 <select id="showList" resultType="showVO">
-	select * from showList;
+	select * from shows
+</select>
+
+<select id="selectShow" resultType="showVO">
+	select * from shows where showNum=#{showNum}
 </select>
 
 </mapper>

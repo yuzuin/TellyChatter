@@ -7,4 +7,5 @@ import com.project.telly.vo.showVO;
 public interface showService {
 	public int insertShow(showVO vo);
 	public List<showVO> showList();
+	public showVO selectShow(int num);
 }

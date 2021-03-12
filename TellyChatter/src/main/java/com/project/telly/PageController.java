@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
+import com.project.telly.service.showService;
 import com.project.telly.util.Crawler;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
@@ -35,6 +36,8 @@ public class PageController {
 	private FileDataUtil filedataUtil;
 	@Inject
 	private reviewService reviewService;
+	@Inject
+	private showService showService;
 
 	private Crawler crawler;
 
@@ -163,6 +166,7 @@ public class PageController {
 	/** 영화 목록 */
 	@RequestMapping(value = "shows")
 	public String shows(Model m) {
+		m.addAttribute("show",showService.showList());
 		return "shows";
 	}
 	
@@ -171,4 +175,12 @@ public class PageController {
 	public String showForm() {
 		return "showForm";
 	}
+	
+	/** 영화 디테일 */
+	@RequestMapping(value = "showDetail")
+	public String showDetail(@RequestParam("snum") int num, Model m) {
+		m.addAttribute("show",showService.selectShow(num));
+		return "showDetail";
+	}
+	
 }
