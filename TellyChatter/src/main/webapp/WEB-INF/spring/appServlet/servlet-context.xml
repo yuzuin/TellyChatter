@@ -39,9 +39,22 @@
    <interceptors>
       <interceptor>
          <!--  파일의 디렉토리가 아닌 컨트롤러를 의미한다. -->
-         <mapping path="/**" />
+         <mapping path="/*" />
+         
+         <!-- 에휴... css/js 등등 exclude -->
          <exclude-mapping path="/**/*.css"/>
          <exclude-mapping path="/**/*.js"/>
+         <exclude-mapping path="/**/*.jpg"/>
+         <exclude-mapping path="/**/*.img"/>
+         <exclude-mapping path="/**/*.img"/>
+         <exclude-mapping path="/**/*.scss"/>
+         <exclude-mapping path="/**/*.img"/>
+         <exclude-mapping path="/**/*.eot"/>
+         <exclude-mapping path="/**/*.svg"/>
+         <exclude-mapping path="/**/*.ttf"/>
+         <exclude-mapping path="/**/*.woff"/>
+         <exclude-mapping path="/**/*.woff2"/>
+        
          <exclude-mapping path="/registerForm*" />
          <exclude-mapping path="/index*" />
          <exclude-mapping path="/" />

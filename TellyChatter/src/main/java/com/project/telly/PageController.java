@@ -1,5 +1,7 @@
 package com.project.telly;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
+import com.project.telly.util.Crawler;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
+import com.project.telly.vo.naverMovieDTO;
 import com.project.telly.vo.reviewVO;
 
 
@@ -32,6 +36,8 @@ public class PageController {
 	@Inject
 	private reviewService reviewService;
 	
+	private Crawler crawler;
+	
 	/* 홈 페이지 (index) */
 	@RequestMapping(value = {"/","index"})
 	public String index(Model m, HttpServletRequest request) {
@@ -39,6 +45,11 @@ public class PageController {
 		//	로그인 검사
 		HttpSession session = request.getSession();
 		memberVO user = (memberVO) session.getAttribute("user");
+		
+		//	영화 순위 크롤링
+		ArrayList<naverMovieDTO> movies = crawler.movieGetter();
+		System.out.println(movies.get(3).getInfo());	//	테스트
+		m.addAttribute("movieRanking",movies);
 		
 		//	뿌려주기
 		m.addAttribute("user",user);

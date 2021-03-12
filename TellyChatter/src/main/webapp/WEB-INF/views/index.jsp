@@ -8,8 +8,10 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/assets/css/reviewList.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/css/main.css?after" />
+	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 </head>
 <body class="is-preload">
 
@@ -219,92 +221,35 @@
 				</div>
 			</section>
 
-			<!-- Posts List -->
+			<!-- cgv에서 크롤링한 영화 랭킹 -->
 			<section>
+			<h2>실시간 예매순위 TOP5</h2>
 				<ul class="posts">
+				<c:forEach var="temp" items="${movieRanking }" >
 					<li>
 						<article>
 							<header>
 								<h3>
-									<a href="single.html">Lorem ipsum fermentum ut nisl vitae</a>
+									<a href="single.html">${temp.title }</a>
 								</h3>
-								<time class="published" datetime="2015-10-20">October 20,
-									2015</time>
+								<time class="published" datetime="2015-10-20">${temp.info }</time>
+								<a href="http://www.cgv.co.kr/${temp.detail }">상세보기</a>
 							</header>
 							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/pic08.jpg"
+								src="${temp.img }"
 								alt="" /></a>
 						</article>
 					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Convallis maximus nisl mattis nunc id
-										lorem</a>
-								</h3>
-								<time class="published" datetime="2015-10-15">October 15,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/pic09.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Euismod amet placerat vivamus
-										porttitor</a>
-								</h3>
-								<time class="published" datetime="2015-10-10">October 10,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/pic10.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Magna enim accumsan tortor cursus
-										ultricies</a>
-								</h3>
-								<time class="published" datetime="2015-10-08">October 8,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/pic11.jpg"
-								alt="" /></a>
-						</article>
-					</li>
-					<li>
-						<article>
-							<header>
-								<h3>
-									<a href="single.html">Congue ullam corper lorem ipsum dolor</a>
-								</h3>
-								<time class="published" datetime="2015-10-06">October 7,
-									2015</time>
-							</header>
-							<a href="single.html" class="image"><img
-								src="${pageContext.request.contextPath}/resources/assets/images/pic12.jpg"
-								alt="" /></a>
-						</article>
-					</li>
+				</c:forEach>
 				</ul>
 			</section>
 
 			<!-- About -->
 			<section class="blurb">
 				<h2>About</h2>
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-					nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus
-					porttitor magna enim, ac accumsan tortor cursus at phasellus sed
-					ultricies.</p>
+				<p>TELLYCAHTTER는<br/>
+				각종 ott 서비스의 사용자들이 모여 리뷰를 공유하고 상호 추천해주는 사이트입니다.<br/>
+				당신도 가장 재미있었던 티비 시리즈를 추천해 보세요 </p>
 				<ul class="actions">
 					<li><a href="#" class="button">Learn More</a></li>
 				</ul>

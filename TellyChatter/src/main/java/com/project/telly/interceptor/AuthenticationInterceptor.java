@@ -16,7 +16,6 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 		throws Exception {
 	// 컨트롤러 진입 전 인터셉트 하는 것
-	System.out.println("인터셉터 prehandler");
 	//	세션에서 값을 가져온다. 
 	HttpSession session = request.getSession();
 	memberVO user = (memberVO)session.getAttribute("user");
@@ -34,7 +33,6 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 		ModelAndView modelAndView) throws Exception {
 	// 컨트롤러 진입 후 인터셉트 하는 것
-	System.out.println("인터셉트 postHandler");
 	super.postHandle(request, response, handler, modelAndView);
 }
 
