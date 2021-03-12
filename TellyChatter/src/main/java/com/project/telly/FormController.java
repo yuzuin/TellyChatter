@@ -383,4 +383,13 @@ public class FormController {
 		}
 		return "redirect:shows"; // 리다이렉트로
 	}
+	
+	/** 영화 업데이트 */
+	@RequestMapping(value = "updateShow", method = RequestMethod.POST)
+	public String updateShow(showVO vo, Model m) {
+		showService.updateShow(vo);
+		
+		m.addAttribute("show",showService.selectShow(vo.getShowNum()));
+		return "showDetail";
+	}
 }

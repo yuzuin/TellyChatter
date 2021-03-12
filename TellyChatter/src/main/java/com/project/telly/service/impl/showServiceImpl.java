@@ -34,4 +34,10 @@ public class showServiceImpl implements showService{
 		return showMapper.selectShow(num);
 	}
 
+	@Override
+	@Transactional
+	public int updateShow(showVO vo) {
+		return showMapper.updateShow(vo);
+	}
+
 }

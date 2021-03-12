@@ -183,4 +183,11 @@ public class PageController {
 		return "showDetail";
 	}
 	
+	/** 영화 수정 */
+	@RequestMapping(value = "updateShowForm")
+	public String updateShowForm(@RequestParam("snum") int num, Model m) {
+		m.addAttribute("show",showService.selectShow(num));
+		return "updateShowForm";
+	}
+	
 }

@@ -20,4 +20,9 @@
 	select * from shows where showNum=#{showNum}
 </select>
 
+<update id="updateShow">
+	update shows set year=#{year}, performer=#{performer}, genre=#{genre},
+		platform=#{platform}, story=#{story}, updatePer=#{updatePer} where showNum=#{showNum}
+</update>
+
 </mapper>

@@ -122,43 +122,58 @@
 		</section>
 
 
-		<!-- 영화 -->
-		<div id="main" style="">
-					<a href="single.html" class="image"
-						style="height: 450px !important;  left:35%; margin:0 0 60px;"><img
-						src="${pageContext.request.contextPath}/download?filename=${show.poster }" height="500px" /></a>
-				<article class="mini-post" style="width: 30%; position:relative !important; left:34%;">
-					<div>
-						<h2 style="text-align: center; ">
-							<a href="single.html">　 ${show.title }</a>
-						</h2>
-
-						<a href="#" class="author" style="font-size: large !important;">
-							<time class="published" datetime="2015-10-20">${show.year }</time>
-						</a>
-					</div>
-
-				</article>
-		</div>
+		<!-- 영화 등록 폼 -->
 		<div id="main">
-			<article class="post" style="text-align:center;">
-			<h2> 제작 연도 : ${show.year }</h2>
-			<h2> 출연진 : ${show.performer }</h2>
-			<h2> 장르 : ${show.genre }</h2>
-			<h2> 지원 플랫폼 : ${show.platform }</h2>
-			<br/>
-			<p>
-			<h3> ${show.story }</h3>
-			</p>
-			<div style="text-align:right;">
-			최초 작성자 : ${show.firstPer }<br/>
-			최근 수정자 : ${show.updatePer }
-			</div>
+			<article class="post">
+				<h3>영화를 등록해보세요 ~</h3>
+				<form method="post" action="updateShow" enctype="multipart/form-data">
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall">
+							<input type="hidden" name="showNum" value="${show.showNum }">
+							<input type="text" name="title" id="demo-name" value="${show.title }" readonly />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="year" id="demo-email" value="${show.year }" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="performer" id="demo-name" value="${show.performer }"/>
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="genre" id="demo-email" value="${show.genre }" />
+						</div>
+						<div class="col-6 col-12-xsmall">
+							<input type="text" name="platform" id="demo-email" value="${show.platform }" />
+							<input type="hidden" name="updatePer" value="${user.id }"/>
+						</div>
+						<div class="col-6">
+							<select name="demo-category" id="demo-category">
+								<option value="">- Category -</option>
+								<option value="1">Manufacturing</option>
+								<option value="1">Shipping</option>
+								<option value="1">Administration</option>
+								<option value="1">Human Resources</option>
+							</select>
+						</div>
+						<div class="col-12 col-12-xsmall">
+							<input type="text" name="story" id="demo-email" value="${show.story }"/>
+						</div>
+						<div class="field-wrap">
+							<span>영화 썸네일 사진 (변경 불가)</span>
+						<input type="file" id="file" name="file" value="" >
+						</div>
+						
+						
+					</div>
+					<br/><br/>
+					<button type="submit" class="button button-block">SUBMIT!</button>
+				</form>
 			</article>
+
 		</div>
-<button onclick="location.href='updateShowForm?snum=${show.showNum }'" class="button button-block">UPDATE!</button>
+
+
 		<!-- Footer -->
-		<section id="footer" style="clear: flex !important;">
+		<section id="footer">
 			<ul class="icons">
 				<li><a href="#" class="icon brands fa-twitter"><span
 						class="label">Twitter</span></a></li>
