@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.telly.service.reviewService;
 import com.project.telly.service.dao.reviewDAO;
+import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
 
@@ -93,6 +94,32 @@ public class reviewServiceImpl implements reviewService{
 	@Transactional
 	public int updateReview(reviewVO vo) {
 		return reviewMapper.updateReview(vo);
+	}
+
+	/** 좋아요 */
+	@Override
+	@Transactional
+	public int likeReview(likeReviewVO vo) {
+		return reviewMapper.likeReview(vo);
+	}
+
+	@Override
+	@Transactional
+	public int updateLikeReview(int num) {
+		// TODO Auto-generated method stub
+		return reviewMapper.updateLikeReview(num);
+	}
+
+	@Override
+	@Transactional
+	public int cancleLikeReview(int num) {
+		return reviewMapper.cancleLikeReview(num);
+	}
+
+	@Override
+	@Transactional
+	public int deleteLike(likeReviewVO vo) {
+		return reviewMapper.deleteLike(vo);
 	}
 	
 	

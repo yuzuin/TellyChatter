@@ -1,5 +1,7 @@
 package com.project.telly.service.impl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -40,6 +42,19 @@ public class memberServiceImpl implements memberService{
 	@Transactional
 	public int updatePointReview(String id) {
 		return memberMapper.updatePointReview(id);
+	}
+
+	/*writer 정보 가져오기*/
+	@Override
+	@Transactional
+	public memberVO selectWriter(String id) {
+		return memberMapper.selectWriter(id);
+	}
+
+	@Override
+	@Transactional
+	public List<memberVO> selectTopWriter() {
+		return memberMapper.selectTopWriter();
 	}
 
 }

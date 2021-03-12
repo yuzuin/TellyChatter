@@ -2,6 +2,7 @@ package com.project.telly.service.dao;
 
 import java.util.List;
 
+import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
 
@@ -18,4 +19,9 @@ public interface reviewDAO {
 	public int deleteReviewComment(int num);
 	public int updateReviewComment(reviewCommentVO vo);
 	public int countReviewComment(int num);
+	
+	public int likeReview(likeReviewVO vo);
+	public int updateLikeReview(int num);
+	public int cancleLikeReview(int num);
+	public int deleteLike(likeReviewVO vo);
 }

@@ -8,8 +8,6 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/css/reviewList.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
 </head>
@@ -127,40 +125,37 @@
 		<!-- Main -->
 		<div id="main">
 
-			<!-- Post -->
+			<!-- 탑리뷰 3개 -->
+				<h1>TOP3 REVIEWS</h1>
+			<c:forEach items="${topReviews }" var="temp" varStatus="status"> 
 			<article class="post">
 				<header>
-				<h1>TOP3 REVIEWS</h1>
 					<div class="title">
 						<h2>
-							<a href="single.html">제목~</a>
+							<a href="viewReview?viewNum=${temp.num }">${temp.title }</a>
 						</h2>
-						<p>부제목~</p>
+						<p>${temp.subtitle }</p>
 					</div>
 					<div class="meta">
-						<time class="published" datetime="2015-11-01">November 1,
-							2015</time>
-						<a href="#" class="author"><span class="name">글쓴이~</span><img
-							src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-							alt="" /></a>
+						<time class="published" datetime="2015-11-01">${temp.writetime }</time>
+						<a href="#" class="author"><span class="name">${topWriter[status.index].nickname}</span><img
+							src="${pageContext.request.contextPath}/download?filename=${topWriter[status.index].profileImg}"/></a>
 					</div>
 				</header>
-				<a href="single.html" class="image featured"><img
-					src="${pageContext.request.contextPath}/resources/assets/images/pic01.jpg"
-					alt="" /></a>
-				<p>내용 ~~~</p>
+				<p>${temp.description }</p>
 				<footer>
 					<ul class="actions">
-						<li><a href="single.html" class="button large">Continue
+						<li><a href="viewReview?viewNum=${temp.num }" class="button large">Continue
 								Reading</a></li>
 					</ul>
 					<ul class="stats">
 						<li><a href="#">General</a></li>
-						<li><a href="#" class="icon solid fa-heart">28</a></li>
-						<li><a href="#" class="icon solid fa-comment">128</a></li>
+						<li><a href="#" class="icon solid fa-heart">${temp.likes}</a></li>
+						<li><a href="#" class="icon solid fa-comment">${cSize[status.index] }</a></li>
 					</ul>
 				</footer>
 			</article>
+				</c:forEach>
 
 
 

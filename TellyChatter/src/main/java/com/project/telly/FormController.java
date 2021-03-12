@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
 import com.project.telly.util.FileDataUtil;
+import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.memberVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
@@ -327,5 +328,33 @@ public class FormController {
 		rcv.setContent(content);
 		
 		return reviewService.updateReviewComment(rcv);
+	}
+
+	/** 좋아요 버튼 누름 */
+	@RequestMapping(value = "likeReview", method = RequestMethod.POST)
+	@ResponseBody
+	public String likeReview(likeReviewVO lr,HttpServletRequest request) {
+		System.out.println("리뷰 좋아요하기 ");
+		System.out.println(lr.getId());
+		System.out.println(lr.getNum());
+		// 실행
+		
+		try {
+			if (reviewService.likeReview(lr) > 0) {
+				reviewService.updateLikeReview(lr.getNum());	//	리뷰 likes+1
+				System.out.println("좋아요 인서트 완료");
+			}else {
+				System.out.println("좋아요 실패 ");
+			}
+			
+		}catch(Exception e) {
+			System.out.println("오류났기때문에 좋아요 취소");
+			reviewService.deleteLike(lr);
+			System.out.println("좋아요취소");
+			reviewService.cancleLikeReview(lr.getNum());
+			System.out.println("좋아요 하나 삭제");
+		}
+
+		return "index"; // 리다이렉트로
 	}
 }

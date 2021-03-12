@@ -11,8 +11,9 @@
 		#{watcha},#{wavve},#{laftel},#{kakao},#{coupang},#{naver})
 	</insert>
 	
+	<!-- 탑리뷰 -->
 	<select id="topReviews"  resultType="reviewVO">
-		select * from review order by likes desc
+		<![CDATA[select * from review where rownum < = 3 order by likes desc]]>
 	</select>
 	
 	<select id="latestReviews"  resultType="reviewVO">
@@ -34,6 +35,7 @@
 			where num=#{num}
 	</update>
 	
+	
 	<!-- 댓글 -->
 	<insert id="insertReviewComment">
 		insert into reviewComment(num,writer,content,reviewNum) values(reviewComment_seq.NEXTVAL,#{writer},
@@ -51,4 +53,19 @@
 	<select id="countReviewComment" resultType="int">
 		select count(*) from reviewComment where reviewNum=#{reviewNum}
 	</select>
+	
+	
+	<!-- 리뷰 좋아요 -->
+	<insert id="likeReview">
+		insert into likeReview(id,num) values(#{id},#{num})
+	</insert>
+	<update id="updateLikeReview">
+		update review set likes=likes+1 where num=#{num}
+	</update>
+	<update id="cancleLikeReview">
+		update review set likes=likes-1 where num=#{num}
+	</update>
+	<delete id="deleteLike">
+		delete from likeReview where id=#{id} and num=#{num}
+	</delete>
 </mapper>

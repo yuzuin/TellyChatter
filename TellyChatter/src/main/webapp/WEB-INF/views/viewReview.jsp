@@ -147,47 +147,67 @@
 				<span class="image featured"><img src="images/pic01.jpg"
 					alt="" /></span>
 				<p>${review.description }</p>
+				
+				
 				<footer>
+				<form id="like_form">
 					<ul class="stats">
-						<li><a href="#">General</a></li>
-						<li><a href="#" class="icon solid fa-heart">${review.likes }</a></li>
-						<li><a href="#" class="icon solid fa-comment">${cSize }</a></li>
+					<input type="hidden" name="id" value="${user.id }"/>
+				<input type="hidden" name="num" value="${review.num}"/>
+						<li><a href="">General</a></li>
+                  <li onclick="return like()"><a href="" class="icon solid fa-heart" id="like_result">${review.likes }</a></li>
+                  <li><a href="" class="icon solid fa-comment">${cSize }</a></li>
 					</ul>
+				</form>
 				</footer>
 			</article>
 
 		</div>
-		
+
 		<!-- 수정 삭제 -->
 		<c:if test="${user.id == review.writer }">
-		<a href="updateReview?modNum=${review.num }" class="button">수정하기</a>
+			<a href="updateReview?modNum=${review.num }" class="button">수정하기</a>
 		</c:if>
-		
+
 		<c:if test="${user.id == review.writer or user.id=='admin'}">
-		<a href="deleteReview?delNum=${review.num }" class="button">삭제하기</a>
+			<a href="deleteReview?delNum=${review.num }" class="button">삭제하기</a>
 		</c:if>
-		<br/><br/><br/>
+		<br /> <br /> <br />
+		<!-- 좋아요테스트 
+		<form id="like_form">
+			<table id="list">
+				<input type="hidden" name="id" value="${user.id }"/>
+				<input type="hidden" name="num" value="${review.num}"/>
+				<tr>
+					<input type="button" value="좋아요!" onclick="return like()"/>
+				</tr>
+				<tr>
+					<div id="like_result">${review.likes}</div>
+				</tr>
+			</table>
+		</form>-->
+
 
 		<!-- 코멘트 영역  -->
 		<article class="post">
-		<div class="container">
-			<label for="content">comment</label>
-			<form name="commentInsertForm">
-				<div class="input-group">
-					<input type="hidden" name="writer" value="${user.id}" /> 
-					<input type="hidden" name="reviewNum" value="${review.num}" /> 
-					<input type="text" class="form-control" id="content" name="content"
-						placeholder="내용을 입력하세요."> <span class="input-group-btn">
-						<button class="btn btn-default" type="button"
-							name="commentInsertBtn">등록</button>
-					</span>
-				</div>
-			</form>
-		</div>
+			<div class="container">
+				<label for="content">comment</label>
+				<form name="commentInsertForm">
+					<div class="input-group">
+						<input type="hidden" name="writer" value="${user.id}" /> <input
+							type="hidden" name="reviewNum" value="${review.num}" /> <input
+							type="text" class="form-control" id="content" name="content"
+							placeholder="내용을 입력하세요."> <span class="input-group-btn">
+							<button class="btn btn-default" type="button"
+								name="commentInsertBtn">등록</button>
+						</span>
+					</div>
+				</form>
+			</div>
 
-		<div class="container">
-			<div class="commentList"></div>
-		</div>
+			<div class="container">
+				<div class="commentList"></div>
+			</div>
 	</div>
 	</article>
 
@@ -226,9 +246,9 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-		
-		
-<script>
+
+
+	<script>
 		var bno = '${review.num}'; //게시글 번호
 
 		$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
@@ -348,7 +368,34 @@
 		$(document).ready(function() {
 			commentList(); //페이지 로딩시 댓글 목록 출력 
 		});
+	
+	
 	</script>
+
+	<script>
+	function like(){
+		var cnt = ${review.likes};
+		$.ajax({
+		url: "likeReview",
+		type: "POST",
+		cache: false,
+		//dataType: "json",
+		data: $('#like_form').serialize(), //아이디가 like_form인 곳의 모든 정보를 가져와 파라미터 전송 형태(표준 쿼리형태)로 만들어줌
+		success:
+		function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
+		//	alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like
+		$("#like_result").html(cnt); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
+		},
+		error:
+		function (request, status, error){
+		//alert("이미 좋아요를 누르셨습니다. ")
+			$("#like_result").html(cnt);
+		}
+		});
+		}
+
+	</script>
+
 
 
 </body>

@@ -17,4 +17,15 @@
 	<update id="updatePointReview">
 		update member set point=point+100 where id=#{id}
 	</update>
+	
+	<!-- writer 아이디, 프로필 가져오기 -->
+	<select id="selectWriter" resultType="memberVO">
+		select nickname, profileimg, point from member where id = #{id}
+	</select>
+	
+	<!-- top3 리뷰의 writer -->
+	<select id="selectTopWriter" resultType="memberVO">
+	<![CDATA[select a.nickname, a.profileimg, a.point from member a, (select * from review where rownum<=3 order by likes desc) b
+where a.id=b.writer]]>
+	</select>
 </mapper>
