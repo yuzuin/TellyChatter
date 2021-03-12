@@ -159,5 +159,16 @@ public class PageController {
 		model.addAttribute("review", reviewService.viewReview(mnum));
 		return "updateReview";
 	}
-
+	
+	/** 영화 목록 */
+	@RequestMapping(value = "shows")
+	public String shows(Model m) {
+		return "shows";
+	}
+	
+	/** 영화 등록 */
+	@RequestMapping(value = "showForm")
+	public String showForm() {
+		return "showForm";
+	}
 }

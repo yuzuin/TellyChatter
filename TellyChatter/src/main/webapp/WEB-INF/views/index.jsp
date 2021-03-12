@@ -24,7 +24,7 @@
 			<nav class="links">
 				<ul>
 					<li><a href="#">추천 받기</a></li>
-					<li><a href="#">REVIEW</a></li>
+					<li><a href="listReview">REVIEW</a></li>
 					<li><a href="#">COMMUNITY</a></li>
 					<li><a href="#">POINT SHOP</a></li>
 				</ul>

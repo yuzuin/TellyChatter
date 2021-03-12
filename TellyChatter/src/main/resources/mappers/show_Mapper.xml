@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!-- 맵핑될 인터페이스 -->
+<mapper namespace="com.project.telly.service.dao.showDAO">
+
+<!-- 영화 삽입 -->
+<insert id="insertShow">
+	insert into shows(showNum,title,year,performer,
+	genre,platform,story,poster,firstPer)
+	values(shows_seq.NEXTVAL,#{title},#{year},#{performer},
+	#{genre},#{platform},#{story},#{poster},#{firstPer})
+</insert>
+
+<select id="showList" resultType="showVO">
+	select * from showList;
+</select>
+
+</mapper>

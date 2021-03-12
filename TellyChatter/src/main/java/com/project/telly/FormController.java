@@ -31,11 +31,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
+import com.project.telly.service.showService;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.memberVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
+import com.project.telly.vo.showVO;
 
 /** 폼 제출 관리 컨트롤러 */
 @Controller
@@ -49,6 +51,8 @@ public class FormController {
 	private FileDataUtil filedataUtil;
 	@Inject
 	private reviewService reviewService;
+	@Inject
+	private showService showService;
 
 	/* 회원가입 제출 */
 	@RequestMapping(value = "goRegister", method = RequestMethod.POST)
@@ -356,5 +360,27 @@ public class FormController {
 		}
 
 		return "index"; // 리다이렉트로
+	}
+	
+	
+	
+	/* 영화 관련 */
+	
+	/** 영화 인서트 */
+	@RequestMapping(value = "insertShow", method = RequestMethod.POST)
+	public String insertShow(showVO s, MultipartFile file, Model m, HttpServletRequest request) throws Exception {
+		System.out.println("연도"+s.getYear());
+		System.out.println("스는사람"+s.getFirstPer());
+		if (file.getOriginalFilename() == "") {
+			System.out.println("첨부파일 없음");
+		} else {
+			String[] files = filedataUtil.fileUpload(file);
+			System.out.println("파일 : " + files[0]);
+			s.setPoster(files[0]);
+		}
+		if (showService.insertShow(s) > 0) {
+			System.out.println("영화 넣기 성공");
+		}
+		return "redirect:shows"; // 리다이렉트로
 	}
 }
