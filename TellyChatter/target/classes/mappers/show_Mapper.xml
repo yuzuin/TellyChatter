@@ -58,4 +58,8 @@
 <delete id="deleteLikeShow">
 	delete from likeShow where id=#{id} and showNum=#{showNum}
 </delete>
+
+<select id="cntShowLikes" resultType="int">
+	select count(*) from likeShow where showNum=#{showNum}
+</select>
 </mapper>

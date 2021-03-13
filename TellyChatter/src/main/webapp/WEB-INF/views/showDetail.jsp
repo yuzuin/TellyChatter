@@ -164,14 +164,13 @@
 
 		<form id="like_form">
 			<table id="list">
-				<input type="hidden" name="id" value="${user.id }"/>
-				<input type="hidden" name="showNum" value="${show.showNum}"/>
-				<input type="hidden" name="likes" values="${show.likes }"/>
+				<input type="hidden" name="id" value="${user.id }" />
+				<input type="hidden" name="showNum" value="${show.showNum}" />
 				<tr>
-					<input type="button" value="좋아요!" onclick="return like()"/>
+					<input type="button" value="좋아요!" onclick="like()" />
 				</tr>
 				<tr>
-					<div class="result">${show.likes}</div>
+					<div id="result">${show.likes}</div>
 				</tr>
 			</table>
 		</form>
@@ -357,27 +356,62 @@
 	
 	
 	</script>
-<script>
+	<script>
+	
 	function like(){
+		
 		var cnt = ${show.likes};
 		$.ajax({
 		url: "likeShow",
 		type: "POST",
-		cache: false,
-		dataType: "json",
-		data: $('#like_form').serialize(), //아이디가 like_form인 곳의 모든 정보를 가져와 파라미터 전송 형태(표준 쿼리형태)로 만들어줌
+		//cache: false,
+		//dataType: "json",
+		data: $('#like_form').serialize(),
+		//아이디가 like_form인 곳의 모든 정보를 가져와 파라미터 전송 형태(표준 쿼리형태)로 만들어줌
 		success:
 		function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
+			likeList(${show.showNum});
 			//alert("반영되었습니다") ; // data중 put한 것의 이름 like
-		$('.result').html(data.likes); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
+		//$('.result').html(data.likes); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
 		},
 		error:
 		function (request, status, error){
+			likeList(${show.showNum});
 		//alert("이미 좋아요를 누르셨습니다. ")
 			//$('.result').html(cnt);
 		}
 		});
+			
 		}
+	
+	
+	function likeList(num) {
+		var showNum = ${show.showNum};
+		$
+				.ajax({
+					url : "cntShowLikes",
+					type : 'get',
+					data : {
+						'bno' : num
+					},
+					success : 
+						function(data2) {
+						var b = '';
+						//$
+						//				data,
+						//				function(key,value) {
+						//					b+='<div class="result">'+value.likes+'</div>';
+						//				};
+						b+='<div id="result">'+data2+'</div>';
+						$('#result').html(b);
+					},
+					error : 
+						function (request, status, error){
+						$('#result').html('실패');
+					}
+				});
+	}
+	
 
 	</script>
 </body>

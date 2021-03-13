@@ -90,4 +90,10 @@ public class showServiceImpl implements showService{
 		return showMapper.deleteLikeShow(vo);
 	}
 
+	@Override
+	@Transactional
+	public int cntShowLikes(int num) {
+		return showMapper.cntShowLikes(num);
+	}
+
 }

@@ -23,5 +23,8 @@ public class likeShowVO {
 		this.likeTime = likeTime;
 	}
 	
-	
+//	@Override
+//	public String toString() {
+//		return "likeShowVO [id="+id+",showNum="+showNum+",likeTime="+likeTime+"]";
+//	}
 }

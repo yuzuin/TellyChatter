@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,6 +36,7 @@ import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
 import com.project.telly.service.showService;
 import com.project.telly.util.FileDataUtil;
+import com.project.telly.vo.cntLikeDTO;
 import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.likeShowVO;
 import com.project.telly.vo.memberVO;
@@ -402,7 +404,6 @@ public class FormController {
 	public String likeShow(likeShowVO lr,HttpServletRequest request,Model m) {
 		System.out.println("영화 좋아요하기 ");
 		// 실행
-		
 		try {
 			if (showService.likeShow(lr) > 0) {
 				showService.updateLikeShow(lr.getShowNum());
@@ -429,7 +430,6 @@ public class FormController {
 	@ResponseBody
 	public List<showCommentVO> selectShowComment(int bno,HttpServletRequest request, Model model) {
 		System.out.println("셀렉트show코멘트");
-		System.out.println("bno "+bno);
 		List<showCommentVO> vo = showService.selectShowComment(bno);
 		return vo;
 	}
@@ -473,5 +473,19 @@ public class FormController {
 		rcv.setContent(content);
 		
 		return showService.updateShowComment(rcv);
+	}
+
+	/** 좋아요개수 */
+	@RequestMapping(value = "cntShowLikes")
+	@ResponseBody
+	public String cntShowLikes(int bno,HttpServletRequest request, Model model) {
+		System.out.println("하트개수");
+		System.out.println("showNum "+bno);
+		int likesCnt = showService.cntShowLikes(bno);
+		cntLikeDTO cnt = new cntLikeDTO();
+		cnt.setLikes(likesCnt);
+		System.out.println(cnt.getLikes());
+		cnt.setNum(bno);
+		return String.valueOf(cnt.getLikes());
 	}
 }

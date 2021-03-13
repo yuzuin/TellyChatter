@@ -21,4 +21,5 @@ public interface showService {
 	public int updateLikeShow(int num);
 	public int cancelLikeShow(int num);
 	public int deleteLikeShow(likeShowVO vo);
+	public int cntShowLikes(int num);
 }
