@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,6 +39,7 @@ import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.memberVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
+import com.project.telly.vo.showCommentVO;
 import com.project.telly.vo.showVO;
 
 /** 폼 제출 관리 컨트롤러 */
@@ -391,5 +394,60 @@ public class FormController {
 		
 		m.addAttribute("show",showService.selectShow(vo.getShowNum()));
 		return "showDetail";
+	}
+	
+	
+	/* 영화 댓글 */
+	/** 영화 댓글 리스트 */
+	@RequestMapping(value = "selectShowComment")
+	@ResponseBody
+	public List<showCommentVO> selectShowComment(int bno,HttpServletRequest request, Model model) {
+		System.out.println("셀렉트show코멘트");
+		System.out.println("bno "+bno);
+		List<showCommentVO> vo = showService.selectShowComment(bno);
+		return vo;
+	}
+	
+	/** 영화 댓글 쓰기 */
+	@RequestMapping(value = "insertShowComment", method = RequestMethod.POST)
+	@ResponseBody
+	public String insertShowComment(showCommentVO rcv, HttpServletRequest request) {
+		System.out.println("인서트show코멘트");
+		HttpSession session = request.getSession();
+		memberVO nowUser = (memberVO) session.getAttribute("user");
+		String writer = nowUser.getId();
+		rcv.setWriter(writer); // 현재 세션의 id를 writer에 셋
+		// 실행
+		showService.insertShowComment(rcv);
+
+		// 포인트 추가
+		/** if (memberService.updatePointReview(writer) > 0) {
+		*	System.out.println("포인트 추가 완료 ");
+		*} */
+
+
+		return "index"; // 리다이렉트로
+	}
+	/** 리뷰 댓글 삭제 */
+	@RequestMapping(value = "deleteShowComment/{num}")
+	@ResponseBody
+	public int deleteShowComment(@PathVariable int num,HttpServletRequest request, Model model) {
+		System.out.println("딜리트 show 코멘트");
+		return showService.deleteShowComment(num);
+	}
+	
+	/** 리뷰 댓글 업데이트(수정) */
+	@RequestMapping(value = "updateShowComment")
+	@ResponseBody
+	public int updateShowComment(@RequestParam int num, @RequestParam String content) {
+		System.out.println("업데이트 리뷰 코멘트");
+		showCommentVO rcv = new showCommentVO();
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date time = new Date();
+		String newTime = f.format(time);
+		rcv.setWritetime(newTime);
+		rcv.setContent(content);
+		
+		return showService.updateShowComment(rcv);
 	}
 }

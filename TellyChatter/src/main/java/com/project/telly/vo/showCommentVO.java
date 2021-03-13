@@ -5,6 +5,7 @@ public class showCommentVO {
 	private String content;
 	private String writetime;
 	private int showNum;
+	private int num;
 	
 	public String getWriter() {
 		return writer;
@@ -29,6 +30,12 @@ public class showCommentVO {
 	}
 	public void setShowNum(int showNum) {
 		this.showNum = showNum;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 }

@@ -10,6 +10,7 @@
 		<typeAlias alias="reviewVO" type="com.project.telly.vo.reviewVO" />
 		<typeAlias alias="reviewCommentVO" type="com.project.telly.vo.reviewCommentVO" />
 		<typeAlias alias="showVO" type="com.project.telly.vo.showVO" />
+		<typeAlias alias="showCommentVO" type="com.project.telly.vo.showCommentVO" />
 	</typeAliases>
 </configuration>
 

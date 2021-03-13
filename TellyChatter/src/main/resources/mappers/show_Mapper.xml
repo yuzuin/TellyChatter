@@ -27,11 +27,11 @@
 
 <!-- show 짧은 리뷰 -->
 <insert id="insertShowComment">
-	insert into showComment(writer,content,showNum) values (#{writer},#{content},#{showNum})
+	insert into showComment(num,writer,content,showNum) values (showComment_seq.NEXTVAL,#{writer},#{content},#{showNum})
 </insert>
 
 <select id="selectShowComment" resultType="showCommentVO">
-	select * from showComment where showNum=#{showNum}
+	select * from showComment where showNum=#{showNum} order by num desc
 </select>
 
 <update id="updateShowComment">
@@ -39,6 +39,6 @@
 </update>
 
 <delete id="deleteShowComment">
-	delete from showComment where writer=#{id}
+	delete from showComment where num=#{num}
 </delete>
 </mapper>

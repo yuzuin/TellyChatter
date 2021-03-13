@@ -14,6 +14,6 @@ public interface showDAO {
 	public int insertShowComment(showCommentVO vo);
 	public int updateShowComment(showCommentVO vo);
 	public List<showCommentVO> selectShowComment(int showNum);
-	public int deleteShowComment(String writer);
+	public int deleteShowComment(int num);
 }
 

@@ -124,40 +124,42 @@
 
 		<!-- 영화 -->
 		<div id="main" style="">
-					<a href="single.html" class="image"
-						style="height: 450px !important;  left:35%; margin:0 0 60px;"><img
-						src="${pageContext.request.contextPath}/download?filename=${show.poster }" height="500px" /></a>
-				<article class="mini-post" style="width: 30%; position:relative !important; left:34%;">
-					<div>
-						<h2 style="text-align: center; ">
-							<a href="single.html">　 ${show.title }</a>
-						</h2>
+			<a href="single.html" class="image"
+				style="height: 450px !important; left: 35%; margin: 0 0 60px;"><img
+				src="${pageContext.request.contextPath}/download?filename=${show.poster }"
+				height="500px" /></a>
+			<article class="mini-post"
+				style="width: 30%; position: relative !important; left: 34%;">
+				<div>
+					<h2 style="text-align: center;">
+						<a href="single.html"> ${show.title }</a>
+					</h2>
 
-						<a href="#" class="author" style="font-size: large !important;">
-							<time class="published" datetime="2015-10-20">${show.year }</time>
-						</a>
-					</div>
+					<a href="#" class="author" style="font-size: large !important;">
+						<time class="published" datetime="2015-10-20">${show.year }</time>
+					</a>
+				</div>
 
-				</article>
-		</div>
-		<div id="main">
-			<article class="post" style="text-align:center;">
-			<h2> 제작 연도 : ${show.year }</h2>
-			<h2> 출연진 : ${show.performer }</h2>
-			<h2> 장르 : ${show.genre }</h2>
-			<h2> 지원 플랫폼 : ${show.platform }</h2>
-			<br/>
-			<p>
-			<h3> ${show.story }</h3>
-			</p>
-			<div style="text-align:right;">
-			최초 작성자 : ${show.firstPer }<br/>
-			최근 수정자 : ${show.updatePer }
-			</div>
 			</article>
 		</div>
-<button onclick="location.href='updateShowForm?snum=${show.showNum }'" class="button button-block">UPDATE!</button>
-		
+		<div id="main">
+			<article class="post" style="text-align: center;">
+				<h2>제작 연도 : ${show.year }</h2>
+				<h2>출연진 : ${show.performer }</h2>
+				<h2>장르 : ${show.genre }</h2>
+				<h2>지원 플랫폼 : ${show.platform }</h2>
+				<br />
+				<p>
+				<h3>${show.story }</h3>
+				</p>
+				<div style="text-align: right;">
+					최초 작성자 : ${show.firstPer }<br /> 최근 수정자 : ${show.updatePer }
+				</div>
+			</article>
+		</div>
+		<button onclick="location.href='updateShowForm?snum=${show.showNum }'"
+			class="button button-block">UPDATE!</button>
+
 		<!-- 코멘트 영역  -->
 		<article class="post">
 			<div class="container">
@@ -180,42 +182,45 @@
 			</div>
 	</div>
 	</article>
-	
-		<!-- Footer -->
-		<section id="footer" style="clear: flex !important;">
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter"><span
-						class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-facebook-f"><span
-						class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span
-						class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon solid fa-rss"><span
-						class="label">RSS</span></a></li>
-				<li><a href="#" class="icon solid fa-envelope"><span
-						class="label">Email</span></a></li>
-			</ul>
-			<p class="copyright">
-				&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.
-				Images: <a href="http://unsplash.com">Unsplash</a>.
-			</p>
-		</section>
+
+	<!--                     추가                         -->
+	<%@ include file="commentS.jsp"%>
+
+	<!-- Footer -->
+	<section id="footer" style="clear: flex !important;">
+		<ul class="icons">
+			<li><a href="#" class="icon brands fa-twitter"><span
+					class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon brands fa-facebook-f"><span
+					class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon brands fa-instagram"><span
+					class="label">Instagram</span></a></li>
+			<li><a href="#" class="icon solid fa-rss"><span
+					class="label">RSS</span></a></li>
+			<li><a href="#" class="icon solid fa-envelope"><span
+					class="label">Email</span></a></li>
+		</ul>
+		<p class="copyright">
+			&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.
+			Images: <a href="http://unsplash.com">Unsplash</a>.
+		</p>
+	</section>
 
 
-		<!-- Scripts -->
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/browser.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/breakpoints.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-		
-			<script>
-		var bno = '${review.num}'; //게시글 번호
+	<!-- Scripts -->
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/browser.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/breakpoints.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+
+	<script>
+		var bno = '${show.showNum}'; //게시글 번호
 
 		$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
 			var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
@@ -238,8 +243,8 @@
 											data,
 											function(key, value) {
 												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-												a += '<div class="commentInfo'+value.writetime+'">'
-														+ '작성일 : '
+												a += '<div class="commentInfo'+value.num+'">'
+														+ '작성일시 : '
 														+ value.writetime
 														+ ' / 작성자 : '
 														+ value.writer;
@@ -248,17 +253,17 @@
 												if('${user.id}'==value.writer){
 												a += 
 													'<a onclick="commentUpdate('
-														+ value.writer
+														+ value.num
 														+ ',\''
 														+ value.content
 														+ '\');"> 수정' +'</a>'; }
 												
 												if('${user.id}'==value.writer || '${user.id}'=='admin'){
 												a += '<a onclick="commentDelete('
-														+ value.writer
+														+ value.num
 														+ ');"> 삭제 </a>';}
 												a+=' </div>';
-												a += '<div class="commentContent'+value.writer+'"> <p> 내용 : '
+												a += '<div class="commentContent'+value.num+'"> <p> 내용 : '
 														+ value.content
 														+ '</p>';
 												a += '</div></div>';
@@ -288,29 +293,29 @@
 		}
 
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-		function commentUpdate(showNum, content) {
+		function commentUpdate(num, content) {
 			var a = '';
 
 			a += '<div class="input-group">';
-			a += '<input type="text" class="form-control" name="content_'+showNum+'" value="'+content+'"/>';
+			a += '<input type="text" class="form-control" name="content_'+num+'" value="'+content+'"/>';
 			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
 					+ num + ');">수정</button> </span>';
 			a += '</div>';
 
-			$('.commentContent' + showNum).html(a);
+			$('.commentContent' + num).html(a);
 
 		}
 
 		//댓글 수정
-		function commentUpdateProc(showNum) {
-			var updateContent = $('[name=content_' + showNum + ']').val();
+		function commentUpdateProc(num) {
+			var updateContent = $('[name=content_' + num + ']').val();
 
 			$.ajax({
 				url : "updateShowComment",
 				type : 'post',
 				data : {
 					'content' : updateContent,
-					'showNum' : showNum
+					'num' : num
 				},
 				success : function(data) {
 						commentList(bno); //댓글 수정후 목록 출력 
@@ -320,9 +325,9 @@
 		}
 
 		//댓글 삭제 
-		function commentDelete(writer) {
+		function commentDelete(num) {
 			$.ajax({
-				url : "deleteShowComment/" + writer,
+				url : "deleteShowComment/" + num,
 				type : 'post',
 				success : function(data) {
 					if (data == 1)
@@ -337,5 +342,6 @@
 	
 	
 	</script>
+
 </body>
 </html>

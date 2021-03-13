@@ -173,19 +173,7 @@
 			<a href="deleteReview?delNum=${review.num }" class="button">삭제하기</a>
 		</c:if>
 		<br /> <br /> <br />
-		<!-- 좋아요테스트 
-		<form id="like_form">
-			<table id="list">
-				<input type="hidden" name="id" value="${user.id }"/>
-				<input type="hidden" name="num" value="${review.num}"/>
-				<tr>
-					<input type="button" value="좋아요!" onclick="return like()"/>
-				</tr>
-				<tr>
-					<div id="like_result">${review.likes}</div>
-				</tr>
-			</table>
-		</form>-->
+		
 
 
 		<!-- 코멘트 영역  -->

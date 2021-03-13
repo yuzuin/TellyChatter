@@ -61,8 +61,8 @@ public class showServiceImpl implements showService{
 
 	@Override
 	@Transactional
-	public int deleteShowComment(String writer) {
-		return showMapper.deleteShowComment(writer);
+	public int deleteShowComment(int num) {
+		return showMapper.deleteShowComment(num);
 	}
 
 }
