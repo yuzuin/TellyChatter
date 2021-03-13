@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.telly.service.showService;
 import com.project.telly.service.dao.showDAO;
+import com.project.telly.vo.showCommentVO;
 import com.project.telly.vo.showVO;
 
 @Service("showService")
@@ -38,6 +39,30 @@ public class showServiceImpl implements showService{
 	@Transactional
 	public int updateShow(showVO vo) {
 		return showMapper.updateShow(vo);
+	}
+
+	@Override
+	@Transactional
+	public int insertShowComment(showCommentVO vo) {
+		return showMapper.insertShowComment(vo);
+	}
+
+	@Override
+	@Transactional
+	public int updateShowComment(showCommentVO vo) {
+		return showMapper.updateShowComment(vo);
+	}
+
+	@Override
+	@Transactional
+	public List<showCommentVO> selectShowComment(int showNum) {
+		return showMapper.selectShowComment(showNum);
+	}
+
+	@Override
+	@Transactional
+	public int deleteShowComment(String writer) {
+		return showMapper.deleteShowComment(writer);
 	}
 
 }

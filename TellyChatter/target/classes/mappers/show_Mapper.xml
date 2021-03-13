@@ -25,4 +25,20 @@
 		platform=#{platform}, story=#{story}, updatePer=#{updatePer} where showNum=#{showNum}
 </update>
 
+<!-- show 짧은 리뷰 -->
+<insert id="insertShowComment">
+	insert into showComment(writer,content,showNum) values (#{writer},#{content},#{showNum})
+</insert>
+
+<select id="selectShowComment" resultType="showCommentVO">
+	select * from showComment where showNum=#{showNum}
+</select>
+
+<update id="updateShowComment">
+	update showComment set content=#{content}, writetime=sysdate
+</update>
+
+<delete id="deleteShowComment">
+	delete from showComment where writer=#{id}
+</delete>
 </mapper>

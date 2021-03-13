@@ -157,6 +157,30 @@
 			</article>
 		</div>
 <button onclick="location.href='updateShowForm?snum=${show.showNum }'" class="button button-block">UPDATE!</button>
+		
+		<!-- 코멘트 영역  -->
+		<article class="post">
+			<div class="container">
+				<label for="content">감상 코멘트</label>
+				<form name="commentInsertForm">
+					<div class="input-group">
+						<input type="hidden" name="writer" value="${user.id}" /> <input
+							type="hidden" name="showNum" value="${show.showNum}" /> <input
+							type="text" class="form-control" id="content" name="content"
+							placeholder="내용을 입력하세요."> <span class="input-group-btn">
+							<button class="btn btn-default" type="button"
+								name="commentInsertBtn">등록</button>
+						</span>
+					</div>
+				</form>
+			</div>
+
+			<div class="container">
+				<div class="commentList"></div>
+			</div>
+	</div>
+	</article>
+	
 		<!-- Footer -->
 		<section id="footer" style="clear: flex !important;">
 			<ul class="icons">
@@ -189,5 +213,129 @@
 			src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+		
+			<script>
+		var bno = '${review.num}'; //게시글 번호
+
+		$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
+			var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+			commentInsert(insertData); //Insert 함수호출(아래)
+		});
+
+		//댓글 목록 
+		function commentList() {
+			$
+					.ajax({
+						url : "selectShowComment",
+						type : 'get',
+						data : {
+							'bno' : ${show.showNum}
+						},
+						success : function(data) {
+							var a = '';
+							$
+									.each(
+											data,
+											function(key, value) {
+												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+												a += '<div class="commentInfo'+value.writetime+'">'
+														+ '작성일 : '
+														+ value.writetime
+														+ ' / 작성자 : '
+														+ value.writer;
+													
+												
+												if('${user.id}'==value.writer){
+												a += 
+													'<a onclick="commentUpdate('
+														+ value.writer
+														+ ',\''
+														+ value.content
+														+ '\');"> 수정' +'</a>'; }
+												
+												if('${user.id}'==value.writer || '${user.id}'=='admin'){
+												a += '<a onclick="commentDelete('
+														+ value.writer
+														+ ');"> 삭제 </a>';}
+												a+=' </div>';
+												a += '<div class="commentContent'+value.writer+'"> <p> 내용 : '
+														+ value.content
+														+ '</p>';
+												a += '</div></div>';
+											});
+
+							$(".commentList").html(a);
+						}
+					});
+		}
+
+		//댓글 등록
+		function commentInsert(insertData) {
+			$.ajax({
+				url : "insertShowComment",
+				type : 'post',
+				data : insertData,
+				success : function(data) {
+					if (data == 1) {
+						commentList(); //댓글 작성 후 댓글 목록 reload
+						$('[name=content]').val('');
+					}else{
+						commentList(); //댓글 작성 후 댓글 목록 reload
+						$('[name=content]').val('');
+					}
+				}
+			});
+		}
+
+		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+		function commentUpdate(showNum, content) {
+			var a = '';
+
+			a += '<div class="input-group">';
+			a += '<input type="text" class="form-control" name="content_'+showNum+'" value="'+content+'"/>';
+			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
+					+ num + ');">수정</button> </span>';
+			a += '</div>';
+
+			$('.commentContent' + showNum).html(a);
+
+		}
+
+		//댓글 수정
+		function commentUpdateProc(showNum) {
+			var updateContent = $('[name=content_' + showNum + ']').val();
+
+			$.ajax({
+				url : "updateShowComment",
+				type : 'post',
+				data : {
+					'content' : updateContent,
+					'showNum' : showNum
+				},
+				success : function(data) {
+						commentList(bno); //댓글 수정후 목록 출력 
+					//if (data == 1)
+				}
+			});
+		}
+
+		//댓글 삭제 
+		function commentDelete(writer) {
+			$.ajax({
+				url : "deleteShowComment/" + writer,
+				type : 'post',
+				success : function(data) {
+					if (data == 1)
+						commentList(bno); //댓글 삭제후 목록 출력 
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			commentList(); //페이지 로딩시 댓글 목록 출력 
+		});
+	
+	
+	</script>
 </body>
 </html>
