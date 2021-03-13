@@ -154,8 +154,8 @@
 					<ul class="stats">
 					<input type="hidden" name="id" value="${user.id }"/>
 				<input type="hidden" name="num" value="${review.num}"/>
-						<li><a href="">General</a></li>
-                  <li onclick="return like()"><a href="" class="icon solid fa-heart" id="like_result">${review.likes }</a></li>
+						<li>General</li>
+                  <li onclick="return like()" class="icon solid fa-heart" id="like_result">${review.likes }</a></li>
                   <li><a href="" class="icon solid fa-comment">${cSize }</a></li>
 					</ul>
 				</form>
@@ -173,7 +173,19 @@
 			<a href="deleteReview?delNum=${review.num }" class="button">삭제하기</a>
 		</c:if>
 		<br /> <br /> <br />
-		
+		<!-- 좋아요테스트 
+		<form id="like_form">
+			<table id="list">
+				<input type="hidden" name="id" value="${user.id }"/>
+				<input type="hidden" name="num" value="${review.num}"/>
+				<tr>
+					<input type="button" value="좋아요!" onclick="return like()"/>
+				</tr>
+				<tr>
+					<div id="like_result">${review.likes}</div>
+				</tr>
+			</table>
+		</form>-->
 
 
 		<!-- 코멘트 영역  -->
@@ -372,12 +384,12 @@
 		success:
 		function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
 		//	alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like
-		$("#like_result").html(cnt); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
+		$("#like_result").html(cnt+1); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
 		},
 		error:
 		function (request, status, error){
 		//alert("이미 좋아요를 누르셨습니다. ")
-			$("#like_result").html(cnt);
+			$("#like_result").html(cnt-1);
 		}
 		});
 		}

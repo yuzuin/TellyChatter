@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.telly.service.showService;
 import com.project.telly.service.dao.showDAO;
+import com.project.telly.vo.likeShowVO;
 import com.project.telly.vo.showCommentVO;
 import com.project.telly.vo.showVO;
 
@@ -63,6 +64,30 @@ public class showServiceImpl implements showService{
 	@Transactional
 	public int deleteShowComment(int num) {
 		return showMapper.deleteShowComment(num);
+	}
+
+	@Override
+	@Transactional
+	public int likeShow(likeShowVO vo) {
+		return showMapper.likeShow(vo);
+	}
+
+	@Override
+	@Transactional
+	public int updateLikeShow(int num) {
+		return showMapper.updateLikeShow(num);
+	}
+
+	@Override
+	@Transactional
+	public int cancelLikeShow(int num) {
+		return showMapper.cancelLikeShow(num);
+	}
+
+	@Override
+	@Transactional
+	public int deleteLikeShow(likeShowVO vo) {
+		return showMapper.deleteLikeShow(vo);
 	}
 
 }

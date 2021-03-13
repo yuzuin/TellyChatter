@@ -11,6 +11,7 @@ public class showVO {
 	private String poster;
 	private String firstPer;
 	private String updatePer=null;
+	private int likes;
 	public int getShowNum() {
 		return showNum;
 	}
@@ -70,6 +71,12 @@ public class showVO {
 	}
 	public void setUpdatePer(String updatePer) {
 		this.updatePer = updatePer;
+	}
+	public int getLikes() {
+		return likes;
+	}
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 	
 	

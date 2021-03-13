@@ -36,6 +36,7 @@ import com.project.telly.service.reviewService;
 import com.project.telly.service.showService;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.likeReviewVO;
+import com.project.telly.vo.likeShowVO;
 import com.project.telly.vo.memberVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
@@ -337,7 +338,7 @@ public class FormController {
 		return reviewService.updateReviewComment(rcv);
 	}
 
-	/** 좋아요 버튼 누름 */
+	/** 리뷰 좋아요 버튼 누름 */
 	@RequestMapping(value = "likeReview", method = RequestMethod.POST)
 	@ResponseBody
 	public String likeReview(likeReviewVO lr,HttpServletRequest request) {
@@ -386,7 +387,6 @@ public class FormController {
 		}
 		return "redirect:shows"; // 리다이렉트로
 	}
-	
 	/** 영화 업데이트 */
 	@RequestMapping(value = "updateShow", method = RequestMethod.POST)
 	public String updateShow(showVO vo, Model m) {
@@ -396,6 +396,32 @@ public class FormController {
 		return "showDetail";
 	}
 	
+	/** 영화 좋아요 버튼 누름 */
+	@RequestMapping(value = "likeShow", method = RequestMethod.POST)
+	@ResponseBody
+	public String likeShow(likeShowVO lr,HttpServletRequest request,Model m) {
+		System.out.println("영화 좋아요하기 ");
+		// 실행
+		
+		try {
+			if (showService.likeShow(lr) > 0) {
+				showService.updateLikeShow(lr.getShowNum());
+				System.out.println("좋아요 인서트 완료");
+			}else {
+				System.out.println("좋아요 실패 ");
+			}
+			
+		}catch(Exception e) {
+			System.out.println("오류났기때문에 좋아요 취소");
+			showService.deleteLikeShow(lr);
+			System.out.println("좋아요취소");
+			showService.cancelLikeShow(lr.getShowNum());
+			System.out.println("좋아요 하나 삭제");
+		}
+		m.addAttribute("showAfter",showService.selectShow(lr.getShowNum()));
+
+		return "index"; // 리다이렉트로
+	}
 	
 	/* 영화 댓글 */
 	/** 영화 댓글 리스트 */
@@ -407,7 +433,6 @@ public class FormController {
 		List<showCommentVO> vo = showService.selectShowComment(bno);
 		return vo;
 	}
-	
 	/** 영화 댓글 쓰기 */
 	@RequestMapping(value = "insertShowComment", method = RequestMethod.POST)
 	@ResponseBody
@@ -428,15 +453,14 @@ public class FormController {
 
 		return "index"; // 리다이렉트로
 	}
-	/** 리뷰 댓글 삭제 */
+	/** 영화 댓글 삭제 */
 	@RequestMapping(value = "deleteShowComment/{num}")
 	@ResponseBody
 	public int deleteShowComment(@PathVariable int num,HttpServletRequest request, Model model) {
 		System.out.println("딜리트 show 코멘트");
 		return showService.deleteShowComment(num);
 	}
-	
-	/** 리뷰 댓글 업데이트(수정) */
+	/** 영화 댓글 업데이트(수정) */
 	@RequestMapping(value = "updateShowComment")
 	@ResponseBody
 	public int updateShowComment(@RequestParam int num, @RequestParam String content) {

@@ -156,10 +156,25 @@
 					최초 작성자 : ${show.firstPer }<br /> 최근 수정자 : ${show.updatePer }
 				</div>
 			</article>
-		</div>
-		<button onclick="location.href='updateShowForm?snum=${show.showNum }'"
-			class="button button-block">UPDATE!</button>
+			<button
+				onclick="location.href='updateShowForm?snum=${show.showNum }'"
+				class="button button-block">UPDATE!</button>
 
+		</div>
+
+		<form id="like_form">
+			<table id="list">
+				<input type="hidden" name="id" value="${user.id }"/>
+				<input type="hidden" name="showNum" value="${show.showNum}"/>
+				<input type="hidden" name="likes" values="${show.likes }"/>
+				<tr>
+					<input type="button" value="좋아요!" onclick="return like()"/>
+				</tr>
+				<tr>
+					<div class="result">${show.likes}</div>
+				</tr>
+			</table>
+		</form>
 		<!-- 코멘트 영역  -->
 		<article class="post">
 			<div class="container">
@@ -342,6 +357,28 @@
 	
 	
 	</script>
+<script>
+	function like(){
+		var cnt = ${show.likes};
+		$.ajax({
+		url: "likeShow",
+		type: "POST",
+		cache: false,
+		dataType: "json",
+		data: $('#like_form').serialize(), //아이디가 like_form인 곳의 모든 정보를 가져와 파라미터 전송 형태(표준 쿼리형태)로 만들어줌
+		success:
+		function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
+			//alert("반영되었습니다") ; // data중 put한 것의 이름 like
+		$('.result').html(data.likes); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
+		},
+		error:
+		function (request, status, error){
+		//alert("이미 좋아요를 누르셨습니다. ")
+			//$('.result').html(cnt);
+		}
+		});
+		}
 
+	</script>
 </body>
 </html>

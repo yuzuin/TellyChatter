@@ -41,4 +41,21 @@
 <delete id="deleteShowComment">
 	delete from showComment where num=#{num}
 </delete>
+
+<!-- 좋아요 -->
+<insert id="likeShow">
+	insert into likeShow(id,showNum) values(#{id},#{showNum})
+</insert>
+
+<update id="updateLikeShow">
+	update shows set likes=likes+1 where showNum=#{showNum}
+</update>
+
+<update id="cancelLikeShow">
+	update shows set likes=likes-1 where showNum=#{showNum}
+</update>
+
+<delete id="deleteLikeShow">
+	delete from likeShow where id=#{id} and showNum=#{showNum}
+</delete>
 </mapper>
