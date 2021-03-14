@@ -124,93 +124,247 @@
 
 		<!-- Main -->
 		<div id="main">
-
-			<ul class="tab-group">
-				<li class="tab active"><a href="#likeReview">내가 찜한 리뷰</a></li>
-				<li class="tab"><a href="#likeShow">내가 찜한 영화</a></li>
-				<li class="tab"><a href="#myReview">내가 쓴 리뷰</a></li>
-				<li class="tab"><a href="#myShow">내가 올린 영화</a></li>
-				<li class="tab"><a href="#online">내가 한줄평한 영화</a></li>
+			<div class="col-10 col-12-medium" style="padding-left:70px">
+			<ul class="actions">
+				<li><a href='javascript:mylikeReviewList()' class="button" style="font-size:14px">내가찜한 리뷰</a></li>
+				<li><a href='javascript:myLikeShowList()' class="button" style="font-size:14px">내가 찜한 영화</a></li>
+				<li><a href='javascript:myReviewList()' class="button" style="font-size:14px">내가 쓴 리뷰</a></li>
+				<li><a href='javascript:myUploadShowList()' class="button" style="font-size:14px">내가 올린 영화</a></li>
+				<li><a href='javascript:myOneLineShowList()' class="button" style="font-size:14px">내가 한줄평한 영화</a></li>
 			</ul>
+			</div>
 			<!-- Post -->
 			<article class="post">
 
-			<div class="tab-content">
-				
+				<div class="tab-content">
 
-				<div id="likeReview">
-					<h1>내가 찜한 리뷰</h1>
+
+					<div id="likeReview">
+						<h1 id="logTitle"></h1>
+
+						<div class="table-wrapper">
+							<div id="listArea">
+								<table class="alt">
+									<div>
+										<table id="boardList" class="alt table-wrapper"></table>
+									</div>
+								</table>
+							</div>
+						</div>
+					</div>
+
 				</div>
-				<div id="likeShow">
-					<h1>내가 찜한 영화</h1>
-				</div>
-				<div id="myReview">
-					<h1>내가 쓴 리뷰</h1>
-				</div>
-				<div id="myShow">
-					<h1>내가 올린 영화</h1>
-				</div>
-				<div id="online">
-					<h1>내가 한줄평한 영화</h1>
-				</div>
-				
-				
-		</div>
 			</article>
 
+		<!--                     추가                         -->
+		<%@ include file="commentS.jsp"%>
+
+		<!-- Footer -->
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span
+						class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span
+						class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span
+						class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon solid fa-rss"><span
+						class="label">RSS</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span
+						class="label">Email</span></a></li>
+			</ul>
+			<p class="copyright">
+				&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.
+				Images: <a href="http://unsplash.com">Unsplash</a>.
+			</p>
+		</section>
 
 
+		<!-- Scripts -->
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/browser.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/breakpoints.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
-		<!-- 코멘트 영역  -->
-		<article class="post">
-			<div class="container">
-				<label for="content">comment</label>
-			</div>
+		<script>
+			var id = '${user.id}'; // 내 아이디
 
-			<div class="container">
-				<div class="commentList"></div>
-			</div>
-	</div>
-	</article>
+			function mylikeReviewList() {
 
-	<!--                     추가                         -->
-	<%@ include file="commentS.jsp"%>
+				$
+						.ajax({
+							url : 'myLikeReview',
+							type : 'get',
+							data : {
+								'id' : '${user.id}'
+							},
+							success : function(data) {
+								var a = '<h1>내가 찜한 리뷰</h1>';
+								var f = '<thead><tr><th>리뷰쓴이</th><th>제목</th><th style="text-align:center";>좋아요 수</th></tr></thead><tr>';
+								$
+										.each(
+												data,
+												function(key, value) {
+													f += '<td>'
+															+ value.writer
+															+ '</td><td>'
+															+ value.title
+															+ '</td><td style="text-align:left;">'
+															+ value.likes
+															+ '</tr>';
+												});
+								$("#logTitle").html(a);
+								$("#boardList").html(f);
 
-	<!-- Footer -->
-	<section id="footer">
-		<ul class="icons">
-			<li><a href="#" class="icon brands fa-twitter"><span
-					class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon brands fa-facebook-f"><span
-					class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon brands fa-instagram"><span
-					class="label">Instagram</span></a></li>
-			<li><a href="#" class="icon solid fa-rss"><span
-					class="label">RSS</span></a></li>
-			<li><a href="#" class="icon solid fa-envelope"><span
-					class="label">Email</span></a></li>
-		</ul>
-		<p class="copyright">
-			&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.
-			Images: <a href="http://unsplash.com">Unsplash</a>.
-		</p>
-	</section>
+							}
+						});
+			}
 
+			$(document).ready(function() {
+				mylikeReviewList(); //페이지 로딩시 내찜리뷰 출력
+			});
+		</script>
+		<script>
+			var id = '${user.id}'; // 내 아이디
 
-	<!-- Scripts -->
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/browser.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/breakpoints.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/assets/js/register.js"></script>
+			function myReviewList() {
 
+				$
+						.ajax({
+							url : 'myReview',
+							type : 'get',
+							data : {
+								'id' : '${user.id}'
+							},
+							success : function(data) {
+								var a = '<h1>내가 쓴 리뷰</h1>';
+								var f = '<thead><tr><th>날짜</th><th>제목</th><th style="text-align:center";>좋아요 수</th></tr></thead><tr>';
+								$
+										.each(
+												data,
+												function(key, value) {
+													f += '<td>'
+															+ value.writetime
+															+ '</td><td>'
+															+ value.title
+															+ '</td><td style="text-align:left;">'
+															+ value.likes
+															+ '</tr>';
+												});
+								$("#logTitle").html(a);
+								$("#boardList").html(f);
 
+							}
+						});
+			}
+		</script>
+		<script>
+			var id = '${user.id}'; // 내 아이디
+
+			function myLikeShowList() {
+
+				$
+						.ajax({
+							url : 'myLikeShow',
+							type : 'get',
+							data : {
+								'id' : '${user.id}'
+							},
+							success : function(data) {
+								var a = '<h1>내가 찜한 컨텐츠</h1>';
+								var f = '<thead><tr><th>장르</th><th>제목</th><th style="text-align:center";>좋아요 수</th></tr></thead><tr>';
+								$
+										.each(
+												data,
+												function(key, value) {
+													f += '<td>'
+															+ value.genre
+															+ '</td><td>'
+															+ value.title
+															+ '</td><td style="text-align:left;">'
+															+ value.likes
+															+ '</tr>';
+												});
+								$("#logTitle").html(a);
+								$("#boardList").html(f);
+
+							}
+						});
+			}
+		</script>
+		<script>
+			var id = '${user.id}'; // 내 아이디
+
+			function myUploadShowList() {
+
+				$
+						.ajax({
+							url : 'myUploadShow',
+							type : 'get',
+							data : {
+								'id' : '${user.id}'
+							},
+							success : function(data) {
+								var a = '<h1>내가 업로드한 컨텐츠</h1>';
+								var f = '<thead><tr><th>장르</th><th>제목</th><th style="text-align:center";>좋아요 수</th></tr></thead><tr>';
+								$
+										.each(
+												data,
+												function(key, value) {
+													f += '<td>'
+															+ value.genre
+															+ '</td><td>'
+															+ value.title
+															+ '</td><td style="text-align:left;">'
+															+ value.likes
+															+ '</tr>';
+												});
+								$("#logTitle").html(a);
+								$("#boardList").html(f);
+
+							}
+						});
+			}
+		</script>
+		<script>
+			var id = '${user.id}'; // 내 아이디
+
+			function myOneLineShowList() {
+
+				$
+						.ajax({
+							url : 'myOneLineShow',
+							type : 'get',
+							data : {
+								'id' : '${user.id}'
+							},
+							success : function(data) {
+								var a = '<h1>나의 한줄 평</h1>';
+								var f = '<thead><tr><th>제목</th><th>내용</th><th style="text-align:center";>날짜</th></tr></thead><tr>';
+								$
+										.each(
+												data,
+												function(key, value) {
+													f += '<td>'
+															+ value.title
+															+ '</td><td>'
+															+ value.content
+															+ '</td><td style="text-align:left;">'
+															+ value.writetime
+															+ '</tr>';
+												});
+								$("#logTitle").html(a);
+								$("#boardList").html(f);
+
+							}
+						});
+			}
+		</script>
 </body>
 </html>

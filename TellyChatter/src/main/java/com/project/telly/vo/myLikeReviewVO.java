@@ -7,6 +7,7 @@ public class myLikeReviewVO {
 	private int likes;
 	private String liketime;
 	private String id;
+	private String writer;
 	public int getNum() {
 		return num;
 	}
@@ -42,6 +43,12 @@ public class myLikeReviewVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	
 	

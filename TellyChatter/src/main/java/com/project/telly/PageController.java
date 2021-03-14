@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
@@ -21,8 +22,12 @@ import com.project.telly.service.showService;
 import com.project.telly.util.Crawler;
 import com.project.telly.util.FileDataUtil;
 import com.project.telly.vo.memberVO;
+import com.project.telly.vo.myLikeReviewVO;
+import com.project.telly.vo.myLikeShowVO;
 import com.project.telly.vo.naverMovieDTO;
+import com.project.telly.vo.onelineShowVO;
 import com.project.telly.vo.reviewVO;
+import com.project.telly.vo.showVO;
 
 /** 페이지 관리 컨트롤러 */
 @Controller
@@ -202,4 +207,42 @@ public class PageController {
 		return "myTellyLog";
 	}
 	
+	/** 내가 찜한 리뷰 */
+	@RequestMapping(value = "myLikeReview")
+	@ResponseBody
+	public List<myLikeReviewVO> myLikeReview(String id,HttpServletRequest request, Model model) {
+		List<myLikeReviewVO> vo = reviewService.myLikeReview(id);
+		return vo;
+	}
+	
+	/** 내가 쓴 리뷰 */
+	@RequestMapping(value = "myReview")
+	@ResponseBody
+	public List<reviewVO> myReview(String id,HttpServletRequest request, Model model) {
+		List<reviewVO> vo = reviewService.myReview(id);
+		return vo;
+	}
+	
+	/** 내가 찜한 영화 */
+	@RequestMapping(value = "myLikeShow")
+	@ResponseBody
+	public List<myLikeShowVO> myLikeShow(String id,HttpServletRequest request, Model model) {
+		List<myLikeShowVO> vo = showService.myLikeShow(id);
+		return vo;
+	}
+	
+	/** 내가 올린 영화 */
+	@RequestMapping(value = "myUploadShow")
+	@ResponseBody
+	public List<showVO> myUploadShow(String id,HttpServletRequest request, Model model) {
+		List<showVO> vo = showService.myUploadShow(id);
+		return vo;
+	}
+	/** 내가 한줄평한 영화 */
+	@RequestMapping(value = "myOneLineShow")
+	@ResponseBody
+	public List<onelineShowVO> myOneLineShow(String id,HttpServletRequest request, Model model) {
+		List<onelineShowVO> vo = showService.oneLineShow(id);
+		return vo;
+	}
 }

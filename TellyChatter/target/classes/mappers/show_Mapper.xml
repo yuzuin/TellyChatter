@@ -64,7 +64,7 @@
 </select>
 
 <!-- 텔리로그 -->
-<select id="onelineShow" resultType="onelineShowVO">
+<select id="oneLineShow" resultType="onelineShowVO">
 	select a.title,b.content,b.writetime,b.showNum from shows a, showComment b 
 		where a.showNum=b.showNum and writer=#{writer}
 </select>
