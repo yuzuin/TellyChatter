@@ -11,4 +11,6 @@ public interface memberDAO {
 	public int updatePointReview(String id);
 	public memberVO selectWriter(String id);
 	public List<memberVO> selectTopWriter();
+	
+	public int updateMyInfo(memberVO vo);
 }

@@ -86,11 +86,6 @@ public class FormController {
 			HttpSession session = request.getSession();
 			System.out.println(user.getId());
 			session.setAttribute("user", user);
-			/**
-			 * System.out.println("데이지포인"+memberService.selectPoint("daisy"));
-			 * System.out.println("생년월일 "+user.getBirth()); System.out.println("포인트 :
-			 * "+user.getPoint());
-			 */
 			System.out.println(user.getNickname() + "님 로그인 완료");
 			return "redirect:index";
 		} else {
@@ -492,4 +487,28 @@ public class FormController {
 		cnt.setNum(bno);
 		return String.valueOf(cnt.getLikes());
 	}
+	
+	/* 내정보 관련 */
+	
+	/** 정보 업데이트 */
+	@RequestMapping(value = "updateMyInfo", method = RequestMethod.POST)
+	public String updateMyInfo(HttpServletRequest request, memberVO mem, MultipartFile file) throws Exception {
+		if (file.getOriginalFilename() == "") {
+			System.out.println("첨부파일 없음");
+		} else {
+			String[] files = filedataUtil.fileUpload(file);
+			System.out.println("파일 : " + files[0]);
+			mem.setProfileImg(files[0]);
+		}
+		if (memberService.updateMyInfo(mem) > 0) {
+			System.out.println("ok리턴");
+		}
+		
+		memberVO user = memberService.login(mem);
+		HttpSession session = request.getSession();
+		//session.invalidate();
+		session.setAttribute("user", user);
+		return "redirect:myInfo"; // 리다이렉트로
+	}
+	
 }

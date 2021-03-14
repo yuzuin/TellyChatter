@@ -190,4 +190,10 @@ public class PageController {
 		return "updateShowForm";
 	}
 	
+	/* 내정보 */
+	@RequestMapping(value = "myInfo")
+	public String myInfo(Model m) {
+		return "myInfo";
+	}
+	
 }

@@ -57,4 +57,10 @@ public class memberServiceImpl implements memberService{
 		return memberMapper.selectTopWriter();
 	}
 
+	@Override
+	@Transactional
+	public int updateMyInfo(memberVO vo) {
+		return memberMapper.updateMyInfo(vo);
+	}
+
 }

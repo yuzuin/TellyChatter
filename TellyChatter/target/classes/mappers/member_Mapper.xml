@@ -28,4 +28,10 @@
 	<![CDATA[select a.nickname, a.profileimg, a.point from member a, (select * from review where rownum<=3 order by likes desc) b
 where a.id=b.writer]]>
 	</select>
+	
+	<!-- 인포 업뎃 -->
+	<update id="updateMyInfo">
+		update member set email=#{email}, birth=#{birth}, nickname=#{nickname},
+		gender=#{gender}, profileImg=#{profileImg} where id=#{id}
+	</update>
 </mapper>
