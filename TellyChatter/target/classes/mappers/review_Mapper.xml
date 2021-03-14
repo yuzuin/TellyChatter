@@ -68,4 +68,7 @@
 	<delete id="deleteLike">
 		delete from likeReview where id=#{id} and num=#{num}
 	</delete>
+	<select id="cntLikeReview" resultType="int">
+		select count(*) from review where num=#{num}
+	</select>
 </mapper>

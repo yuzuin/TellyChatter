@@ -151,11 +151,11 @@
 				
 				<footer>
 				<form id="like_form">
-					<ul class="stats">
-					<input type="hidden" name="id" value="${user.id }"/>
+					<input type="hidden" name="id" value="${user.id }"></input>
 				<input type="hidden" name="num" value="${review.num}"/>
+					<ul class="stats">
 						<li>General</li>
-                  <li onclick="return like()" class="icon solid fa-heart" id="like_result">${review.likes }</a></li>
+                  <li onclick="return like()" class="icon solid fa-heart" id="like_result"><span id="likecnt">${review.likes }</span></li>
                   <li><a href="" class="icon solid fa-comment">${cSize }</a></li>
 					</ul>
 				</form>
@@ -380,16 +380,22 @@
 		type: "POST",
 		cache: false,
 		//dataType: "json",
+		
 		data: $('#like_form').serialize(), //아이디가 like_form인 곳의 모든 정보를 가져와 파라미터 전송 형태(표준 쿼리형태)로 만들어줌
 		success:
 		function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
 		//	alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like
-		$("#like_result").html(cnt+1); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
+		var f = '';
+		f+='<span id="likecnt">'+data+'</span>';
+		$("#likecnt").html(f); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
 		},
+		
 		error:
 		function (request, status, error){
 		//alert("이미 좋아요를 누르셨습니다. ")
-			$("#like_result").html(cnt-1);
+		var f = '';
+		f+='<span id="likecnt">'+data+'</span>';
+			$("#likecnt").html(f);
 		}
 		});
 		}

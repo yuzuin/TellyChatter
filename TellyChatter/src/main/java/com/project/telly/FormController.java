@@ -345,14 +345,16 @@ public class FormController {
 	@ResponseBody
 	public String likeReview(likeReviewVO lr,HttpServletRequest request) {
 		System.out.println("리뷰 좋아요하기 ");
-		System.out.println(lr.getId());
-		System.out.println(lr.getNum());
 		// 실행
-		
 		try {
+			System.out.println(lr.getId());
+			System.out.println(lr.getNum());
 			if (reviewService.likeReview(lr) > 0) {
 				reviewService.updateLikeReview(lr.getNum());	//	리뷰 likes+1
 				System.out.println("좋아요 인서트 완료");
+				int aa = reviewService.viewReview(lr.getNum()).getLikes();
+				System.out.println("aa값"+aa);
+				return String.valueOf(aa);
 			}else {
 				System.out.println("좋아요 실패 ");
 			}
@@ -363,9 +365,11 @@ public class FormController {
 			System.out.println("좋아요취소");
 			reviewService.cancleLikeReview(lr.getNum());
 			System.out.println("좋아요 하나 삭제");
+			int aa = reviewService.viewReview(lr.getNum()).getLikes();
+			System.out.println("aa값"+aa);
+			return String.valueOf(aa);
 		}
-
-		return "index"; // 리다이렉트로
+		return "ㅋ"; // 리다이렉트로
 	}
 	
 	

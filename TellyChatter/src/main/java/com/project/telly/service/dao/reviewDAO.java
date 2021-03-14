@@ -24,4 +24,5 @@ public interface reviewDAO {
 	public int updateLikeReview(int num);
 	public int cancleLikeReview(int num);
 	public int deleteLike(likeReviewVO vo);
+	public int cntLikeReview(int num);
 }

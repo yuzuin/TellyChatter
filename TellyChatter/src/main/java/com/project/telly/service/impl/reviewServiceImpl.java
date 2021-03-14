@@ -121,6 +121,12 @@ public class reviewServiceImpl implements reviewService{
 	public int deleteLike(likeReviewVO vo) {
 		return reviewMapper.deleteLike(vo);
 	}
+
+	@Override
+	@Transactional
+	public int cntLikeReview(int num) {
+		return reviewMapper.cntLikeReview(num);
+	}
 	
 	
 }
