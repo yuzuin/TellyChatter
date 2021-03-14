@@ -71,4 +71,14 @@
 	<select id="cntLikeReview" resultType="int">
 		select count(*) from review where num=#{num}
 	</select>
+	
+	<!-- 텔리로그 -->
+	<select id="myLikeReview" resultType="myLikeReviewVO">
+		select a.num,a.writer,a.title,a.subtitle,a.likes, b.liketime, b.id from review a,
+		likereview b where a.num=b.num and b.id=#{id} order by liketime desc
+	</select>
+	
+	<select id="myReview" resultType="reviewVO">
+		select * from review where writer=#{writer}
+	</select>
 </mapper>

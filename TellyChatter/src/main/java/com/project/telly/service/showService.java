@@ -3,6 +3,8 @@ package com.project.telly.service;
 import java.util.List;
 
 import com.project.telly.vo.likeShowVO;
+import com.project.telly.vo.myLikeShowVO;
+import com.project.telly.vo.onelineShowVO;
 import com.project.telly.vo.showCommentVO;
 import com.project.telly.vo.showVO;
 
@@ -22,4 +24,8 @@ public interface showService {
 	public int cancelLikeShow(int num);
 	public int deleteLikeShow(likeShowVO vo);
 	public int cntShowLikes(int num);
+	
+	public List<onelineShowVO> oneLineShow(String writer);
+	public List<showVO> myUploadShow(String writer);
+	public List<myLikeShowVO> myLikeShow(String writer);
 }

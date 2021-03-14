@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.project.telly.service.showService;
 import com.project.telly.service.dao.showDAO;
 import com.project.telly.vo.likeShowVO;
+import com.project.telly.vo.myLikeShowVO;
+import com.project.telly.vo.onelineShowVO;
 import com.project.telly.vo.showCommentVO;
 import com.project.telly.vo.showVO;
 
@@ -94,6 +96,24 @@ public class showServiceImpl implements showService{
 	@Transactional
 	public int cntShowLikes(int num) {
 		return showMapper.cntShowLikes(num);
+	}
+
+	@Override
+	@Transactional
+	public List<onelineShowVO> oneLineShow(String writer) {
+		return showMapper.oneLineShow(writer);
+	}
+
+	@Override
+	@Transactional
+	public List<showVO> myUploadShow(String writer) {
+		return showMapper.myUploadShow(writer);
+	}
+
+	@Override
+	@Transactional
+	public List<myLikeShowVO> myLikeShow(String writer) {
+		return showMapper.myLikeShow(writer);
 	}
 
 }

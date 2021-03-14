@@ -196,4 +196,10 @@ public class PageController {
 		return "myInfo";
 	}
 	
+	/* myTellyLog */
+	@RequestMapping(value = "myTellyLog")
+	public String myTellyLog(Model m) {
+		return "myTellyLog";
+	}
+	
 }

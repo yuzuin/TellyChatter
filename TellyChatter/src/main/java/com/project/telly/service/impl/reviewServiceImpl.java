@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.project.telly.service.reviewService;
 import com.project.telly.service.dao.reviewDAO;
 import com.project.telly.vo.likeReviewVO;
+import com.project.telly.vo.myLikeReviewVO;
 import com.project.telly.vo.reviewCommentVO;
 import com.project.telly.vo.reviewVO;
 
@@ -126,6 +127,18 @@ public class reviewServiceImpl implements reviewService{
 	@Transactional
 	public int cntLikeReview(int num) {
 		return reviewMapper.cntLikeReview(num);
+	}
+
+	@Override
+	@Transactional
+	public List<myLikeReviewVO> myLikeReview(String id) {
+		return reviewMapper.myLikeReview(id);
+	}
+
+	@Override
+	@Transactional
+	public List<reviewVO> myReview(String writer) {
+		return reviewMapper.myReview(writer);
 	}
 	
 	

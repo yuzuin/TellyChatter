@@ -62,4 +62,20 @@
 <select id="cntShowLikes" resultType="int">
 	select count(*) from likeShow where showNum=#{showNum}
 </select>
+
+<!-- 텔리로그 -->
+<select id="onelineShow" resultType="onelineShowVO">
+	select a.title,b.content,b.writetime,b.showNum from shows a, showComment b 
+		where a.showNum=b.showNum and writer=#{writer}
+</select>
+
+<select id="myUploadShow" resultType="showVO">
+	select * from shows where firstPer=#{firstPer}
+</select>
+
+<select id="myLikeShow" resultType="myLikeShowVO">
+	select a.showNum, a.title, a.year, a.genre, a.poster, a.likes, b.liketime, b.id 
+		from shows a, likeshow b where a.showNum=b.showNum and b.id=#{id} order by liketime desc
+</select>
+
 </mapper>

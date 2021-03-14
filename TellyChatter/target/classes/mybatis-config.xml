@@ -11,6 +11,9 @@
 		<typeAlias alias="reviewCommentVO" type="com.project.telly.vo.reviewCommentVO" />
 		<typeAlias alias="showVO" type="com.project.telly.vo.showVO" />
 		<typeAlias alias="showCommentVO" type="com.project.telly.vo.showCommentVO" />
+		<typeAlias alias="myLikeReviewVO" type="com.project.telly.vo.myLikeReviewVO" />
+		<typeAlias alias="myLikeShowVO" type="com.project.telly.vo.myLikeShowVO" />
+		<typeAlias alias="onelineShowVO" type="com.project.telly.vo.onelineShowVO" />
 	</typeAliases>
 </configuration>
 
