@@ -15,6 +15,7 @@ public class reviewVO {
 	 private char coupang = '0';
 	 private char naver = '0';
 	 private int likes=0;
+	 private String writerImg;
 	public int getNum() {
 		return num;
 	}
@@ -98,6 +99,12 @@ public class reviewVO {
 	}
 	public void setLikes(int likes) {
 		this.likes = likes;
+	}
+	public String getWriterImg() {
+		return writerImg;
+	}
+	public void setWriterImg(String writerImg) {
+		this.writerImg = writerImg;
 	}
 	 
 	 

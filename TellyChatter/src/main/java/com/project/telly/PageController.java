@@ -139,8 +139,11 @@ public class PageController {
 		PageNumber pagemaker = new PageNumber();
 		pagemaker.setPage(nowPage);
 		pagemaker.setCount(pageTotal);
+		
 		model.addAttribute("postList",reviewService.listAll(pagemaker));
 		model.addAttribute("pageMaker",pagemaker);
+		
+		
 
 		return "listReview";
 	}

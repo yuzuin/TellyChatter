@@ -80,17 +80,24 @@ public class FormController {
 
 	/* 로그인 제출 */
 	@RequestMapping(value = "goLogin", method = RequestMethod.POST)
-	public String goLogin(memberVO mem, HttpServletRequest request) {
+	@ResponseBody
+	public String goLogin(memberVO mem, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		memberVO user = memberService.login(mem);
+		HttpSession session = request.getSession();
 		if (user != null) {
 			// 세션 등록
-			HttpSession session = request.getSession();
 			System.out.println(user.getId());
 			session.setAttribute("user", user);
 			System.out.println(user.getNickname() + "님 로그인 완료");
 			return "redirect:index";
 		} else {
 			System.out.println("로그인 실패");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인에 실패했습니다. 정보를 확인해주세요.');location.href='registerForm'</script>");
+			session.invalidate();
+			out.flush();
 			return "registerForm";
 		}
 	}
@@ -222,6 +229,7 @@ public class FormController {
 		HttpSession session = request.getSession();
 		memberVO nowUser = (memberVO) session.getAttribute("user");
 		String writer = nowUser.getId();
+		rv.setWriterImg(nowUser.getProfileImg());
 		rv.setWriter(writer); // 현재 세션의 id를 writer에 셋
 		// 실행
 
@@ -232,9 +240,7 @@ public class FormController {
 		if (memberService.updatePointReview(writer) > 0) {
 			System.out.println("포인트 추가 완료 ");
 		}
-
-
-		return "index"; // 리다이렉트로
+		return "redirect:listReview";
 	}
 	
 	/** 리뷰 삭제 */

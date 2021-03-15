@@ -6,9 +6,10 @@
 	
 	<!-- 리뷰 포스트 -->
 	<insert id="insertReview">
-		insert into review(num, writer, title, subtitle, description, netflix, watcha, wavve, laftel, kakao, coupang, naver)
+		insert into review(num, writer, title, subtitle, description, netflix, watcha, 
+		wavve, laftel, kakao, coupang, naver, writerImg)
 		values(review_seq.NEXTVAL,#{writer},#{title},#{subtitle},#{description},#{netflix},
-		#{watcha},#{wavve},#{laftel},#{kakao},#{coupang},#{naver})
+		#{watcha},#{wavve},#{laftel},#{kakao},#{coupang},#{naver},#{writerImg})
 	</insert>
 	
 	<!-- 탑리뷰 -->
@@ -83,7 +84,7 @@
 	</select>
 	
 	
-	<!-- 스크롤 -->
+	<!-- 페이징 -->
 	<select id="listAll" resultType="reviewVO">
 	<![CDATA[select * from (select rownum as rnum, a.* from 
 	(select * from review order by writetime desc) a 

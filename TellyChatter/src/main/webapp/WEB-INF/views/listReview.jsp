@@ -168,13 +168,13 @@
 						<article class="mini-post">
 							<header>
 								<h3>
-									<a href="single.html">${temp. title}</a>
+									<a href="viewReview?viewNum=${temp.num}">${temp. title}</a>
 								</h3>
 								<time class="published" datetime="2015-10-20">${temp.writetime }</time>
 								<text class="published">${temp.writer }</text>
-								<a href="#" class="author"> <img
-									src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-									alt="" /></a>
+								<a href="searchReview?word=${temp.writer}" class="author"> <img
+									src="${pageContext.request.contextPath}/download?filename=${temp.writerImg }"
+									alt="" style="width:50px; height:50px"/></a>
 							</header>
 						</article>
 					</c:forEach>
