@@ -81,4 +81,16 @@
 	<select id="myReview" resultType="reviewVO">
 		select * from review where writer=#{writer}
 	</select>
+	
+	
+	<!-- 스크롤 -->
+	<select id="listAll" resultType="reviewVO">
+	<![CDATA[select * from (select rownum as rnum, a.* from 
+	(select * from review order by writetime desc) a 
+	where rownum <= #{nowPageStart} + #{pageCnt}) where rnum > #{nowPageStart}]]>
+	</select>
+	
+	<select id="allCount" resultType="int">
+		select count(*) from review
+	</select>
 </mapper>

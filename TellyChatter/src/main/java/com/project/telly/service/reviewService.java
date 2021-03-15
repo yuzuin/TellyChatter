@@ -2,6 +2,7 @@ package com.project.telly.service;
 
 import java.util.List;
 
+import com.project.telly.vo.PageNumber;
 import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.myLikeReviewVO;
 import com.project.telly.vo.reviewCommentVO;
@@ -30,4 +31,7 @@ public interface reviewService {
 	
 	public List<myLikeReviewVO> myLikeReview(String id);
 	public List<reviewVO> myReview(String writer);
+	
+	public List<reviewVO> listAll(PageNumber dto);
+	public int allCount();
 }

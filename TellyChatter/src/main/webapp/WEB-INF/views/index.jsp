@@ -184,18 +184,19 @@
 					<p>
 						영화나 드라마 시리즈에 관해 이야기를 나우어 보아요~</a>
 					</p>
-					<!-- jstl if문으로 nowUser 체크 -->
-					<c:if test="${user != null }">
-						<p>${user.nickname }님안녕하세요~</p>
-					</c:if>
+					
 				</header>
 			</section>
 
 			<!-- 영화순위 -->
-			<section>
-				<div class="mini-posts">
+			 <section>
+			 <!-- jstl if문으로 nowUser 체크 -->
+					<c:if test="${user != null }">
+						<p style="text-align:center;">${user.nickname }님안녕하세요~</p>
+					</c:if>
+				<!--<div class="mini-posts">
 
-					<!-- Mini Post -->
+					 Mini Post 
 					<article class="mini-post">
 						<header>
 							<h3>
@@ -210,10 +211,8 @@
 						<a href="single.html" class="image"><img
 							src="${pageContext.request.contextPath}/resources/assets/images/pic04.jpg"
 							alt="" /></a>
-					</article>
-
-
-				</div>
+					</article> 
+				</div>-->
 			</section>
 
 			<!-- cgv에서 크롤링한 영화 랭킹 -->

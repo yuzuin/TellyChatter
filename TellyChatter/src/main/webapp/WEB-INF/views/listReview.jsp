@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML>
 <!--
 	Future Imperfect by HTML5 UP
@@ -127,23 +128,24 @@
 			<div class="inner">
 				<div class="grid-style">
 					<c:forEach var="temp" items="${topReviews }" end="1">
-					<div>
-						<div class="box">
-							<div class="image fit">
-								<img src="images/pic02.jpg" alt="" />
-							</div>
-							<div class="content">
-								<header class="align-center">
-									<p>${temp.writer }</p>
-									<h2 class="align-center">${temp.title }</h2>
-								</header>
-								<time class="published">${temp.subtitle }</time>
-								<footer class="align-center">
-									<a href="viewReview?viewNum=${temp.num }" class="button alt">Learn More</a>
-								</footer>
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src="images/pic02.jpg" alt="" />
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p>${temp.writer }</p>
+										<h2 class="align-center">${temp.title }</h2>
+									</header>
+									<time class="published">${temp.subtitle }</time>
+									<footer class="align-center">
+										<a href="viewReview?viewNum=${temp.num }" class="button alt">Learn
+											More</a>
+									</footer>
+								</div>
 							</div>
 						</div>
-					</div>
 					</c:forEach>
 
 				</div>
@@ -159,22 +161,77 @@
 				<div class="mini-posts">
 
 					<!-- Mini Post -->
-					<c:forEach var="temp" items="${latestReviews }">
+					<c:forEach var="temp" items="${postList }">
+						<article class="mini-post">
+							<header>
+								<h3>
+									<a href="single.html">${temp. title}</a>
+								</h3>
+								<time class="published" datetime="2015-10-20">${temp.writetime }</time>
+								<text class="published">${temp.writer }</text>
+								<a href="#" class="author"> <img
+									src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
+									alt="" /></a>
+							</header>
+						</article>
+					</c:forEach>
+				</div>
+			</section>
+			<section>
+				<!--  page number 표시 -->
+				페이지넘버
+				<table>
+				<tr>
+					<td colspan=5 align=center>
+						<hr>
+						<ul class="pageUL">
+
+							<c:if test="${pageMaker.prev > 0 }">
+								<a href='listReview?page=${pageMaker.prev}'> [ 이전 ] </a>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.start }" end="${pageMaker.end}"
+								var="idx">
+								<!-- 			<li class='<c:out value="${idx == pageMaker.page?'current':''}"/>'>   -->
+								<a href='listReview?page=${idx}'> <c:choose>
+										<c:when test="${pageMaker.page eq idx}">
+											<b>[<font color=red size=3> ${idx} </font> ]
+											</b>
+										</c:when>
+										<c:otherwise>[ ${idx} ] </c:otherwise>
+									</c:choose>
+								</a>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next > 0 }">
+								<a href='listReview?page=${pageMaker.next}'> [ 다음 ] </a>
+							</c:if>
+
+						</ul>
+					</td>
+				</tr>
+				</table>
+			</section>
+			<section>
+				<h3>임시</h3>
+				<c:forEach items="${list}" var="tmp">
 					<article class="mini-post">
 						<header>
 							<h3>
-								<a href="single.html">${temp. title}</a>
+								<a href="single.html">${tmp. title}</a>
 							</h3>
-							<time class="published" datetime="2015-10-20">${temp.writetime }</time>
-							<text class="published">${temp.writer }</text>
-							<a href="#" class="author">
-							<img
+							<time class="published" datetime="2015-10-20">${tmp.writetime }</time>
+							<text class="published">${tmp.writer }</text>
+							<a href="#" class="author"> <img
 								src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
 								alt="" /></a>
 						</header>
 					</article>
-					</c:forEach>
-				</div>
+					<div id="newList"></div>
+					<h1 id="logTitle"></h1>
+				</c:forEach>
+				<a href='javascript:sshowMoreList()' class="button"
+					style="font-size: 14px">더보기</a>
 			</section>
 		</div>
 
@@ -212,5 +269,31 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 
+
+	<script>
+		var cntf = '10'; // 시작값
+
+		function showMoreList() {
+
+			$.ajax({
+				url : "moreReview",
+				type : 'get',
+				data : {
+					'cnt' : 10
+				},
+				success : function(dataa) {
+					//var a = '<h1>더보기</h1>';
+					$.each(dataa, function(key, value) {
+					});
+					$("#logTitle").text(f);
+
+				}
+			});
+		}
+
+		$(document).ready(function() {
+			//mylikeReviewList(); //페이지 로딩시 내찜리뷰 출력
+		});
+	</script>
 </body>
 </html>

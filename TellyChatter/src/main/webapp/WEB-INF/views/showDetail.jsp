@@ -266,8 +266,7 @@
 												
 												if('${user.id}'==value.writer){
 												a += 
-													'<a onclick="commentUpdate('
-														+ value.num
+													'<a onclick="commentUpdate('+ value.num
 														+ ',\''
 														+ value.content
 														+ '\');"> 수정' +'</a>'; }

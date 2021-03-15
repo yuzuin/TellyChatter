@@ -21,11 +21,13 @@ import com.project.telly.service.reviewService;
 import com.project.telly.service.showService;
 import com.project.telly.util.Crawler;
 import com.project.telly.util.FileDataUtil;
+import com.project.telly.vo.PageNumber;
 import com.project.telly.vo.memberVO;
 import com.project.telly.vo.myLikeReviewVO;
 import com.project.telly.vo.myLikeShowVO;
 import com.project.telly.vo.naverMovieDTO;
 import com.project.telly.vo.onelineShowVO;
+import com.project.telly.vo.pageDTO;
 import com.project.telly.vo.reviewVO;
 import com.project.telly.vo.showVO;
 
@@ -125,14 +127,47 @@ public class PageController {
 	/**
 	 * 리뷰 홈 화면 리뷰 likes로 내림차순 정렬 리뷰 writetime으로 내림차순 정렬
 	 */
-	@RequestMapping(value = "listReview")
-	public String listReview(Model model) {
+	@RequestMapping(value = "listReview", method = RequestMethod.GET)
+	public String listReview(Model model, HttpServletRequest request) {
 
 		model.addAttribute("topReviews", reviewService.topReviews());
 		model.addAttribute("latestReviews", reviewService.latestReviews());
+		
+		pageDTO dto = new pageDTO();
+		dto.setNumber1(0);
+		dto.setNumber2(10);
+		dto.setNumber3(0);
+		//model.addAttribute("list", reviewService.listAll(dto));
+		int nowPage=1;
+		if(request.getParameter("page")!=null) {	//	클라이언트가 클릭하면 파라미터 받음
+			nowPage=Integer.valueOf(request.getParameter("page"));
+		}
+		int pageTotal = reviewService.allCount();
+//		int pageTotal = postdao.allcount();	//	기존 dao 왜냐하면 현재 mybatis에는 select count(*) from ~ 가 없음 추후 추가
+		PageNumber pagemaker = new PageNumber();
+		pagemaker.setPage(nowPage);
+		pagemaker.setCount(pageTotal);
+		model.addAttribute("postList",reviewService.listAll(pagemaker));
+		model.addAttribute("pageMaker",pagemaker);
 
 		return "listReview";
 	}
+	
+//	@RequestMapping(value = "moreReview")
+//	@ResponseBody
+//	public List<reviewVO> moreReview(int cnt,Model model,HttpServletRequest request) {
+//		System.out.println("컨트롤러진입");
+//		logger.info("listAllGET is called...........");
+//		pageDTO dto = new pageDTO();
+//		System.out.println(cnt+"cnt");
+////		int cnt = Integer.parseInt(cntf);
+//		dto.setNumber1(cnt);
+//		dto.setNumber2(cnt+10);
+//		dto.setNumber3(cnt);
+//		//List<reviewVO> vo = reviewService.listAll(dto);
+//
+//		return vo;
+//	}
 
 	/* 리뷰 view */
 	@RequestMapping(value = "viewReview")
@@ -245,4 +280,21 @@ public class PageController {
 		List<onelineShowVO> vo = showService.oneLineShow(id);
 		return vo;
 	}
+	
+	@RequestMapping(value = "testPage")
+	public String test(String id,HttpServletRequest request, Model model) {
+		return "testPage";
+	}
+	
+//    @RequestMapping(value="listAll", method=RequestMethod.GET)
+//    public void listAllGET(Model model) {
+//        
+//		logger.info("listAllGET is called...........");
+//		pageDTO dto = new pageDTO();
+//		dto.setNumber1(0);
+//		dto.setNumber2(10);
+//		dto.setNumber3(20);
+//		model.addAttribute("list", reviewService.listAll(dto));
+//    }
+   
 }

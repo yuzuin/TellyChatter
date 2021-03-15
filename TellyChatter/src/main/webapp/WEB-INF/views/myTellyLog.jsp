@@ -213,7 +213,9 @@
 												function(key, value) {
 													f += '<td>'
 															+ value.writer
-															+ '</td><td>'
+															+ '</td><td><a href="viewReview?viewNum='
+															+value.num
+															+'"</a>'
 															+ value.title
 															+ '</td><td style="text-align:left;">'
 															+ value.likes
@@ -251,7 +253,9 @@
 												function(key, value) {
 													f += '<td>'
 															+ value.writetime
-															+ '</td><td>'
+															+ '</td><td><a href="viewReview?viewNum='
+															+value.num
+															+'"</a>'
 															+ value.title
 															+ '</td><td style="text-align:left;">'
 															+ value.likes
@@ -285,8 +289,10 @@
 												function(key, value) {
 													f += '<td>'
 															+ value.genre
-															+ '</td><td>'
-															+ value.title
+															+ '</td><td><a href="showDetail?snum='
+															+ value.showNum
+															+ '"</a>'
+															+value.title
 															+ '</td><td style="text-align:left;">'
 															+ value.likes
 															+ '</tr>';
@@ -319,9 +325,11 @@
 												function(key, value) {
 													f += '<td>'
 															+ value.genre
-															+ '</td><td>'
-															+ value.title
-															+ '</td><td style="text-align:left;">'
+															+ '</td><td><a href="showDetail?snum='
+															+ value.showNum
+															+ '"</a>'
+															+value.title
+															+'</td><td style="text-align:left;">'
 															+ value.likes
 															+ '</tr>';
 												});
@@ -352,8 +360,11 @@
 												data,
 												function(key, value) {
 													f += '<td>'
-															+ value.title
-															+ '</td><td>'
+															+ '<a href="showDetail?snum='
+															+value.showNum
+															+ '"</a>'
+															+value.title
+															+'</td><td>'
 															+ value.content
 															+ '</td><td style="text-align:left;">'
 															+ value.writetime

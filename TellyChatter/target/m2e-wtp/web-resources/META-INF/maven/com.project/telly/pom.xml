@@ -195,7 +195,11 @@
   <artifactId>jsoup</artifactId>
   <version>1.13.1</version>
 </dependency>
-
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.25</version>
+</dependency>
 	</dependencies>
 	<build>
 		<plugins>
