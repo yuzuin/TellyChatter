@@ -93,4 +93,30 @@
 	<select id="allCount" resultType="int">
 		select count(*) from review
 	</select>
+	
+	<!-- 서치 -->
+	<select id="searchAReview" resultType="reviewVO">
+	select * from review where title like '%'||#{word}||'%' or
+	subtitle like '%'||#{word}||'%' or
+	description like '%'||#{word}||'%' or
+	writer like '%'||#{word}||'%' 
+	</select>
+	
+	<!-- 10개서치 -->
+	<select id="searchReview" resultType="reviewVO">
+	<![CDATA[select * from (select rownum as rnum, a.* from
+	(select * from review where title like '%'||#{word}||'%' or
+	subtitle like '%'||#{word}||'%' or
+	description like '%'||#{word}||'%' or
+	writer like '%'||#{word}||'%') a
+	where rownum <= #{nowPageStart} + #{pageCnt}) 
+	where rnum > #{nowPageStart}]]>
+	</select>
+	
+	<select id="searchReviewCnt" resultType="int">
+	select count(*) from review where title like '%'||#{word}||'%' or
+	subtitle like '%'||#{word}||'%' or
+	description like '%'||#{word}||'%' or
+	writer like '%'||#{word}||'%' 
+	</select>
 </mapper>

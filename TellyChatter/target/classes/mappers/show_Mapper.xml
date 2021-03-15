@@ -78,4 +78,13 @@
 		from shows a, likeshow b where a.showNum=b.showNum and b.id=#{id} order by liketime desc
 </select>
 
+<!-- 검색 -->
+<select id="searchShow" resultType="showVO">
+	select * from shows where title like '%'||#{word}||'%' or
+	performer like '%'||#{word}||'%' or genre like '%'||#{word}||'%' or
+	platform like '%'||#{word}||'%' or story like '%'||#{word}||'%' or
+	firstper like '%'||#{word}||'%' or updateper like '%'||#{word}||'%'
+	
+</select>
+
 </mapper>

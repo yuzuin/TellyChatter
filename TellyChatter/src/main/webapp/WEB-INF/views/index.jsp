@@ -19,21 +19,19 @@
 		<!-- Header -->
 		<header id="header">
 			<h1>
-				<a href="index.html">Telly Chatter</a>
+				<a href="index">Telly Chatter</a>
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="#">추천 받기</a></li>
+					<li><a href="shows">추천 받기</a></li>
 					<li><a href="listReview">REVIEW</a></li>
-					<li><a href="#">COMMUNITY</a></li>
-					<li><a href="#">POINT SHOP</a></li>
 				</ul>
 			</nav>
 			<nav class="main">
 				<ul>
 					<li class="search"><a class="fa-search" href="#search">Search</a>
-						<form id="search" method="get" action="#">
-							<input type="text" name="query" placeholder="Search" />
+						<form id="search" method="get" action="searchAll">
+							<input type="text" name="word" placeholder="Search" />
 						</form></li>
 					<li class="menu"><a class="fa-bars" href="#menu">Menu</a></li>
 				</ul>
@@ -82,15 +80,11 @@
 										<p>${user.point } P</p>
 									</div>
 							</a></li>
-							<li><a href="#">
-									<h3>나의 문화 달력</h3>
-									<p>My Calander</p>
-							</a></li>
-							<li><a href="#">
+							<li><a href="myTellyLog">
 									<h3>나의 감상장</h3>
 									<p>My telly-log</p>
 							</a></li>
-							<li><a href="#">
+							<li><a href="myInfo">
 									<h3>내 정보</h3>
 									<p>My info</p>
 							</a></li>

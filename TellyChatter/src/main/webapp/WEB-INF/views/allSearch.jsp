@@ -14,8 +14,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/css/reviewList.css?ver=4" />
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=4" />
 </head>
 <body class="single is-preload">
@@ -120,43 +118,11 @@
 		</section>
 
 		<!-- Main -->
-		<div id="main">
-
-			<!-- 탑리뷰 리스트 -->
-			<h2>TOP REVIES</h2>
-			<!-- One -->
-			<div class="inner">
-				<div class="grid-style">
-					<c:forEach var="temp" items="${topReviews }" end="1">
-						<div>
-							<div class="box">
-								<div class="image fit">
-									<img src="images/pic02.jpg" alt="" />
-								</div>
-								<div class="content">
-									<header class="align-center">
-										<p>${temp.writer }</p>
-										<h2 class="align-center">${temp.title }</h2>
-									</header>
-									<time class="published">${temp.subtitle }</time>
-									<footer class="align-center">
-										<a href="viewReview?viewNum=${temp.num }" class="button alt">Learn
-											More</a>
-									</footer>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-
-				</div>
-			</div>
-		</div>
-
 		<!-- 최신글메인 -->
 		<div id="main">
 
 			<!-- 리뷰 리스트 -->
-			<h2>LATEST REVIEWS</h2>
+			<h2>REVIEWS</h2>
 			<section>
 				<div class="mini-posts">
 
@@ -186,13 +152,11 @@
 						<ul class="pageUL">
 
 							<c:if test="${pageMaker.prev > 0 }">
-								<a href='listReview?page=${pageMaker.prev}'> [ 이전 ] </a>
+								<a href='searchAll?page=${pageMaker.prev}&&word=${sword}'> [ 이전 ] </a>
 							</c:if>
 
-							<c:forEach begin="${pageMaker.start }" end="${pageMaker.end}"
-								var="idx">
-								<!-- 			<li class='<c:out value="${idx == pageMaker.page?'current':''}"/>'>   -->
-								<a href='listReview?page=${idx}'> <c:choose>
+							<c:forEach begin="${pageMaker.start }" end="${pageMaker.end}" var="idx">
+								<a href='searchAll?page=${idx}&&word=${sword}'> <c:choose>
 										<c:when test="${pageMaker.page eq idx}">
 											<b>[<font color=red size=3> ${idx} </font> ]
 											</b>
@@ -203,7 +167,7 @@
 							</c:forEach>
 
 							<c:if test="${pageMaker.next > 0 }">
-								<a href='listReview?page=${pageMaker.next}'> [ 다음 ] </a>
+								<a href='searchAll?page=${pageMaker.next}&&word=${sword}'> [ 다음 ] </a>
 							</c:if>
 
 						</ul>
@@ -211,29 +175,36 @@
 				</tr>
 				</table>
 			</section>
-			<section>
-				<h3>임시</h3>
-				<c:forEach items="${list}" var="tmp">
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="single.html">${tmp. title}</a>
-							</h3>
-							<time class="published" datetime="2015-10-20">${tmp.writetime }</time>
-							<text class="published">${tmp.writer }</text>
-							<a href="#" class="author"> <img
-								src="${pageContext.request.contextPath}/resources/assets/images/avatar.jpg"
-								alt="" /></a>
-						</header>
-					</article>
-					<div id="newList"></div>
-					<h1 id="logTitle"></h1>
-				</c:forEach>
-				<a href='javascript:sshowMoreList()' class="button"
-					style="font-size: 14px">더보기</a>
-			</section>
 		</div>
+		
+		
+	<!-- 영화목록 -->
+	<h2>SHOWS</h2>
+		<section class="post">
+		
+			<c:forEach var="temp" items="${show }">
+				<article class="mini-post"
+					style="width: 30%; float: left; margin: 0 19px 19px !important;">
+					<header>
+						<h2 style="text-align: center;">
+							<a href="showDetail?snum=${temp.showNum }">　 ${temp.title }</a>
+						</h2>
 
+						<a href="showDetail?snum=${temp.showNum }" class="author" style="font-size: large !important;">
+							<time class="published" datetime="2015-10-20">${temp.year }</time>
+						</a>
+						<h3>${temp.genre }</h3>
+						<h4 style="text-align: center;">　 ${temp.platform }</h4>
+					</header>
+					<a href="showDetail?snum=${temp.showNum }" class="image"
+						style="height: 450px !important;"><img
+						src="${pageContext.request.contextPath}/download?filename=${temp.poster }" /></a>
+
+				</article>
+				
+			</c:forEach>
+		
+			</section>
 		<!-- Footer -->
 		<section id="footer">
 			<ul class="icons">
@@ -267,32 +238,5 @@
 		src="${pageContext.request.contextPath}/resources/assets/js/util.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-
-
-	<script>
-		var cntf = '10'; // 시작값
-
-		function showMoreList() {
-
-			$.ajax({
-				url : "moreReview",
-				type : 'get',
-				data : {
-					'cnt' : 10
-				},
-				success : function(dataa) {
-					//var a = '<h1>더보기</h1>';
-					$.each(dataa, function(key, value) {
-					});
-					$("#logTitle").text(f);
-
-				}
-			});
-		}
-
-		$(document).ready(function() {
-			//mylikeReviewList(); //페이지 로딩시 내찜리뷰 출력
-		});
-	</script>
 </body>
 </html>

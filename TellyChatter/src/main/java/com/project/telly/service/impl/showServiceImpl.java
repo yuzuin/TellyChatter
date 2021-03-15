@@ -116,4 +116,10 @@ public class showServiceImpl implements showService{
 		return showMapper.myLikeShow(writer);
 	}
 
+	@Override
+	@Transactional
+	public List<showVO> searchShow(String word) {
+		return showMapper.searchShow(word);
+	}
+
 }

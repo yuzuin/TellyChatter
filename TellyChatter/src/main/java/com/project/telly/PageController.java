@@ -27,7 +27,6 @@ import com.project.telly.vo.myLikeReviewVO;
 import com.project.telly.vo.myLikeShowVO;
 import com.project.telly.vo.naverMovieDTO;
 import com.project.telly.vo.onelineShowVO;
-import com.project.telly.vo.pageDTO;
 import com.project.telly.vo.reviewVO;
 import com.project.telly.vo.showVO;
 
@@ -45,7 +44,6 @@ public class PageController {
 	private reviewService reviewService;
 	@Inject
 	private showService showService;
-
 	private Crawler crawler;
 
 	/* 홈 페이지 (index) */
@@ -132,12 +130,6 @@ public class PageController {
 
 		model.addAttribute("topReviews", reviewService.topReviews());
 		model.addAttribute("latestReviews", reviewService.latestReviews());
-		
-		pageDTO dto = new pageDTO();
-		dto.setNumber1(0);
-		dto.setNumber2(10);
-		dto.setNumber3(0);
-		//model.addAttribute("list", reviewService.listAll(dto));
 		int nowPage=1;
 		if(request.getParameter("page")!=null) {	//	클라이언트가 클릭하면 파라미터 받음
 			nowPage=Integer.valueOf(request.getParameter("page"));
@@ -152,22 +144,6 @@ public class PageController {
 
 		return "listReview";
 	}
-	
-//	@RequestMapping(value = "moreReview")
-//	@ResponseBody
-//	public List<reviewVO> moreReview(int cnt,Model model,HttpServletRequest request) {
-//		System.out.println("컨트롤러진입");
-//		logger.info("listAllGET is called...........");
-//		pageDTO dto = new pageDTO();
-//		System.out.println(cnt+"cnt");
-////		int cnt = Integer.parseInt(cntf);
-//		dto.setNumber1(cnt);
-//		dto.setNumber2(cnt+10);
-//		dto.setNumber3(cnt);
-//		//List<reviewVO> vo = reviewService.listAll(dto);
-//
-//		return vo;
-//	}
 
 	/* 리뷰 view */
 	@RequestMapping(value = "viewReview")
@@ -281,20 +257,9 @@ public class PageController {
 		return vo;
 	}
 	
-	@RequestMapping(value = "testPage")
-	public String test(String id,HttpServletRequest request, Model model) {
-		return "testPage";
+	@RequestMapping(value = "allSearch")
+	public String allSearch(String id,HttpServletRequest request, Model model) {
+		return "allSearch";
 	}
-	
-//    @RequestMapping(value="listAll", method=RequestMethod.GET)
-//    public void listAllGET(Model model) {
-//        
-//		logger.info("listAllGET is called...........");
-//		pageDTO dto = new pageDTO();
-//		dto.setNumber1(0);
-//		dto.setNumber2(10);
-//		dto.setNumber3(20);
-//		model.addAttribute("list", reviewService.listAll(dto));
-//    }
    
 }

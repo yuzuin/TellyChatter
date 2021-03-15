@@ -153,6 +153,18 @@ public class reviewServiceImpl implements reviewService{
 	public int allCount() {
 		return reviewMapper.allCount();
 	}
+
+	@Override
+	@Transactional
+	public List<reviewVO> searchReview(PageNumber dto) {
+		return reviewMapper.searchReview(dto);
+	}
+
+	@Override
+	@Transactional
+	public int searchReviewCnt(String word) {
+		return reviewMapper.searchReviewCnt(word);
+	}
 	
 	
 }

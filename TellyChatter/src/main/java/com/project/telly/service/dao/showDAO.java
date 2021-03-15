@@ -28,5 +28,7 @@ public interface showDAO {
 	public List<onelineShowVO> oneLineShow(String writer);
 	public List<showVO> myUploadShow(String writer);
 	public List<myLikeShowVO> myLikeShow(String writer);
+	
+	public List<showVO> searchShow(String word);
 }
 

@@ -13,6 +13,16 @@ public class PageNumber {
 	private int prev=0;;
 	private int next=0;
 	private int nnn;
+	private String word;
+	
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
 
 	public Integer getPage() {
 		return page;

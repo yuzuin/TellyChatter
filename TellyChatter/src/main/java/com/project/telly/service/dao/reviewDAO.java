@@ -33,4 +33,7 @@ public interface reviewDAO {
 	
 	public List<reviewVO> listAll(PageNumber dto);
 	public int allCount();
+	
+	public List<reviewVO> searchReview(PageNumber dto);
+	public int searchReviewCnt(String word);
 }

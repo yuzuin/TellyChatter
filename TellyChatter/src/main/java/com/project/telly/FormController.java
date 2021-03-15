@@ -36,6 +36,7 @@ import com.project.telly.service.memberService;
 import com.project.telly.service.reviewService;
 import com.project.telly.service.showService;
 import com.project.telly.util.FileDataUtil;
+import com.project.telly.vo.PageNumber;
 import com.project.telly.vo.cntLikeDTO;
 import com.project.telly.vo.likeReviewVO;
 import com.project.telly.vo.likeShowVO;
@@ -367,6 +368,25 @@ public class FormController {
 		return "ㅋ"; // 리다이렉트로
 	}
 	
+	/** 리뷰 검색 */
+	@RequestMapping(value="searchReview", method = RequestMethod.GET)
+	public String searchReview(String word, Model m,HttpServletRequest request){
+		System.out.println("리뷰 서치 "+word);
+		int nowPage=1;
+		if(request.getParameter("page")!=null) {	//	클라이언트가 클릭하면 파라미터 받음
+			nowPage=Integer.valueOf(request.getParameter("page"));
+		}
+		int pageTotal = reviewService.searchReviewCnt(word);
+		PageNumber pagemaker = new PageNumber();
+		pagemaker.setWord(word);
+		pagemaker.setPage(nowPage);
+		pagemaker.setCount(pageTotal);
+		m.addAttribute("pageMaker",pagemaker);
+		m.addAttribute("postList",reviewService.searchReview(pagemaker));
+		
+		return "listReview";
+	}
+	
 	
 	
 	/* 영화 관련 */
@@ -488,6 +508,16 @@ public class FormController {
 		return String.valueOf(cnt.getLikes());
 	}
 	
+	/** 쇼 검색 */
+	@RequestMapping(value="searchShow", method = RequestMethod.GET)
+	public String searchShow(String word, Model m){
+		System.out.println("영화 서치 "+word);
+		
+		m.addAttribute("show",showService.searchShow(word));
+		
+		return "shows";
+	}
+	
 	/* 내정보 관련 */
 	
 	/** 정보 업데이트 */
@@ -509,6 +539,27 @@ public class FormController {
 		//session.invalidate();
 		session.setAttribute("user", user);
 		return "redirect:myInfo"; // 리다이렉트로
+	}
+	
+	/* 모든 서치 */
+	@RequestMapping(value="searchAll", method = RequestMethod.GET)
+	public String searchAll(String word, Model m, HttpServletRequest request){
+		System.out.println("모든 서치 "+word);
+		int nowPage=1;
+		if(request.getParameter("page")!=null) {	//	클라이언트가 클릭하면 파라미터 받음
+			nowPage=Integer.valueOf(request.getParameter("page"));
+		}
+		int pageTotal = reviewService.searchReviewCnt(word);
+		PageNumber pagemaker = new PageNumber();
+		pagemaker.setWord(word);
+		pagemaker.setPage(nowPage);
+		pagemaker.setCount(pageTotal);
+		m.addAttribute("sword",word);
+		m.addAttribute("pageMaker",pagemaker);
+		m.addAttribute("show",showService.searchShow(word));
+		m.addAttribute("postList",reviewService.searchReview(pagemaker));
+		
+		return "allSearch";
 	}
 	
 }
