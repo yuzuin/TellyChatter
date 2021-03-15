@@ -39,15 +39,12 @@
 		<!-- Header -->
 		<header id="header">
 			<h1>
-				<a href="/">Future Imperfect</a>
+				<a href="index">Telly Chatter</a>
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="#">Lorem</a></li>
-					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Feugiat</a></li>
-					<li><a href="#">Tempus</a></li>
-					<li><a href="#">Adipiscing</a></li>
+					<li><a href="shows">추천 받기</a></li>
+					<li><a href="listReview">REVIEW</a></li>
 				</ul>
 			</nav>
 			<nav class="main">
@@ -103,15 +100,11 @@
 										<p>${user.point } P</p>
 									</div>
 							</a></li>
-							<li><a href="#">
-									<h3>나의 문화 달력</h3>
-									<p>My Calander</p>
-							</a></li>
-							<li><a href="#">
+							<li><a href="myTellyLog">
 									<h3>나의 감상장</h3>
 									<p>My telly-log</p>
 							</a></li>
-							<li><a href="#">
+							<li><a href="myInfo">
 									<h3>내 정보</h3>
 									<p>My info</p>
 							</a></li>
@@ -142,7 +135,6 @@
 			</section>
 
 		</section>
-
 		<!-- Main -->
 		<div class="form">
 

@@ -39,15 +39,12 @@
 		<!-- Header -->
 		<header id="header">
 			<h1>
-				<a href="/">Future Imperfect</a>
+				<a href="index">Telly Chatter</a>
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="#">Lorem</a></li>
-					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Feugiat</a></li>
-					<li><a href="#">Tempus</a></li>
-					<li><a href="#">Adipiscing</a></li>
+					<li><a href="shows">추천 받기</a></li>
+					<li><a href="listReview">REVIEW</a></li>
 				</ul>
 			</nav>
 			<nav class="main">
@@ -73,35 +70,71 @@
 
 			<!-- Links -->
 			<section>
-				<ul class="links">
-					<li><a href="#">
-							<h3>Lorem ipsum</h3>
-							<p>Feugiat tempus veroeros dolor</p>
-					</a></li>
-					<li><a href="#">
-							<h3>Dolor sit amet</h3>
-							<p>Sed vitae justo condimentum</p>
-					</a></li>
-					<li><a href="#">
-							<h3>Feugiat veroeros</h3>
-							<p>Phasellus sed ultricies mi congue</p>
-					</a></li>
-					<li><a href="#">
-							<h3>Etiam sed consequat</h3>
-							<p>Porta lectus amet ultricies</p>
-					</a></li>
-				</ul>
+				<!-- 로그인 했을 때 오른쪽 메뉴 -->
+				<c:choose>
+					<c:when test="${user ne null }">
+						<ul class="links">
+							<li><a href="#">
+									<div style="width:100px; 
+									height:100px; 
+									margin: 0 auto;
+									overflow:hidden;  
+									border: 3px solid gold;
+									border-radius : 12px;
+									-moz-border-radius: 12px;
+									-khtml-border-radius: 12px;
+									-webkit-border-radius: 12px;" >
+									<img style="
+										width:100px;
+										height:auto;
+										border-radius: 12px;
+										-moz-border-radius: 12px;
+										-khtml-border-radius: 12px;
+										-webkit-border-radius: 12px;" 
+										object-fit: cover;
+										overlow : hidden;
+										src="${pageContext.request.contextPath}/download?filename=${user.profileImg }" />
+									</div>
+									<div style="text-align:center; margin:5px;">
+										<h3>${user.nickname } 님</h3>
+										<p>${user.point } P</p>
+									</div>
+							</a></li>
+							<li><a href="myTellyLog">
+									<h3>나의 감상장</h3>
+									<p>My telly-log</p>
+							</a></li>
+							<li><a href="myInfo">
+									<h3>내 정보</h3>
+									<p>My info</p>
+							</a></li>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<h3>로그인이 필요합니다.</h3>
+						<p>로그인 하시고 TELLY CAHTTER의 커뮤니티 혜택을 누려보세요.</p>
+					</c:otherwise>
+				</c:choose>
 			</section>
 
-			<!-- Actions -->
+			<!-- Actions 로그인시 로그아웃이 뜨고, 미로그인시 로그인이 뜸 -->
 			<section>
-				<ul class="actions stacked">
-					<li><a href="#" class="button large fit">Log In</a></li>
-				</ul>
+				<c:choose>
+					<c:when test="${user ne null }">
+						<ul class="actions stacked">
+							<li><a href="logout" class="button large fit">Log Out</a></li>
+						</ul>
+					</c:when>
+
+					<c:otherwise>
+						<ul class="actions stacked">
+							<li><a href="registerForm" class="button large fit">Log In</a></li>
+						</ul>
+					</c:otherwise>
+				</c:choose>
 			</section>
 
 		</section>
-
 		<!-- Main -->
 		<div class="form">
 

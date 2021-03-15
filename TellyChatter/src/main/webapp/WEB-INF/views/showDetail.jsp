@@ -27,15 +27,12 @@
 		<!-- Header -->
 		<header id="header">
 			<h1>
-				<a href="/">Future Imperfect</a>
+				<a href="index">Telly Chatter</a>
 			</h1>
 			<nav class="links">
 				<ul>
-					<li><a href="#">Lorem</a></li>
-					<li><a href="#">Ipsum</a></li>
-					<li><a href="#">Feugiat</a></li>
-					<li><a href="#">Tempus</a></li>
-					<li><a href="#">Adipiscing</a></li>
+					<li><a href="shows">추천 받기</a></li>
+					<li><a href="listReview">REVIEW</a></li>
 				</ul>
 			</nav>
 			<nav class="main">
@@ -66,29 +63,36 @@
 					<c:when test="${user ne null }">
 						<ul class="links">
 							<li><a href="#">
-									<div
-										style="width: 100px; height: 100px; margin: 0 auto; overflow: hidden; border: 3px solid gold; border-radius: 12px; -moz-border-radius: 12px; -khtml-border-radius: 12px; -webkit-border-radius: 12px;">
-										<img
-											style="width: 100px; height: auto; border-radius: 12px; -moz-border-radius: 12px; -khtml-border-radius: 12px; -webkit-border-radius: 12px;"
-											object-fit: cover;
-										overlow :
-											hidden;
+									<div style="width:100px; 
+									height:100px; 
+									margin: 0 auto;
+									overflow:hidden;  
+									border: 3px solid gold;
+									border-radius : 12px;
+									-moz-border-radius: 12px;
+									-khtml-border-radius: 12px;
+									-webkit-border-radius: 12px;" >
+									<img style="
+										width:100px;
+										height:auto;
+										border-radius: 12px;
+										-moz-border-radius: 12px;
+										-khtml-border-radius: 12px;
+										-webkit-border-radius: 12px;" 
+										object-fit: cover;
+										overlow : hidden;
 										src="${pageContext.request.contextPath}/download?filename=${user.profileImg }" />
 									</div>
-									<div style="text-align: center; margin: 5px;">
-										<h3>${user.nickname }님</h3>
-										<p>${user.point }P</p>
+									<div style="text-align:center; margin:5px;">
+										<h3>${user.nickname } 님</h3>
+										<p>${user.point } P</p>
 									</div>
 							</a></li>
-							<li><a href="#">
-									<h3>나의 문화 달력</h3>
-									<p>My Calander</p>
-							</a></li>
-							<li><a href="#">
+							<li><a href="myTellyLog">
 									<h3>나의 감상장</h3>
 									<p>My telly-log</p>
 							</a></li>
-							<li><a href="#">
+							<li><a href="myInfo">
 									<h3>내 정보</h3>
 									<p>My info</p>
 							</a></li>
@@ -112,16 +116,13 @@
 
 					<c:otherwise>
 						<ul class="actions stacked">
-							<li><a href="registerForm" class="button large fit">Log
-									In</a></li>
+							<li><a href="registerForm" class="button large fit">Log In</a></li>
 						</ul>
 					</c:otherwise>
 				</c:choose>
 			</section>
 
 		</section>
-
-
 		<!-- 영화 -->
 		<div id="main" style="">
 			<a href="single.html" class="image"
