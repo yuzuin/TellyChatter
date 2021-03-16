@@ -11,7 +11,6 @@ import com.project.telly.vo.memberVO;
 
 //인터셉트 기능을 정의한 객체 (HandlerInterceptorAdapter를 상속 받아야함)
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
-
 @Override
 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 		throws Exception {

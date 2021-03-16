@@ -7,14 +7,14 @@
 	<!-- 리뷰 포스트 -->
 	<insert id="insertReview">
 		insert into review(num, writer, title, subtitle, description, netflix, watcha, 
-		wavve, laftel, kakao, coupang, naver, writerImg)
+		wavve, laftel, kakao, coupang, naver, writerImg, thumbnail)
 		values(review_seq.NEXTVAL,#{writer},#{title},#{subtitle},#{description},#{netflix},
-		#{watcha},#{wavve},#{laftel},#{kakao},#{coupang},#{naver},#{writerImg})
+		#{watcha},#{wavve},#{laftel},#{kakao},#{coupang},#{naver},#{writerImg},#{thumbnail})
 	</insert>
 	
 	<!-- 탑리뷰 -->
 	<select id="topReviews"  resultType="reviewVO">
-		<![CDATA[select * from review where rownum < = 3 order by likes desc]]>
+		<![CDATA[select * from (select * from review order by likes desc) where rownum < = 3]]>
 	</select>
 	
 	<select id="latestReviews"  resultType="reviewVO">

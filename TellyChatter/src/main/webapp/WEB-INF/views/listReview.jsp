@@ -134,7 +134,7 @@
 						<div>
 							<div class="box">
 								<div class="image fit">
-									<img src="images/pic02.jpg" alt="" />
+									<img src="${temp.thumbnail }" style="width:500px; height:500px;"/>
 								</div>
 								<div class="content">
 									<header class="align-center">

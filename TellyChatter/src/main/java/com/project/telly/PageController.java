@@ -130,6 +130,7 @@ public class PageController {
 
 		model.addAttribute("topReviews", reviewService.topReviews());
 		model.addAttribute("latestReviews", reviewService.latestReviews());
+		
 		int nowPage=1;
 		if(request.getParameter("page")!=null) {	//	클라이언트가 클릭하면 파라미터 받음
 			nowPage=Integer.valueOf(request.getParameter("page"));

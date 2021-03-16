@@ -140,9 +140,13 @@
 					</div>
 					<div class="meta">
 						<time class="published">${review.writetime }</time>
-						<a href="#" class=""> <img
-							src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" />
-						</a> <a href="#" class="author"><span class="name">${review.writer }</span></a>
+						<div style="height:70px; width:70px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+						margin-left:50px;"> <img
+							src="${pageContext.request.contextPath}/download?filename=${review.writerImg }" style="height:70px;width:auto;"/>
+						</div>
+						<div style="display:flex; align-items:center; justify-content:center;">
+						<a href="#" class="author"><span class="name">${review.writer }</span></a>
+						</div>
 					</div>
 				</header>
 				<span class="image featured"><img src="images/pic01.jpg"

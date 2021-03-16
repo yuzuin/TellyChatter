@@ -16,6 +16,14 @@ public class reviewVO {
 	 private char naver = '0';
 	 private int likes=0;
 	 private String writerImg;
+	 private String thumbnail;
+	 
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public int getNum() {
 		return num;
 	}

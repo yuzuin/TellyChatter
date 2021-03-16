@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,7 +59,8 @@ public class FormController {
 	private reviewService reviewService;
 	@Inject
 	private showService showService;
-
+	
+	
 	/* 회원가입 제출 */
 	@RequestMapping(value = "goRegister", method = RequestMethod.POST)
 	public String goRegister(memberVO mem, MultipartFile file) throws Exception {
@@ -77,7 +77,7 @@ public class FormController {
 		}
 		return "registerForm"; // 리다이렉트로
 	}
-
+	
 	/* 로그인 제출 */
 	@RequestMapping(value = "goLogin", method = RequestMethod.POST)
 	public String goLogin(memberVO mem, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -230,6 +230,17 @@ public class FormController {
 		rv.setWriterImg(nowUser.getProfileImg());
 		rv.setWriter(writer); // 현재 세션의 id를 writer에 셋
 		// 실행
+		
+		int begin = 0;
+		if(rv.getDescription().contains("<img alt=")) {
+			begin = rv.getDescription().indexOf("<img alt=\"\" src=")+17;
+			String tmp = rv.getDescription().substring(begin);
+			System.out.println(tmp);
+			int end = begin+tmp.indexOf('"');
+			String img = rv.getDescription().substring(begin,end);
+			System.out.println("자른 이미지 소스 :"+img);
+			rv.setThumbnail(img);
+		}
 
 		if (reviewService.insertReview(rv) > 0) {
 			System.out.println("리뷰 올림");
@@ -263,19 +274,19 @@ public class FormController {
 		
 		m.addAttribute("review",reviewService.viewReview(vo.getNum()));
 		
-		String otts = "";
-		if(vo.getNetflix()!='0') otts=otts + "넷플릭스\t";
-		if(vo.getWatcha()!='0') otts=otts+"왓챠\t";
-		if(vo.getWavve()!='0') otts=otts+"웨이브\t";
-		if(vo.getLaftel()!='0') otts=otts+"라프텔\t";
-		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
-		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
-		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
-		String comments = String.valueOf(reviewService.countReviewComment(vo.getNum()));
-		
-		m.addAttribute("cSize",comments);
-		m.addAttribute("otts",otts);
-		return "viewReview";
+//		String otts = "";
+//		if(vo.getNetflix()!='0') otts=otts + "넷플릭스\t";
+//		if(vo.getWatcha()!='0') otts=otts+"왓챠\t";
+//		if(vo.getWavve()!='0') otts=otts+"웨이브\t";
+//		if(vo.getLaftel()!='0') otts=otts+"라프텔\t";
+//		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
+//		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
+//		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
+//		String comments = String.valueOf(reviewService.countReviewComment(vo.getNum()));
+//		
+//		m.addAttribute("cSize",comments);
+//		m.addAttribute("otts",otts);
+		return "redirect:viewReview?viewNum="+vo.getNum();
 	}
 	
 	/** 리뷰 댓글 쓰기 */
