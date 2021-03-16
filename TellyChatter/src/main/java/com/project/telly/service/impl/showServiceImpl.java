@@ -122,4 +122,10 @@ public class showServiceImpl implements showService{
 		return showMapper.searchShow(word);
 	}
 
+	@Override
+	@Transactional
+	public int selectStar(int num) {
+		return showMapper.selectStar(num);
+	}
+
 }

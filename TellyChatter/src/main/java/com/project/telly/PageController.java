@@ -199,6 +199,10 @@ public class PageController {
 	@RequestMapping(value = "showDetail")
 	public String showDetail(@RequestParam("snum") int num, Model m) {
 		m.addAttribute("show",showService.selectShow(num));
+		int allStar = showService.selectShowComment(num).size();
+		float stars = (float)showService.selectStar(num)/allStar;
+		String star = String.valueOf(stars);
+		m.addAttribute("star",star);
 		return "showDetail";
 	}
 	

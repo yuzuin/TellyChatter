@@ -6,7 +6,15 @@ public class showCommentVO {
 	private String writetime;
 	private int showNum;
 	private int num;
+	private int star;
 	
+	
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
 	public String getWriter() {
 		return writer;
 	}

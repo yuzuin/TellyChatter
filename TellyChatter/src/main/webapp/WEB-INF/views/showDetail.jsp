@@ -18,6 +18,16 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/css/main.css" />
+<style>
+#star a {
+	text-decoration: none;
+	color: gray;
+}
+
+#star a.on {
+	color: red;
+}
+</style>
 </head>
 <body class="single is-preload">
 
@@ -63,29 +73,18 @@
 					<c:when test="${user ne null }">
 						<ul class="links">
 							<li><a href="#">
-									<div style="width:100px; 
-									height:100px; 
-									margin: 0 auto;
-									overflow:hidden;  
-									border: 3px solid gold;
-									border-radius : 12px;
-									-moz-border-radius: 12px;
-									-khtml-border-radius: 12px;
-									-webkit-border-radius: 12px;" >
-									<img style="
-										width:100px;
-										height:auto;
-										border-radius: 12px;
-										-moz-border-radius: 12px;
-										-khtml-border-radius: 12px;
-										-webkit-border-radius: 12px;" 
-										object-fit: cover;
-										overlow : hidden;
+									<div
+										style="width: 100px; height: 100px; margin: 0 auto; overflow: hidden; border: 3px solid gold; border-radius: 12px; -moz-border-radius: 12px; -khtml-border-radius: 12px; -webkit-border-radius: 12px;">
+										<img
+											style="width: 100px; height: auto; border-radius: 12px; -moz-border-radius: 12px; -khtml-border-radius: 12px; -webkit-border-radius: 12px;"
+											object-fit: cover;
+										overlow :
+											hidden;
 										src="${pageContext.request.contextPath}/download?filename=${user.profileImg }" />
 									</div>
-									<div style="text-align:center; margin:5px;">
-										<h3>${user.nickname } 님</h3>
-										<p>${user.point } P</p>
+									<div style="text-align: center; margin: 5px;">
+										<h3>${user.nickname }님</h3>
+										<p>${user.point }P</p>
 									</div>
 							</a></li>
 							<li><a href="myTellyLog">
@@ -116,7 +115,8 @@
 
 					<c:otherwise>
 						<ul class="actions stacked">
-							<li><a href="registerForm" class="button large fit">Log In</a></li>
+							<li><a href="registerForm" class="button large fit">Log
+									In</a></li>
 						</ul>
 					</c:otherwise>
 				</c:choose>
@@ -157,6 +157,7 @@
 					최초 작성자 : ${show.firstPer }<br /> 최근 수정자 : ${show.updatePer }
 				</div>
 			</article>
+			<div style="text-align:center; display:block;">별점 평균 : ${star }</div>
 			<button
 				onclick="location.href='updateShowForm?snum=${show.showNum }'"
 				class="button button-block">UPDATE!</button>
@@ -185,8 +186,19 @@
 							type="hidden" name="showNum" value="${show.showNum}" /> <input
 							type="text" class="form-control" id="content" name="content"
 							placeholder="내용을 입력하세요."> <span class="input-group-btn">
-							<button class="btn btn-default" type="button"
-								name="commentInsertBtn">등록</button>
+								<input type="text" id="stars" name="star" value=""/> 
+								<!-- 부모 -->
+							<p id="star">
+								<a href='javascript:setStar(1)'>★</a>
+								<!-- 자식들-->
+								<a href='javascript:setStar(2)'>★</a> 
+								<a href='javascript:setStar(3)'>★</a> 
+								<a href='javascript:setStar(4)'>★</a> 
+								<a href='javascript:setStar(5)'>★</a>
+							</p>
+
+								<button class="btn btn-default" type="button"
+									name="commentInsertBtn">등록</button>
 						</span>
 					</div>
 				</form>
@@ -236,9 +248,11 @@
 
 	<script>
 		var bno = '${show.showNum}'; //게시글 번호
+		var selected=0;
 
 		$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
-			var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+			var insertData = $('[name=commentInsertForm]').serialize();
+			//insertData.push({name:'star',value:'selected'})//commentInsertForm의 내용을 가져옴
 			commentInsert(insertData); //Insert 함수호출(아래)
 		});
 
@@ -280,6 +294,7 @@
 												a += '<div class="commentContent'+value.num+'"> <p> 내용 : '
 														+ value.content
 														+ '</p>';
+												a+='별점 : '+value.star;
 												a += '</div></div>';
 											});
 
@@ -293,7 +308,8 @@
 			$.ajax({
 				url : "insertShowComment",
 				type : 'post',
-				data : insertData,
+				data : insertData, 
+						//'star' : selected;
 				success : function(data) {
 					if (data == 1) {
 						commentList(); //댓글 작성 후 댓글 목록 reload
@@ -304,6 +320,14 @@
 					}
 				}
 			});
+		}
+		
+		//	별점 set
+		function setStar(starval){
+			selected = starval;
+			document.getElementById('stars').value=starval;
+			
+			//$('#stars[name=star]').attr(selected,star);
 		}
 
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
@@ -412,6 +436,15 @@
 				});
 	}
 	
+
+	</script>
+
+	<script>
+	$('#star a').click(function(){ 
+		$(this).parent().children("a").removeClass("on"); 
+		$(this).addClass("on").prevAll("a").addClass("on"); 
+		console.log($(this).attr("value")); 
+		});
 
 	</script>
 </body>

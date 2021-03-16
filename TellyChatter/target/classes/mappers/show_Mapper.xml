@@ -27,7 +27,8 @@
 
 <!-- show 짧은 리뷰 -->
 <insert id="insertShowComment">
-	insert into showComment(num,writer,content,showNum) values (showComment_seq.NEXTVAL,#{writer},#{content},#{showNum})
+	insert into showComment(num,writer,content,showNum,star) 
+	values (showComment_seq.NEXTVAL,#{writer},#{content},#{showNum},#{star})
 </insert>
 
 <select id="selectShowComment" resultType="showCommentVO">
@@ -41,6 +42,10 @@
 <delete id="deleteShowComment">
 	delete from showComment where num=#{num}
 </delete>
+
+<select id="selectStar" resultType="int">
+	select sum(star) from showComment where showNum=#{num}
+</select>
 
 <!-- 좋아요 -->
 <insert id="likeShow">

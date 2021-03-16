@@ -80,7 +80,6 @@ public class FormController {
 
 	/* 로그인 제출 */
 	@RequestMapping(value = "goLogin", method = RequestMethod.POST)
-	@ResponseBody
 	public String goLogin(memberVO mem, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		memberVO user = memberService.login(mem);
 		HttpSession session = request.getSession();
@@ -96,7 +95,6 @@ public class FormController {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인에 실패했습니다. 정보를 확인해주세요.');location.href='registerForm'</script>");
-			session.invalidate();
 			out.flush();
 			return "registerForm";
 		}
@@ -469,6 +467,7 @@ public class FormController {
 		rcv.setWriter(writer); // 현재 세션의 id를 writer에 셋
 		// 실행
 		showService.insertShowComment(rcv);
+		System.out.println("스타"+rcv.getStar());
 
 		// 포인트 추가
 		/** if (memberService.updatePointReview(writer) > 0) {

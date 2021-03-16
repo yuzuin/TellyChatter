@@ -30,5 +30,7 @@ public interface showDAO {
 	public List<myLikeShowVO> myLikeShow(String writer);
 	
 	public List<showVO> searchShow(String word);
+	
+	public int selectStar(int num);
 }
 
