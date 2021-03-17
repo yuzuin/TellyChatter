@@ -141,7 +141,7 @@
 					<div class="meta">
 						<time class="published">${review.writetime }</time>
 						<a href="#" class=""> <img
-							src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" />
+							style="width:70px;height:70px" src="${pageContext.request.contextPath}/download?filename=${review.writerImg }"  />
 						</a> <a href="#" class="author"><span class="name">${review.writer }</span></a>
 					</div>
 				</header>

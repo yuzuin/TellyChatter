@@ -186,7 +186,7 @@
 							type="hidden" name="showNum" value="${show.showNum}" /> <input
 							type="text" class="form-control" id="content" name="content"
 							placeholder="내용을 입력하세요."> <span class="input-group-btn">
-								<input type="text" id="stars" name="star" value=""/> 
+								<input type="hidden" id="stars" name="star" value=""/> 
 								<!-- 부모 -->
 							<p id="star">
 								<a href='javascript:setStar(1)'>★</a>
