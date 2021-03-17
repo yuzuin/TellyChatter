@@ -140,6 +140,7 @@
 					</div>
 					<div class="meta">
 						<time class="published">${review.writetime }</time>
+<<<<<<< HEAD
 						<div style="height:70px; width:70px; overflow:hidden; display:flex; align-items:center; justify-content:center;
 						margin-left:50px;"> <img
 							src="${pageContext.request.contextPath}/download?filename=${review.writerImg }" style="height:70px;width:auto;"/>
@@ -147,6 +148,11 @@
 						<div style="display:flex; align-items:center; justify-content:center;">
 						<a href="#" class="author"><span class="name">${review.writer }</span></a>
 						</div>
+=======
+						<a href="#" class=""> <img
+							style="width:70px;height:70px" src="${pageContext.request.contextPath}/download?filename=${review.writerImg }"  />
+						</a> <a href="#" class="author"><span class="name">${review.writer }</span></a>
+>>>>>>> refs/remotes/origin/master
 					</div>
 				</header>
 				<span class="image featured"><img src="images/pic01.jpg"
