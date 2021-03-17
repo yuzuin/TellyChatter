@@ -276,6 +276,7 @@ public class FormController {
 		
 		// 실행
 		reviewService.insertReviewComment(rcv);
+
 	}
 	
 	/** 리뷰 댓글 리스트 */
@@ -320,29 +321,22 @@ public class FormController {
 	@RequestMapping(value = "likeReview", method = RequestMethod.POST)
 	@ResponseBody
 	public String likeReview(likeReviewVO lr,HttpServletRequest request) {
-		System.out.println("리뷰 좋아요하기 ");
 		// 실행
 		try {
 			System.out.println(lr.getId());
 			System.out.println(lr.getNum());
 			if (reviewService.likeReview(lr) > 0) {
 				reviewService.updateLikeReview(lr.getNum());	//	리뷰 likes+1
-				System.out.println("좋아요 인서트 완료");
 				int aa = reviewService.viewReview(lr.getNum()).getLikes();
-				System.out.println("aa값"+aa);
 				return String.valueOf(aa);
 			}else {
 				System.out.println("좋아요 실패 ");
 			}
 			
 		}catch(Exception e) {
-			System.out.println("오류났기때문에 좋아요 취소");
 			reviewService.deleteLike(lr);
-			System.out.println("좋아요취소");
 			reviewService.cancleLikeReview(lr.getNum());
-			System.out.println("좋아요 하나 삭제");
 			int aa = reviewService.viewReview(lr.getNum()).getLikes();
-			System.out.println("aa값"+aa);
 			return String.valueOf(aa);
 		}
 		return "ㅋ"; // 리다이렉트로
@@ -363,6 +357,7 @@ public class FormController {
 		pagemaker.setCount(pageTotal);
 		m.addAttribute("pageMaker",pagemaker);
 		m.addAttribute("postList",reviewService.searchReview(pagemaker));
+		m.addAttribute("word",word);
 		
 		return "listReview";
 	}
@@ -432,27 +427,19 @@ public class FormController {
 		List<showCommentVO> vo = showService.selectShowComment(bno);
 		return vo;
 	}
+	
 	/** 영화 댓글 쓰기 */
 	@RequestMapping(value = "insertShowComment", method = RequestMethod.POST)
 	@ResponseBody
-	public String insertShowComment(showCommentVO rcv, HttpServletRequest request) {
-		System.out.println("인서트show코멘트");
+	public void insertShowComment(showCommentVO rcv, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		memberVO nowUser = (memberVO) session.getAttribute("user");
 		String writer = nowUser.getId();
 		rcv.setWriter(writer); // 현재 세션의 id를 writer에 셋
 		// 실행
 		showService.insertShowComment(rcv);
-		System.out.println("스타"+rcv.getStar());
-
-		// 포인트 추가
-		/** if (memberService.updatePointReview(writer) > 0) {
-		*	System.out.println("포인트 추가 완료 ");
-		*} */
-
-
-		return "index"; // 리다이렉트로
 	}
+	
 	/** 영화 댓글 삭제 */
 	@RequestMapping(value = "deleteShowComment/{num}")
 	@ResponseBody
@@ -514,10 +501,8 @@ public class FormController {
 		if (memberService.updateMyInfo(mem) > 0) {
 			System.out.println("ok리턴");
 		}
-		
 		memberVO user = memberService.login(mem);
 		HttpSession session = request.getSession();
-		//session.invalidate();
 		session.setAttribute("user", user);
 		return "redirect:myInfo"; // 리다이렉트로
 	}

@@ -143,9 +143,7 @@ public class PageController {
 		
 		model.addAttribute("postList",reviewService.listAll(pagemaker));
 		model.addAttribute("pageMaker",pagemaker);
-		
-		
-
+		model.addAttribute("reviewList","reviewList");
 		return "listReview";
 	}
 

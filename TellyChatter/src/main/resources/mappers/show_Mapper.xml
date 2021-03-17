@@ -36,7 +36,7 @@
 </select>
 
 <update id="updateShowComment">
-	update showComment set content=#{content}, writetime=sysdate
+	update showComment set content=#{content}, writetime=sysdate where num=#{num}
 </update>
 
 <delete id="deleteShowComment">

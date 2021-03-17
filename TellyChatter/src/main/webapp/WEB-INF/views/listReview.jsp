@@ -189,13 +189,22 @@
 						<ul class="pageUL">
 
 							<c:if test="${pageMaker.prev > 0 }">
+							<c:choose>
+								<c:when test="${reviewList=='reviewList' }">
 								<a href='listReview?page=${pageMaker.prev}'> [ 이전 ] </a>
+								</c:when>
+								<c:otherwise>
+								<a href='searchReview?page=${pageMaker.prev}&&word=${word}'> [ 이전 ] </a>
+								</c:otherwise>
+							</c:choose>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.start }" end="${pageMaker.end}"
 								var="idx">
-								<!-- 			<li class='<c:out value="${idx == pageMaker.page?'current':''}"/>'>   -->
-								<a href='listReview?page=${idx}'> <c:choose>
+								<c:choose>
+								<c:when test="${reviewList=='reviewList' }">
+								<a href='listReview?page=${idx}'> 
+								<c:choose>
 										<c:when test="${pageMaker.page eq idx}">
 											<b>[<font color=red size=3> ${idx} </font> ]
 											</b>
@@ -203,10 +212,30 @@
 										<c:otherwise>[ ${idx} ] </c:otherwise>
 									</c:choose>
 								</a>
+								</c:when>
+								<c:otherwise>
+								<a href='searchReview?page=${idx}&&word=${word}'> 
+								<c:choose>
+										<c:when test="${pageMaker.page eq idx}">
+											<b>[<font color=red size=3> ${idx} </font> ]
+											</b>
+										</c:when>
+										<c:otherwise>[ ${idx} ] </c:otherwise>
+									</c:choose>
+								</a>
+								</c:otherwise>
+								</c:choose>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next > 0 }">
+							<c:choose>
+								<c:when test="${reviewList=='reviewList' }">
 								<a href='listReview?page=${pageMaker.next}'> [ 다음 ] </a>
+								</c:when>
+								<c:otherwise>
+								<a href='searchReview?page=${pageMaker.next}&&word=${word}'> [ 다음 ] </a>
+								</c:otherwise>
+							</c:choose>
 							</c:if>
 
 						</ul>

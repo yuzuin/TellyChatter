@@ -326,8 +326,6 @@
 		function setStar(starval){
 			selected = starval;
 			document.getElementById('stars').value=starval;
-			
-			//$('#stars[name=star]').attr(selected,star);
 		}
 
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
@@ -412,28 +410,23 @@
 	function likeList(num) {
 		var showNum = ${show.showNum};
 		$
-				.ajax({
-					url : "cntShowLikes",
-					type : 'get',
-					data : {
-						'bno' : num
-					},
-					success : 
-						function(data2) {
-						var b = '';
-						//$
-						//				data,
-						//				function(key,value) {
-						//					b+='<div class="result">'+value.likes+'</div>';
-						//				};
-						b+='<div id="result">'+data2+'</div>';
-						$('#result').html(b);
-					},
-					error : 
-						function (request, status, error){
-						$('#result').html('실패');
-					}
-				});
+			.ajax({
+				url : "cntShowLikes",
+				type : 'get',
+				data : {
+					'bno' : num
+				},
+				success : 
+					function(data2) {
+					var b = '';
+					b+='<div id="result">'+data2+'</div>';
+					$('#result').html(b);
+				},
+				error : 
+					function (request, status, error){
+					$('#result').html('실패');
+				}
+			});
 	}
 	
 

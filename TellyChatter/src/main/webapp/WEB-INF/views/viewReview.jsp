@@ -134,13 +134,10 @@
 							<a href="#">${review.title }</a>
 						</h2>
 						<p>${review.subtitle }</p>
-						<!-- ott -->
-
 						<p>지원 플랫폼 : ${otts }</p>
 					</div>
 					<div class="meta">
 						<time class="published">${review.writetime }</time>
-<<<<<<< HEAD
 						<div style="height:70px; width:70px; overflow:hidden; display:flex; align-items:center; justify-content:center;
 						margin-left:50px;"> <img
 							src="${pageContext.request.contextPath}/download?filename=${review.writerImg }" style="height:70px;width:auto;"/>
@@ -148,11 +145,6 @@
 						<div style="display:flex; align-items:center; justify-content:center;">
 						<a href="#" class="author"><span class="name">${review.writer }</span></a>
 						</div>
-=======
-						<a href="#" class=""> <img
-							style="width:70px;height:70px" src="${pageContext.request.contextPath}/download?filename=${review.writerImg }"  />
-						</a> <a href="#" class="author"><span class="name">${review.writer }</span></a>
->>>>>>> refs/remotes/origin/master
 					</div>
 				</header>
 				<span class="image featured"><img src="images/pic01.jpg"
@@ -284,31 +276,18 @@
 											function(key, value) {
 												a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
 												a += '<div class="commentInfo'+value.num+'">'
-														+ '댓글번호 : '
-														+ value.num
-														+ ' / 작성자 : '
-														+ value.writer;
-													
-												
+														+ '댓글번호 : '+ value.num+ ' / 작성자 : '+ value.writer;
 												if('${user.id}'==value.writer){
-												a += 
-													'<a onclick="commentUpdate('
-														+ value.num
-														+ ',\''
-														+ value.content
-														+ '\');"> 수정' +'</a>'; }
-												
+												a += '<a onclick="commentUpdate('
+														+ value.num+ ',\''+ value.content+ '\');"> 수정' +'</a>'; }
 												if('${user.id}'==value.writer || '${user.id}'=='admin'){
 												a += '<a onclick="commentDelete('
-														+ value.num
-														+ ');"> 삭제 </a>';}
+														+ value.num+ ');"> 삭제 </a>';}
 												a+=' </div>';
 												a += '<div class="commentContent'+value.num+'"> <p> 내용 : '
-														+ value.content
-														+ '</p>';
+														+ value.content+ '</p>';
 												a += '</div></div>';
 											});
-
 							$(".commentList").html(a);
 						}
 					});
@@ -335,13 +314,11 @@
 		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
 		function commentUpdate(num, content) {
 			var a = '';
-
 			a += '<div class="input-group">';
 			a += '<input type="text" class="form-control" name="content_'+num+'" value="'+content+'"/>';
 			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('
 					+ num + ');">수정</button> </span>';
 			a += '</div>';
-
 			$('.commentContent' + num).html(a);
 
 		}
@@ -349,7 +326,6 @@
 		//댓글 수정
 		function commentUpdateProc(num) {
 			var updateContent = $('[name=content_' + num + ']').val();
-
 			$.ajax({
 				url : "updateReviewComment",
 				type : 'post',
@@ -359,7 +335,6 @@
 				},
 				success : function(data) {
 						commentList(bno); //댓글 수정후 목록 출력 
-					//if (data == 1)
 				}
 			});
 		}
@@ -390,12 +365,10 @@
 		url: "likeReview",
 		type: "POST",
 		cache: false,
-		//dataType: "json",
 		
 		data: $('#like_form').serialize(), //아이디가 like_form인 곳의 모든 정보를 가져와 파라미터 전송 형태(표준 쿼리형태)로 만들어줌
 		success:
 		function(data){ //ajax통신 성공시 넘어오는 데이터 통째 이름 =data
-		//	alert("'좋아요'가 반영되었습니다!") ; // data중 put한 것의 이름 like
 		var f = '';
 		f+='<span id="likecnt">'+data+'</span>';
 		$("#likecnt").html(f); //id값이 like_result인 html을 찾아서 data.like값으로 바꿔준다.
@@ -410,7 +383,6 @@
 		}
 		});
 		}
-
 	</script>
 
 
