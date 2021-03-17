@@ -267,25 +267,15 @@ public class FormController {
 	/** 리뷰 댓글 쓰기 */
 	@RequestMapping(value = "insertReviewComment", method = RequestMethod.POST)
 	@ResponseBody
-	public String insertReviewComment(reviewCommentVO rcv, HttpServletRequest request) {
+	public void insertReviewComment(reviewCommentVO rcv, HttpServletRequest request) {
 		System.out.println("인서트리뷰코멘트");
 		HttpSession session = request.getSession();
 		memberVO nowUser = (memberVO) session.getAttribute("user");
 		String writer = nowUser.getId();
 		rcv.setWriter(writer); // 현재 세션의 id를 writer에 셋
-		// 실행
-
-		if (reviewService.insertReviewComment(rcv) > 0) {
-			System.out.println("리뷰 코멘트 올림");
-		}
 		
-		// 포인트 추가
-		/** if (memberService.updatePointReview(writer) > 0) {
-		*	System.out.println("포인트 추가 완료 ");
-		*} */
-
-
-		return "index"; // 리다이렉트로
+		// 실행
+		reviewService.insertReviewComment(rcv);
 	}
 	
 	/** 리뷰 댓글 리스트 */
