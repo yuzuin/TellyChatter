@@ -201,7 +201,11 @@ public class PageController {
 	public String showDetail(@RequestParam("snum") int num, Model m) {
 		m.addAttribute("show",showService.selectShow(num));
 		int allStar = showService.selectShowComment(num).size();
-		float stars = (float)showService.selectStar(num)/allStar;
+		float stars=0;
+		try {
+			stars = (float)showService.selectStar(num)/allStar;
+		} catch (Exception e) {
+		}
 		String star = String.valueOf(stars);
 		m.addAttribute("star",star);
 		return "showDetail";
