@@ -14,7 +14,7 @@
 	
 	<!-- 탑리뷰 -->
 	<select id="topReviews"  resultType="reviewVO">
-		<![CDATA[select * from review where rownum < = 3 order by likes desc]]>
+		<![CDATA[select * from (select * from review order by likes desc) where rownum < = 3]]>
 	</select>
 	
 	<select id="latestReviews"  resultType="reviewVO">

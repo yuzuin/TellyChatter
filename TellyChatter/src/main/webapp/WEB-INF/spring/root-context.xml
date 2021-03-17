@@ -48,6 +48,9 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean> 
 	
+	<!-- 비지터부분 
+	<bean id="adminDAO" class="com.project.telly.service.dao.adminDAO"></bean>-->
+	
 	<!-- 아노테이션 기반의 트랜잭션을 사용합니다. -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	

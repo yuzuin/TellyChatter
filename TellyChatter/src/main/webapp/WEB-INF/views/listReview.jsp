@@ -187,18 +187,15 @@
 					<td colspan=5 align=center>
 						<hr>
 						<ul class="pageUL">
-
 							<c:if test="${pageMaker.prev > 0 }">
 								<a href='listReview?page=${pageMaker.prev}'> [ 이전 ] </a>
 							</c:if>
-
-							<c:forEach begin="${pageMaker.start }" end="${pageMaker.end}"
-								var="idx">
+							<c:forEach begin="${pageMaker.start }" end="${pageMaker.end}" var="idx">
 								<!-- 			<li class='<c:out value="${idx == pageMaker.page?'current':''}"/>'>   -->
-								<a href='listReview?page=${idx}'> <c:choose>
+								<a href='listReview?page=${idx}'> 
+								<c:choose>
 										<c:when test="${pageMaker.page eq idx}">
-											<b>[<font color=red size=3> ${idx} </font> ]
-											</b>
+											<b>[<font color=red size=3> ${idx} </font> ]</b>
 										</c:when>
 										<c:otherwise>[ ${idx} ] </c:otherwise>
 									</c:choose>

@@ -135,15 +135,12 @@ public class PageController {
 			nowPage=Integer.valueOf(request.getParameter("page"));
 		}
 		int pageTotal = reviewService.allCount();
-//		int pageTotal = postdao.allcount();	//	기존 dao 왜냐하면 현재 mybatis에는 select count(*) from ~ 가 없음 추후 추가
 		PageNumber pagemaker = new PageNumber();
 		pagemaker.setPage(nowPage);
 		pagemaker.setCount(pageTotal);
 		
 		model.addAttribute("postList",reviewService.listAll(pagemaker));
 		model.addAttribute("pageMaker",pagemaker);
-		
-		
 
 		return "listReview";
 	}
@@ -268,5 +265,10 @@ public class PageController {
 	public String allSearch(String id,HttpServletRequest request, Model model) {
 		return "allSearch";
 	}
+	
+	
+	/* admin에서 활용되는 부분. */
+	
+	/** 비지터 정보 입력 */
    
 }

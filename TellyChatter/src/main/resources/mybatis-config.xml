@@ -13,6 +13,7 @@
 		<typeAlias alias="myLikeReviewVO" type="com.project.telly.vo.myLikeReviewVO" />
 		<typeAlias alias="myLikeShowVO" type="com.project.telly.vo.myLikeShowVO" />
 		<typeAlias alias="onelineShowVO" type="com.project.telly.vo.onelineShowVO" />
+		<typeAlias alias="visitCountVO" type="com.project.telly.vo.visitCountVO" />
 	</typeAliases>
 </configuration>
 

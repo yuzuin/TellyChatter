@@ -264,18 +264,18 @@ public class FormController {
 		m.addAttribute("review",reviewService.viewReview(vo.getNum()));
 		
 		String otts = "";
-		if(vo.getNetflix()!='0') otts=otts + "넷플릭스\t";
-		if(vo.getWatcha()!='0') otts=otts+"왓챠\t";
-		if(vo.getWavve()!='0') otts=otts+"웨이브\t";
-		if(vo.getLaftel()!='0') otts=otts+"라프텔\t";
-		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
-		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
-		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
-		String comments = String.valueOf(reviewService.countReviewComment(vo.getNum()));
-		
-		m.addAttribute("cSize",comments);
-		m.addAttribute("otts",otts);
-		return "viewReview";
+//		if(vo.getNetflix()!='0') otts=otts + "넷플릭스\t";
+//		if(vo.getWatcha()!='0') otts=otts+"왓챠\t";
+//		if(vo.getWavve()!='0') otts=otts+"웨이브\t";
+//		if(vo.getLaftel()!='0') otts=otts+"라프텔\t";
+//		if(vo.getKakao()!='0') otts=otts+"카카오TV\t";
+//		if(vo.getCoupang()!='0') otts=otts+"쿠팡플레이\t";
+//		if(vo.getNaver()!='0') otts=otts+"네이버 시리즈온\t";
+//		String comments = String.valueOf(reviewService.countReviewComment(vo.getNum()));
+//		
+//		m.addAttribute("cSize",comments);
+//		m.addAttribute("otts",otts);
+		return "redirect:viewReview?viewNum="+vo.getNum();
 	}
 	
 	/** 리뷰 댓글 쓰기 */

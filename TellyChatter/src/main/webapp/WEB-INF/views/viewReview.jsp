@@ -141,7 +141,7 @@
 					<div class="meta">
 						<time class="published">${review.writetime }</time>
 						<a href="#" class=""> <img
-							src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" />
+							src="${pageContext.request.contextPath}/download?filename=${review.writerImg }" />
 						</a> <a href="#" class="author"><span class="name">${review.writer }</span></a>
 					</div>
 				</header>
@@ -174,6 +174,8 @@
 			<a href="deleteReview?delNum=${review.num }" class="button">삭제하기</a>
 		</c:if>
 		<br /> <br /> <br />
+		
+		
 		<!-- 좋아요테스트 
 		<form id="like_form">
 			<table id="list">

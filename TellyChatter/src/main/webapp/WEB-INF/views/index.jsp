@@ -168,8 +168,9 @@
 
 			<!-- Intro -->
 			<section id="intro">
-				<a href="#" class="logo"> <!--<c:set var="nowUser" value="${nowUser }"/>-->
-					<img src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" />
+			<!-- class="logo" -->
+				<a href="#" style="flow:left;"> <!--<c:set var="nowUser" value="${nowUser }"/>-->
+					<img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" >
 				</a>
 				<header>
 					<h2>
